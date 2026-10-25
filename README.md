@@ -79,7 +79,7 @@ Although I had no programming experience, I gradually figured out how the game's
 
 Using a collection of rather primitive utilities — some of them running under DOS — I managed to create a Russian translation of the Sega Mega Drive version.
 
-On **June 27, 2003**, my translation was published by **SHEDEVR**, a Russian console game translation community, under my nickname *Valet2*.
+On **June 27, 2003**, my translation was published by **[SHEDEVR](http://shedevr.org.ru/cgi-bin/gamez.cgi?n=78)**, a Russian console game translation community, under my nickname *Valet2*.
 
 I was incredibly proud of that achievement.
 
