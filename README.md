@@ -18,7 +18,7 @@ Originally released for home computers in 1990 and later brought to the Sega Gen
 
 Years before *System Shock*, it was already experimenting with many of the ideas we now associate with immersive simulations.
 
-You play as an operative infiltrating a heavily secured corporate facility where experiments involving a new life form have gone terribly wrong. Your mission is to reach the laboratories, retrieve a specimen, and escape through the underground parking area.
+You play as an operative infiltrating a heavily secured corporate facility where experiments involving a new life form have gone terribly wrong. Your mission is to reach the laboratories, retrieve a specimen, and escape through the parking area.
 
 Sounds straightforward? It isn't.
 
