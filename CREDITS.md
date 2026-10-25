@@ -1,0 +1,34 @@
+# ORIGINAL GAME CREDITS
+
+Corporation / Cyber-Cop (1990–1992)
+
+Original game design:
+Kevin Bulmer
+
+Original programming:
+William Allen
+
+Original graphics:
+Kevin Bulmer
+
+Original development credits:
+Dementia
+Dimension Creative Designs Limited
+Core Design Ltd.
+
+Original publishing credits (varying by platform and region):
+Core Design Ltd.
+Virgin Games, Inc.
+Virgin Games, Ltd.
+
+The Sega Genesis release (1992) specifically credits
+Virgin Games, Inc. as "Produced and Copyrighted by".
+
+These acknowledgements reflect the historical credits of
+the original game across its Atari ST, Amiga, DOS, and
+Sega Genesis releases. They do not constitute a statement
+about current ownership of the original game's intellectual
+property.
+
+Historical credit sources:
+https://www.mobygames.com/game/1487/corporation/
