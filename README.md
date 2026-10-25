@@ -22,7 +22,7 @@ You play as an operative infiltrating a heavily secured corporate facility where
 
 Sounds straightforward? It isn't.
 
-The building is a maze of interconnected floors, locked rooms, security systems, surveillance cameras, alarm-triggering floor sensors, hostile robots, and dangerous biological creatures.
+The building is a maze of interconnected floors, locked rooms, security systems, surveillance cameras, alarm-triggering floor and laser sensors, hostile robots, and dangerous biological creatures.
 
 Progression requires exploring the building, locating access terminals, obtaining security codes, and gradually unlocking routes to other floors.
 
