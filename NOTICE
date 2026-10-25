@@ -8,7 +8,7 @@ Mega Drive version of Corporation, also known as Cyber-Cop.
 
 Original modifications, tools, and documentation authored for
 this project are licensed under the Apache License, Version 2.0.
-See the LICENSE file for details.
+See the [LICENSE.md](LICENSE.md) file for details.
 
 Project repository:
 https://github.com/Valetos2/Cyber-Cop-Genesis-mod
@@ -70,7 +70,7 @@ game ROM.
 CONTRIBUTOR ACKNOWLEDGEMENTS
 
 Additional contributors and their modifications may be
-acknowledged in the CREDITS.md file.
+acknowledged in the [CREDITS.md](CREDITS.md) file.
 
 Users who redistribute modified versions are encouraged
 to reference the original project and acknowledge the
