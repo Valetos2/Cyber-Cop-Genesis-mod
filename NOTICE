@@ -1,14 +1,77 @@
-Cyber-Cop / Corporation — Community Fixes
-Copyright 2026 Valentin "Valet2" Kozin
+Corporation / Cyber-Cop — Sega Genesis / Mega Drive Mod
 
-Original fixes, patches, tools and level viewer
-developed by Valet2 using GPT-6.
+Copyright (c) 2026 Valentin "Valet2" Kozin
+
+This project contains unofficial fixes, improvements, patches,
+development tools, and documentation for the Sega Genesis /
+Mega Drive version of Corporation, also known as Cyber-Cop.
+
+Original modifications, tools, and documentation authored for
+this project are licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
 
 Project repository:
-https://github.com/Valetos2/Cyber-Cop-Mod
+https://github.com/Valetos2/Cyber-Cop-Genesis-mod
 
-Licensed under the Apache License, Version 2.0.
+ORIGINAL GAME CREDITS
 
-This project is an unofficial fan modification.
-It is not affiliated with or endorsed by the
-original game's copyright holders.
+Corporation / Cyber-Cop (1990–1992)
+
+Original game design:
+Kevin Bulmer
+
+Original programming:
+William Allen
+
+Original graphics:
+Kevin Bulmer
+
+Original development credits:
+Dementia
+Dimension Creative Designs Limited
+Core Design Ltd.
+
+Original publishing credits (varying by platform and region):
+Core Design Ltd.
+Virgin Games, Inc.
+Virgin Games, Ltd.
+
+The Sega Genesis release (1992) specifically credits
+Virgin Games, Inc. as "Produced and Copyrighted by".
+
+These acknowledgements reflect the historical credits of
+the original game across its Atari ST, Amiga, DOS, and
+Sega Genesis releases. They do not constitute a statement
+about current ownership of the original game's intellectual
+property.
+
+Historical credit sources:
+https://www.mobygames.com/game/1487/corporation/
+
+THIRD-PARTY RIGHTS
+
+Corporation / Cyber-Cop and its original game code,
+graphics, audio, and other assets remain subject to
+the rights of their respective copyright holders.
+
+The Apache License 2.0 applies only to original material
+provided by this project for which the contributors have
+the necessary licensing rights. It does not grant any
+rights to the original commercial game or its assets.
+
+This repository is an independent, unofficial fan project
+and is not affiliated with, authorized by, or endorsed by
+the original developers, publishers, or their successors.
+
+The project is intended to distribute modifications and
+development tools, not copies of the original commercial
+game ROM.
+
+CONTRIBUTOR ACKNOWLEDGEMENTS
+
+Additional contributors and their modifications may be
+acknowledged in the CREDITS.md file.
+
+Users who redistribute modified versions are encouraged
+to reference the original project and acknowledge the
+authors of any changes incorporated into their work.
