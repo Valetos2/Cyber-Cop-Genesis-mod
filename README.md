@@ -37,7 +37,7 @@ The game also features:
 - **Individual body-part damage:** Injuries can impair specific abilities or become fatal.
 - **Suit energy management:** Electronic devices and certain weapons depend on a limited energy supply.
 - **Security systems:** Cameras, alarms, poisonous gas, access restrictions, and electronic locks.
-- **Environmental storytelling:** Messages, clues, and holographic recordings help explain what happened inside the facility.
+- **Environmental storytelling:** Holographic clues help explain what happened inside the facility.
 
 Exploration requires patience, preparation, and planning. The original manuals even encourage players to draw their own maps, record useful information, and expect to restart the adventure several times before succeeding.
 
