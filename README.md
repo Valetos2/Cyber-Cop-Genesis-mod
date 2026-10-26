@@ -1,6 +1,6 @@
 # Cyber-Cop / Corporation — Genesis Improvement Project
 
-**Current development build: v33.** See [cumulative changes](CHANGELOG.md), [release notes](RELEASE_NOTES_v33.md) and [build instructions](DEVELOPMENT.md).
+**Current development build: v34.** See [cumulative changes](CHANGELOG.md), [release notes](RELEASE_NOTES_v34.md) and [build instructions](DEVELOPMENT.md).
 
 ### Making Cyber-Cop the game it always deserved to be.
 
@@ -141,7 +141,7 @@ The following changes have been developed for the Sega Genesis / Mega Drive vers
 - VBlank-based buffering for discrete action presses, reducing missed inputs during slow frames without turning movement into queued steps.
 - Six-button controller support: X/Z cycle backpack items, Y uses the selected item, and Mode toggles sleep.
 - Contextual A interaction/pickup and finer initial turning steps while stationary.
-- More convenient interactions with objects and the inventory.
+- More convenient interactions with objects and the inventory: invalid Use/Drop icons fall back to the left, Scanman focuses Use after selecting a Screen, and exterior lift call buttons preserve the cursor and selected item.
 
 ### Graphics and performance
 
@@ -154,9 +154,9 @@ The following changes have been developed for the Sega Genesis / Mega Drive vers
 
 - Fixed various problems with environmental damage handling.
 - Added varied door-lock codes between new games. The original game reinitializes its random generator with a fixed seed, producing repeatable codes. The native eight-swap shuffle can leave individual codes unchanged. The fixed airlock code remains 9831.
-- Added low-energy warning flashes at 15% or below, optional Auto Sleep before fatal exhaustion, and a periodically refreshed native Energy bar during sleep.
+- Added low-energy warning flashes at 15% or below, optional Auto Sleep before fatal exhaustion, and a periodically refreshed native Energy bar during sleep, drawn by the native HUD alone to prevent competing old/new readings.
 - Give Gas Mask priority over Face Mask; block lockpick activation during alarms; clear the leftover Use block on elevator arrival.
-- Stop the jetpack sequence when its battery runs out without cancelling other active environmental sequences. Alarms take priority; simultaneous jetpack/main-theme mixing is not implemented.
+- Toggle Jet Pack off by using it again, returning to standing with native descent physics. Stop the jetpack sequence when its battery runs out without cancelling other active environmental sequences. Alarms take priority; simultaneous jetpack/main-theme mixing is not implemented.
 - Corrected numerous issues discovered through gameplay testing.
 - Added optional infinite energy, infinite battery, invincibility, and selectable access levels, plus a sound test.
 
@@ -167,8 +167,8 @@ The following changes have been developed for the Sega Genesis / Mega Drive vers
 - Improved contextual controls and interface responsiveness.
 - Fixed visual and functional issues in several interface elements.
 - Added music, sound-effects and wall-appearance settings to the sleep menu, with cheats on a second page.
-- Hide Cheats in the main menu until four separate Down presses on Options; navigation becomes cyclic after unlocking it.
-- Improved front-end navigation and intro skipping. Both regional title logos alternate between title-screen visits.
+- Hide Cheats in the main menu until four separate Down presses on Options; navigation remains bounded at both ends after unlocking it.
+- Improved front-end navigation and intro skipping. Main-menu idle timeout is doubled. Both regional title logos alternate between title-screen visits.
 
 ### Saving and continuing
 
@@ -308,5 +308,6 @@ And perhaps, after all these years, I'll finally stop thinking about it.
 *Although, considering my plans for the missing features and extra levels... probably not.*
 
 — **Valentin "Valet2" Kozin**, October 2026
+
 
 

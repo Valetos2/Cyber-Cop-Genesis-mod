@@ -1,4 +1,4 @@
-# Changes from the original Genesis game — v33
+# Changes from the original Genesis game — v34
 
 This is a cumulative description of the current modification, not a list of every experimental build. Superseded implementations are omitted. A few changes alter the original design deliberately; they are identified below. Atari ST, Amiga and DOS versions are not modified by this patch.
 
@@ -56,7 +56,7 @@ This is a cumulative description of the current modification, not a list of ever
 ## Front-end menus and presentation
 
 - Main menu: Start New Game, Resume Saved Game, Enter Password, Options; Cheats is initially hidden.
-- At Options, four separate Down presses reveal Cheats and select it. Any other button resets the count; holding Down is not four presses. Hidden navigation stops at the ends; after unlocking it wraps. Unlock state lasts until a new gameplay session starts and is not stored in SRAM.
+- At Options, four separate Down presses reveal Cheats and select it. Any other button resets the count; holding Down is not four presses. Navigation stops at both ends, before and after unlocking Cheats. Unlock state lasts until a new gameplay session starts and is not stored in SRAM.
 - Start New Game contains Default Character, Select New Character and Back. Options contains Music, Sound FX, Sound Test, Wall Dithering, Wall Stripe and Exit. Cheats has its five settings and Exit.
 - Regular confirmation accepts A/B/C/Start. Exceptions: agent selection accepts A/B/C and ignores Start; equipment purchase uses A/B/C to buy and Start to launch; password Start submits the entered password. Options/Cheats Start selects Exit and performs the normal fade.
 - On/Off settings accept action buttons and Left/Right; dithering and access level use arrows only. Access and dithering lists do not wrap.
@@ -104,10 +104,17 @@ Slow scenes, some original geometry/near-wall visibility artifacts, the limited 
 
 Tests execute relevant 68000 routines, compare memory/images and model selected hardware operations. They do not replace full Kega Fusion gameplay or physical-console validation. Emulator save states embed old code addresses and are not guaranteed compatible between versions; back up SRAM before upgrading.
 
-## v33 follow-up
+## Current interaction refinements
 
 - Replace the numeric sleep gain display and its glyph cache with periodic updates of the original Energy bar; native wake-up credits the gain only once.
 - Give an intact Gas Mask priority over Face Mask regardless of inventory order.
 - Block lockpick activation during the actual game alarm state.
 - Clear the leftover Use-block flag at elevator arrival; verify buffered Y invokes Computer exactly once.
 - Stop the jetpack sequence on battery exhaustion without cancelling other active sequences; give alarms priority and resume the jetpack after an alarm ends. This does not add simultaneous jetpack/main-theme mixing.
+
+
+- When the Drop icon becomes unavailable, search left for an enabled icon; retain the same behavior for Use. Explicit directional navigation keeps its native direction.
+- After Scanman selects an available Screen in native priority order, focus Use. Exterior lift call buttons do not relocate the cursor or select an ID card. Interior lift/terminal card selection remains intact.
+- Remove competing sleep Energy writers: the native HUD alone draws the cached recovery preview. Reproduce the old 456-to-200 rollback as a negative control; the new display remains at 456. Gain timing and calculation are unchanged.
+- Clamp the main menu at its first/last visible entries, including after Cheats unlock. Double its idle timeout from 1250 to 2500 updates.
+- Using an active Jet Pack again switches it off, clears jump/crouch requests and lets native gravity return the player to standing. Preserve the v33 audio-owner checks.
