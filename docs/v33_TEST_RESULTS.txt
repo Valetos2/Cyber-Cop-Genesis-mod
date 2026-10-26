@@ -1,0 +1,106 @@
+=== test_blasts26.py ===
+PASS bounded eastern-map lookup, 121 grenade cells, Eye coordinate preservation
+
+=== test_bomb.py ===
+PASS bomb Enter/arm/edit state
+
+=== test_build.py ===
+PASS reproducible build, Genesis checksum, IPS expansion and exact ROM match: 6c4842fe3e92df568f9babd76e8b77564a12473c3c74320a7beee6407139e4d0
+
+=== test_changes28.py ===
+PASS existing four pad reads, TH-low detection, six-frame debounce, safe-context sleep once, no automatic wake
+PASS HUD palette entry unchanged by all visor modes, lights-out choice and panel palette clearing; gray/white glyph index7
+PASS credits at end after one blank line, all original credits and trailing blank rows retained
+PASS SRAM odd-address byte writes, highest address $200803, 1026-byte used span within 8 KiB declared SRAM
+
+=== test_changes29.py ===
+PASS all glyph background pixels equal original HUD; palette0 retained; four save-state backgrounds agree
+PASS ending main theme under music on/off, no restart when already queued/playing, setting and post-credits path unchanged
+
+=== test_changes30.py ===
+PASS elevator pending/expired names write no HUD tiles; new world selection renders at x180
+PASS post-credits music on reset before intro, stack preserved, no early theme start
+PASS entering elevator before card removes old visible label once; no stale text remains
+
+=== test_changes32.py ===
+PASS hidden Cheats, four separate taps, reset by another button, clamp then wrap, new-session reset
+PASS energy warning <=15%, with exact boundary at 76/512
+PASS keypad red lamp persists while alarm active, resets on clear
+PASS actual lockpick scan and native item selection; absent case leaves slot/cursor untouched
+PASS no item text or clearing writes over expanded sleep/lift HUD
+PASS alarm on/off redraws the displayed lamp only on state changes
+
+=== test_changes33.py ===
+PASS live native Energy bar, unchanged stored energy, no glyph cache, no redundant tile writes
+PASS wake adds gain once, matching the displayed bar
+PASS intact Gas Mask overrides Face Mask in either order; broken masks ignored
+PASS alarm blocks lockpick activation; clear alarm allows native decoder
+PASS Y press+release buffered between loops, real Computer toggles once; lift latch cleared before use
+PASS jetpack battery/manual audio ownership, alarm priority, jet sound resumes after False Alarm
+
+=== test_checkpoint.py ===
+Legacy password alive; total damage preserved: [0, 6, 15, 8, 8, 8, 8, 16, 16, 8]
+Full checkpoint round-trip: floor items, terminal flags, exact body/energy/battery/ammo/inventory/selection OK
+Corrupt extension rejected instead of silently discarding floor history
+
+=== test_fixes.py ===
+Five scenes x four visor modes x128 updates: battery palettes exactly original/v23; low energy only changes its separate window
+Provided SRAM -> full v25 resume: theme queued only with Music On, Off retained
+
+=== test_fixes27.py ===
+PASS 840 side/diagonal movement+camera updates at wraparound angles; v26 bug reproduced as negative control
+PASS full native credits scroll to NUL with five extra rows
+PASS item text centered at x180, native font in gray palette entry7, only unused HUD tiles overwritten
+
+=== test_full_resume.py ===
+Native encoded password b'bkasdocncpbphsgugsetbofk'
+Native encoder -> SRAM -> native decoder -> full initialization: exact checkpoint, used terminal does not grant access again
+
+=== test_input26.py ===
+PASS six strafe vectors, A-release jump/cancellation, buffered B/Y tap consumed once
+PASS per-context buffer mask; airborne strafe blocked during normal jump, allowed for both hover flags
+
+=== test_input31.py ===
+PASS short buffered C tap survives release and advances native target selection exactly once; no extra mask change needed
+
+=== test_intro31.py ===
+PASS intro skip 0x3fc display disabled across resource transfers [(33124, 0), (33060, 2), (33124, 10)]
+PASS intro skip 0x466 display disabled across resource transfers [(33124, 0), (33124, 2), (33060, 5), (33124, 13)]
+PASS intro skip 0x4cc display disabled across resource transfers [(33124, 0), (33124, 2), (33060, 7), (33124, 15)]
+PASS intro skip 0x5e8 display disabled across resource transfers [(33124, 0), (33124, 2), (33060, 12), (33124, 20)]
+PASS intro skip 0x632 display disabled across resource transfers [(33124, 0), (33124, 2), (33060, 12), (33124, 20)]
+PASS already-ready title proceeds without unnecessary display blanking
+PASS actual 68000 DMA sequence retains display-off in both register writes; old 8164 shadow re-enables display (negative control)
+
+=== test_inventory26.py ===
+PASS: duplicate retention, last-item right neighbour, context-only refill validity
+
+=== test_mechanics30.py ===
+PASS terminal: every floor adds one access once, cap7, 128 floor/access combinations
+PASS all 112 elevator access/button decisions match exported access table
+PASS actor opens door along correct axis from 03/43
+PASS 0C opens adjacent elevator exit and refreshes closing timer; no floor travel command
+
+=== test_random32.py ===
+PASS original 8-swap shuffle preserves table and distinct digits; 4F across seeds0..99: {'5162': 4, '9732': 24, '7182': 6, '0158': 7, '8275': 12, '7650': 4, '5832': 8, '3048': 1, '3891': 4, '9607': 4, '5861': 2, '7591': 6, '8361': 4, '3528': 4, '8127': 6, '7421': 4}
+
+=== test_regression.py ===
+216 music command/mute/busy combinations passed
+Native lift start/arrival and timed-loop completion passed, Music On and Off
+No saved game: same v20 tiles, timed erase, main menu/cursor/palette retained
+Music toggle preserves all five environmental musical commands
+
+=== test_sleep_native.py ===
+PASS native sleep fades complete to black; original menu arrow on Sleep; dots clear uses index 8
+Auto Sleep and actual Mode edge: identical native sleep state/palette/cursor/energy
+Disconnected-pad route reaches identical native sleep as Mode, including palette/cursor/energy
+
+=== test_state26.py ===
+PASS variable unique-digit codes, legacy password seed, v25 SRAM acceptance, fuse divider, world preview, keypad flash order
+
+=== test_ui31.py ===
+PASS sleep page transitions, flag toggles, invocation resets first page, all nine cursor positions render
+PASS exact one-immediate HUD parity correction for lengths1..11
+PASS PAL/NTSC timeout, A/B/C invocation, live access editing, dithering arrows-only
+
+PASS additional v33 native Down+A shutdown and alarm timeout, Music On/Off, jet/no jet

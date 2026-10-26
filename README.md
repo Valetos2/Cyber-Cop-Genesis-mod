@@ -1,5 +1,7 @@
 # Cyber-Cop / Corporation — Genesis Improvement Project
 
+**Current development build: v33.** See [cumulative changes](CHANGELOG.md), [release notes](RELEASE_NOTES_v33.md) and [build instructions](DEVELOPMENT.md).
+
 ### Making Cyber-Cop the game it always deserved to be.
 
 An unofficial fan-made improvement patch for **Corporation / Cyber-Cop** on the Sega Genesis / Mega Drive.
@@ -151,9 +153,10 @@ The following changes have been developed for the Sega Genesis / Mega Drive vers
 ### Gameplay and bug fixes
 
 - Fixed various problems with environmental damage handling.
-- Added varied door-lock codes between new games. The original game reinitializes its random generator with a fixed seed, producing repeatable codes. The fixed airlock code remains unchanged.
-- Added low-energy warning flashes and optional Auto Sleep before fatal exhaustion.
-- Added convenient sleep-related functionality.
+- Added varied door-lock codes between new games. The original game reinitializes its random generator with a fixed seed, producing repeatable codes. The native eight-swap shuffle can leave individual codes unchanged. The fixed airlock code remains 9831.
+- Added low-energy warning flashes at 15% or below, optional Auto Sleep before fatal exhaustion, and a periodically refreshed native Energy bar during sleep.
+- Give Gas Mask priority over Face Mask; block lockpick activation during alarms; clear the leftover Use block on elevator arrival.
+- Stop the jetpack sequence when its battery runs out without cancelling other active environmental sequences. Alarms take priority; simultaneous jetpack/main-theme mixing is not implemented.
 - Corrected numerous issues discovered through gameplay testing.
 - Added optional infinite energy, infinite battery, invincibility, and selectable access levels, plus a sound test.
 
@@ -163,7 +166,8 @@ The following changes have been developed for the Sega Genesis / Mega Drive vers
 - Added identification of the currently selected inventory item.
 - Improved contextual controls and interface responsiveness.
 - Fixed visual and functional issues in several interface elements.
-- Added music, sound-effects and wall-appearance settings to the sleep menu.
+- Added music, sound-effects and wall-appearance settings to the sleep menu, with cheats on a second page.
+- Hide Cheats in the main menu until four separate Down presses on Options; navigation becomes cyclic after unlocking it.
 - Improved front-end navigation and intro skipping. Both regional title logos alternate between title-screen visits.
 
 ### Saving and continuing
@@ -226,6 +230,12 @@ Rebuilding the patch from source also requires the **Corporation** ROM used for 
 ```
 
 The second ROM is needed by the source builder, not by the player applying a ready-made IPS patch. Keep a backup of SRAM before moving between versions. Emulator save states can contain old code addresses and are not guaranteed to work with a different patch version.
+
+## Companion atlas
+
+The offline Russian/English atlas covers all 16 maps, with item and enemy previews, native interaction-panel renders, code notes, access groups and arrival markers. Revision 35 adds resizable previews and blinking terminals. Default code previews do not reveal the code in a randomized running session; terminal access labels assume a documented route.
+
+This repository contains the atlas source template and research scripts, **not** the generated HTML with embedded game graphics, extracted maps or sprite PNGs. The complete atlas is supplied separately. A browser-side local ROM importer is a proposed next step, not an implemented feature of this revision. See [development notes](DEVELOPMENT.md) for the current reproduction limits.
 
 ## Development tools
 
@@ -298,4 +308,5 @@ And perhaps, after all these years, I'll finally stop thinking about it.
 *Although, considering my plans for the missing features and extra levels... probably not.*
 
 — **Valentin "Valet2" Kozin**, October 2026
+
 

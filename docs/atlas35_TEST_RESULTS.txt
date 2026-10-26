@@ -1,0 +1,9 @@
+PASS 1038 atlas JS assertions: all16 floors, legend toggle, all cell types, item/enemy previews, random-code labels, clamped navigation, pin/unpin
+PASS enemy legend first, rescue toggle/description, Parking ending details, five embedded scene previews
+PASS interaction previews and 16 lift displays
+PASS English contains no untranslated Cyrillic; language default/override/storage denial and Ru switching
+PASS arrival references, terminal blink phase/period, resizing handles
+Parking ending triggers: [(27, 8, 27), (29, 8, 27), (27, 9, 27), (28, 9, 27), (29, 9, 27), (7, 19, 27), (8, 19, 27), (8, 20, 27), (7, 21, 27), (8, 21, 27)]
+PASS ending trigger accepts exact embryo $1E in any inventory slot; broken $5E does not match
+PASS one-time rescue with intact Bomb only, L4 X42 Y14 (world X$2A00 Z$2300), marker lies on floor
+PASS native airlock transforms and 5F initial position

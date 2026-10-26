@@ -220,18 +220,26 @@ __marimo__/
 .streamlit/secrets.toml
 
 
-# Locally supplied game data and generated ROMs
-/roms/
-/upload/
-/output/
+# Local game inputs, outputs, and extracted game assets
+upload/
+build/
 *.bin
 *.smd
-*.gen
-*.md.rom
+*.ips
 *.srm
-*.sav
 *.gs?
-*.gs??
-*.state
-# Generated atlas resources (contains original game maps and graphics)
-/atlas/generated/
+*.gst
+*.adf
+*.ipf
+*.zip
+**/__pycache__/
+atlas*/data.json
+atlas*/images.json
+atlas*/panels.json
+atlas*/cells.csv
+atlas*/Cyber-Cop_Atlas*.html
+atlas*/png/
+atlas*/sprites/
+atlas*/*.png
+v*/symbols.json
+v*/name_pixels.bin
