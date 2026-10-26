@@ -24,7 +24,7 @@ This is a cumulative description of the current modification, not a list of ever
 - Successful automatic ID-card selection focuses Use. Successful lockpick selection on the door keypad does too; if no lockpick exists, the selection is left alone.
 - After inserting the ID card in a terminal, select the flying lead once if it is present. Subsequent manual cycling remains possible.
 - Prevent standalone consumption of Refill and Chemicals outside their Drink and Medi Kit refill contexts.
-- Correct the world-item preview path where the special backpack slot could clear the object image. This is a verified shared-handler defect; it is not a claim that every possible missing Narcotics image was independently reproduced.
+- Correct the world-item preview path where the special backpack slot could clear the object image. This is a verified shared-handler defect; it is not a claim that every possible missing item image was independently reproduced.
 - Remove the unwanted extra graphic associated with the dropped embryo preview, without changing unrelated object graphics.
 - Add a temporary native item-name label in the HUD. Its light HUD palette stays readable through normal Visor/light changes; the original HUD background is retained beneath the letters. Centering accounts for odd/even lengths. The label disappears after 100 VBlanks.
 - Suppress this label in sleep and the elevator's expanded password display, and clear the earlier label before the sleep HUD expands.
