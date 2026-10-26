@@ -87,7 +87,7 @@ To my surprise, the translation eventually appeared on unofficial physical cartr
 
 About twenty years later, I finally managed to find a physical cartridge containing my translation.
 
-Over the following years, my interest in the game also led me to collect its various official releases: Mega Drive, Genesis, Amiga, Atari ST (including the additional level disk), and DOS on 5.25-inch floppy disks.
+Over the following years, my interest in the game also led me to collect its various official releases: Mega Drive, Genesis, Amiga (including the additional level disk), Atari ST, and DOS on 5.25-inch floppy disks.
 
 I also obtained, scanned, and shared the original manuals, some of which were very difficult to find online at the time.
 
@@ -191,7 +191,7 @@ Possible future work includes:
 - Additional fixes for gameplay mechanics and interface behavior.
 - Investigation of missing features documented in the original manuals.
 - Restoring selected functionality from the Atari ST, Amiga, or DOS versions where technically feasible.
-- Exploring the possibility of adapting the additional Atari ST levels for the Genesis version.
+- Exploring the possibility of adapting the additional Amiga levels for the Genesis version.
 - Expanding the accompanying ROM analysis and level-viewing tools.
 
 These are ambitions, not promises. The project will develop according to what is technically possible, what can be tested reliably, and how much time and enthusiasm I can devote to it.
