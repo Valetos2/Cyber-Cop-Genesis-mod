@@ -218,3 +218,20 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+# Locally supplied game data and generated ROMs
+/roms/
+/upload/
+/output/
+*.bin
+*.smd
+*.gen
+*.md.rom
+*.srm
+*.sav
+*.gs?
+*.gs??
+*.state
+# Generated atlas resources (contains original game maps and graphics)
+/atlas/generated/
