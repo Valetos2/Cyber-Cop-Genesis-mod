@@ -13,7 +13,11 @@ def capture(kind,floor=0,code=None,access=0):
  u.hook_add(UC_HOOK_CODE,hk)
  if kind=='terminal':
   run(u,0x7b86);w(u,0xffff26eb,255,1);run(u,0x7c42);run(u,0x38c8);run(u,0x7df4)
- elif kind=='lift_inside':run(u,0x8c78);run(u,0x8ec8)
+ elif kind=='lift_inside':
+  run(u,0x8c78)
+  floor_code=rd(u,0xffff260a)
+  w(u,0xffff218e,floor_code);w(u,0xffff2190,floor_code)
+  run(u,0x8ec8)
  elif kind=='scanman':
   u.reg_write(UC_M68K_REG_D7,0);run(u,0x8720)
  elif kind=='keypad':
@@ -57,6 +61,9 @@ if __name__=='__main__':
  d['lift']={}
  for f in range(16):
   im=capture('lift',f);im.save(f'atlas35/panel_lift_{f}.png');d['lift'][str(f)]=pngdata(im)
+ d['lift_inside_floors']={}
+ for f in range(16):
+  im=capture('lift_inside',f);im.save(f'atlas35/panel_lift_inside_{f}.png');d['lift_inside_floors'][str(f)]=pngdata(im)
  d['keypads']={};d['terminals']={}
  levels=json.loads(Path('atlas35/data.json').read_text())
  access_route={0:1,1:2,6:3,9:4,14:5,12:6,2:7,11:7}

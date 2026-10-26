@@ -1,7 +1,7 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert');
 const html=fs.readFileSync('atlas35/Cyber-Cop_Atlas.html','utf8');const script=html.split('<script>')[1].split('</script>')[0];
 let entries=[],docclick;const ctx=new Proxy({},{get:(t,p)=>t[p]||(()=>{})});
-const elements={};for(const id of ['map','floor','legend','locks','info','preview','prevLevel','nextLevel','plus','minus','langEn','langRu','splitter','previewGrip'])elements[id]={value:'0',_html:'',add(){},getContext(){return ctx},getBoundingClientRect(){return {left:0,top:0}},set innerHTML(s){this._html=s;if(id==='legend')entries=[...s.matchAll(/data-type="([^"]+)"/g)].map(m=>({dataset:{type:m[1]}}))},get innerHTML(){return this._html}};
+const elements={};for(const id of ['map','floor','legend','locks','info','preview','prevLevel','nextLevel','plus','minus','langEn','langRu','splitter','previewGrip'])elements[id]={value:'0',_html:'',addEventListener(n,fn){this[n]=fn},add(){},getContext(){return ctx},getBoundingClientRect(){return {left:0,top:0}},set innerHTML(s){this._html=s;if(id==='legend')entries=[...s.matchAll(/data-type="([^"]+)"/g)].map(m=>({dataset:{type:m[1]}}))},get innerHTML(){return this._html}};
 const box={setInterval(){},innerWidth:1200,innerHeight:900,document:{getElementById:id=>elements[id],querySelectorAll:()=>entries,querySelector:()=>null,addEventListener:(n,f)=>docclick=f},Option:function(){}};vm.createContext(box);vm.runInContext(script,box);
 const ev={stopPropagation(){}};let assertions=0;
 for(let floor=0;floor<16;floor++){
@@ -43,3 +43,6 @@ for(const [f,x,y,df,dx,dy] of [[5,76,24,6,3,24],[5,59,4,7,18,46],[6,32,4,7,71,46
 for(let f of [0,6,7]){elements.floor.value=String(f);elements.floor.onchange();assert(entries.some(e=>e.dataset.type==='arrival'));}
 let phase=vm.runInContext('terminalOn',box);vm.runInContext('blinkTerminals()',box);assert.strictEqual(vm.runInContext('terminalOn',box),!phase);vm.runInContext('blinkTerminals()',box);assert.strictEqual(vm.runInContext('terminalOn',box),phase);
 assert(html.includes('setInterval(blinkTerminals,250)'));assert(html.includes('resizeHandle'));console.log('PASS arrival references, terminal blink phase/period, resizing handles');
+
+for(const [start,dy,want] of [[0,-1,0],[0,1,1],[15,1,15],[15,-1,14]]){elements.floor.value=String(start);let blocked=false;elements.floor.wheel({deltaY:dy,preventDefault(){blocked=true}});assert.strictEqual(+elements.floor.value,want);assert(blocked)}
+assert(html.includes("0 — <b>5F</b>;"));assert(vm.runInContext("Object.keys(images.panels.lift_inside_floors).length",box)===16);console.log("PASS wheel hover navigation, bounds, bold floor names and 16 interior panels");
