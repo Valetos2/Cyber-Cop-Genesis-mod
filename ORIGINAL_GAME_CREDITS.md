@@ -32,3 +32,21 @@ property.
 
 Historical credit sources:
 https://www.mobygames.com/game/1487/corporation/
+
+
+
+## Credits displayed by the Sega Genesis version
+
+The following entries were checked directly against the original Cyber-Cop ROM's end-credit text:
+
+- Developed by: Core Design Ltd.
+- Game design and graphics: Kevin Bulmer.
+- Programming: William Allen.
+- Music and sound effects: Krisalis Software Ltd.
+- Produced and copyrighted by: Virgin Games Inc.
+- Project manager: Lyle J. Hall II.
+- Quality assurance: Lyle J. Hall II, Tom Tallarico, Michael Gater, Ron Friedman, Noah Tool.
+- Manual: Lyle J. Hall II.
+- Editor: Lisa Marcinko.
+
+The cross-platform acknowledgements above are separate from this verified Genesis credit list.
