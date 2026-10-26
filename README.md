@@ -111,7 +111,7 @@ I gave the original ROM to **OpenAI's GPT-6 Astra** and asked it to make the pla
 
 It worked.
 
-Encouraged by this first success, I asked for something I had previously considered almost impossible: add a subtle horizontal reference line and a patterned texture to the otherwise featureless walls, so that players could better perceive their orientation and movement.
+Encouraged by this first success, I asked for something I had previously considered almost impossible: add a subtle horizontal reference line and a shading pattern to the otherwise featureless walls, so that players could better perceive their orientation and movement.
 
 That worked too.
 
@@ -136,24 +136,26 @@ The following changes have been developed for the Sega Genesis / Mega Drive vers
 - Faster and more responsive turning.
 - Strafing support for more natural first-person movement.
 - Improved directional control behavior.
-- Input buffering to reduce missed button presses during slow frames.
+- VBlank-based buffering for discrete action presses, reducing missed inputs during slow frames without turning movement into queued steps.
+- Six-button controller support: X/Z cycle backpack items, Y uses the selected item, and Mode toggles sleep.
+- Contextual A interaction/pickup and finer initial turning steps while stationary.
 - More convenient interactions with objects and the inventory.
 
 ### Graphics and performance
 
 - Reduced slowdowns through rendering optimizations.
 - Improved visual orientation in corridors and rooms.
-- Additional wall patterns and horizontal reference details to make movement easier to perceive.
+- Selectable screen-space wall dithering and a horizontal wall stripe, with separate options to disable either effect. The dithering is not a perspective-mapped wall texture.
 - Rendering and visual improvements intended to preserve the original game's style.
 
 ### Gameplay and bug fixes
 
 - Fixed various problems with environmental damage handling.
-- Repaired faulty random code generation for electronic door locks.
-- Improved fatigue handling, including warnings before the character loses consciousness.
+- Added varied door-lock codes between new games. The original game reinitializes its random generator with a fixed seed, producing repeatable codes. The fixed airlock code remains unchanged.
+- Added low-energy warning flashes and optional Auto Sleep before fatal exhaustion.
 - Added convenient sleep-related functionality.
 - Corrected numerous issues discovered through gameplay testing.
-- Added optional cheats and debugging conveniences.
+- Added optional infinite energy, infinite battery, invincibility, and selectable access levels, plus a sound test.
 
 ### Interface improvements
 
@@ -161,11 +163,15 @@ The following changes have been developed for the Sega Genesis / Mega Drive vers
 - Added identification of the currently selected inventory item.
 - Improved contextual controls and interface responsiveness.
 - Fixed visual and functional issues in several interface elements.
+- Added music, sound-effects and wall-appearance settings to the sleep menu.
+- Improved front-end navigation and intro skipping. Both regional title logos alternate between title-screen visits.
 
 ### Saving and continuing
 
 - Added SRAM-based checkpoint functionality.
-- Improved the ability to resume progress instead of starting the entire adventure from the beginning.
+- Checkpoints are written when an ID card produces a password in the elevator. They supplement the original password with selected character and floor-history data.
+- Manual password entry remains available. A password is not equivalent to the extended SRAM checkpoint.
+- SRAM is not a full emulator save state: exact moment-to-moment world state, every dropped item, and permanently destroyed geometry are not preserved. The original per-floor item-history limit still applies.
 
 The objective is not to eliminate the game's difficulty, but to eliminate unnecessary frustration caused by its technical shortcomings.
 
@@ -201,11 +207,25 @@ To play the modified version:
 1. Obtain the appropriate original Sega Genesis / Mega Drive ROM from a lawful source.
 2. Download the IPS patch from this repository's Releases section when a release is available.
 3. Apply the patch using a compatible IPS patching utility.
-4. Run the patched ROM using a compatible emulator or other supported hardware.
+4. Run the patched ROM using a compatible emulator. Gameplay testing has primarily used Kega Fusion; real-cartridge compatibility has not yet been verified.
 
 Always keep an untouched backup of the original ROM.
 
-Exact ROM revision compatibility, checksums, and any special installation requirements will be documented with the releases.
+The current patch targets the original 1 MiB **Cyber-Cop** ROM with SHA-256:
+
+```text
+98838ed8d69349ab64a99e4a4e0ea72843d47b175b69fda36957283932f0aba9
+```
+
+Apply each cumulative patch to that original ROM, not to a previously modified build. The resulting ROM is 2 MiB.
+
+Rebuilding the patch from source also requires the **Corporation** ROM used for its regional title graphics, with SHA-256:
+
+```text
+226368b1693af2db21bb1cc640b94d5b021c9ff20fcb86207d2b76590503cc98
+```
+
+The second ROM is needed by the source builder, not by the player applying a ready-made IPS patch. Keep a backup of SRAM before moving between versions. Emulator save states can contain old code addresses and are not guaranteed to work with a different patch version.
 
 ## Development tools
 
@@ -278,3 +298,4 @@ And perhaps, after all these years, I'll finally stop thinking about it.
 *Although, considering my plans for the missing features and extra levels... probably not.*
 
 — **Valentin "Valet2" Kozin**, October 2026
+
