@@ -2,6 +2,8 @@
 
 **Current public build: v35c.** [Download IPS patch](patches/Cyber-Cop_v35c.ips) · [v35c release notes](RELEASE_NOTES_v35c.md) · [Build instructions](DEVELOPMENT.md) · [Offline Atlas r37](atlas/README_EN.md). Previous version: [v34](RELEASE_NOTES_v34.md).
 
+> **Major new feature in v35c: Sega Mouse support with MouseLook!** Use a Sega Mouse in **controller port 2** to look around and aim, or switch to a free cursor for interacting with the game world, panels and inventory. The **middle mouse button** toggles captured-look and free-cursor modes; sensitivity is adjustable in Options. The original controller remains supported. [See the mouse controls and release details](RELEASE_NOTES_v35c.md).
+
 ### Making Cyber-Cop the game it always deserved to be.
 
 An unofficial fan-made improvement patch for **Corporation / Cyber-Cop** on the Sega Genesis / Mega Drive.
@@ -134,6 +136,16 @@ For the first time in nearly thirty years, the Corporation I had always imagined
 The following changes have been developed for the Sega Genesis / Mega Drive version.
 
 ### Controls and movement
+### Sega Mouse and MouseLook — new in v35c
+
+- **Native Sega Mouse support in controller port 2**, alongside the existing controller controls.
+- **MouseLook / captured-look mode** for mouse-driven aiming and looking around; press the **middle mouse button** to switch between this mode and a **free on-screen cursor**.
+- **Free-cursor mode** for clicking world objects, interacting with inventory panels, and operating the sleep menu. The right button can fire at the cursor's aim point when the cursor is over the world.
+- **Adjustable mouse sensitivity** in Options and support for looking up/down by shifting the rendered view and horizon (a screen-space projection offset, not a full 3D camera pitch).
+- More reliable mouse input: panels use precise clickable areas, buttons show a held state without repeated activation, and elevator travel temporarily blocks mouse input after a valid floor is selected.
+
+See the [v35c release notes](RELEASE_NOTES_v35c.md) and [detailed controls (Russian)](docs/v35c_README_RU.md) for operating instructions.
+
 
 - Faster and more responsive turning.
 - Strafing support for more natural first-person movement.
