@@ -135,7 +135,6 @@ For the first time in nearly thirty years, the Corporation I had always imagined
 
 The following changes have been developed for the Sega Genesis / Mega Drive version.
 
-### Controls and movement
 ### Sega Mouse and MouseLook — new in v35c
 
 - **Native Sega Mouse support in controller port 2**, alongside the existing controller controls.
@@ -146,6 +145,7 @@ The following changes have been developed for the Sega Genesis / Mega Drive vers
 
 See the [v35c release notes](RELEASE_NOTES_v35c.md) and [detailed controls (Russian)](docs/v35c_README_RU.md) for operating instructions.
 
+### Controller controls and movement
 
 - Faster and more responsive turning.
 - Strafing support for more natural first-person movement.
