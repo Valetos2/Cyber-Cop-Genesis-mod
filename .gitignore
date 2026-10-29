@@ -243,3 +243,16 @@ atlas*/sprites/
 atlas*/*.png
 v*/symbols.json
 v*/name_pixels.bin
+
+# Approved Cyber-Cop publication files
+# All other ROMs, emulator states and generated binaries remain ignored.
+!patches/
+!patches/*.ips
+!atlas/Cyber-Cop_Atlas.html
+!atlas/Cyber-Cop_Atlas_en.html
+!atlas/data.json
+!atlas/cells.csv
+!atlas/png/
+!atlas/png/*.png
+!sources/v35/boot_vram.bin
+!sources/v34/easter_tiles.bin

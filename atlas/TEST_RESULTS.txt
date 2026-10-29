@@ -1,0 +1,9 @@
+PASS 1038 atlas JS assertions: all16 floors, legend toggle, all cell types, item/enemy previews, random-code labels, clamped navigation, pin/unpin
+PASS enemy legend first, rescue toggle/description, Parking ending details, five embedded scene previews
+PASS interaction previews and 16 lift displays
+PASS English contains no untranslated Cyrillic; language default/override/storage denial and Ru switching
+PASS arrival references, terminal blink phase/period, resizing handles
+PASS wheel hover navigation, bounds, bold floor names and 16 interior panels
+
+Additional state transfer tests: Ru-En-Ru preserves floor, scale, sidebar width, preview height, map/legend/page scroll, selected cell and legend filter. Tested denied localStorage, English OS with explicit Ru, malformed fragment. All passed.
+Map data, PNG floor maps and embedded resource images unchanged from r36.

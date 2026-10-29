@@ -1,6 +1,6 @@
 # Cyber-Cop / Corporation — Genesis Improvement Project
 
-**Current development build: v34.** See [cumulative changes](CHANGELOG.md), [release notes](RELEASE_NOTES_v34.md) and [build instructions](DEVELOPMENT.md).
+**Current public build: v35c.** [Download IPS patch](patches/Cyber-Cop_v35c.ips) · [v35c release notes](RELEASE_NOTES_v35c.md) · [Build instructions](DEVELOPMENT.md) · [Offline Atlas r37](atlas/README_EN.md). Previous version: [v34](RELEASE_NOTES_v34.md).
 
 ### Making Cyber-Cop the game it always deserved to be.
 

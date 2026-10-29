@@ -1,4 +1,14 @@
-# Changes from the original Genesis game — v34
+# Changes from the original Genesis game — v35c
+
+## v35c additions
+
+- Integrated Sega Mouse support (port 2), aiming, free pointer and capture modes, vertical view offset and sensitivity control.
+- Improved mouse/button handling across panels, inventory, sleep and Options; fixed lift mouse input after selecting a valid destination.
+- Corrected VBlank/Z80 interaction responsible for a black-screen regression, and refined bomb/Scanman UI feedback.
+- Added an isolated test map with safeguards against modifying main-game SRAM.
+- Full details: [v35c release notes](RELEASE_NOTES_v35c.md) and [Russian cumulative list](docs/Cyber-Cop_v35c_Fixes_RU.md).
+
+## Previous cumulative documentation (v34)
 
 This is a cumulative description of the current modification, not a list of every experimental build. Superseded implementations are omitted. A few changes alter the original design deliberately; they are identified below. Atari ST, Amiga and DOS versions are not modified by this patch.
 
