@@ -1,0 +1,16 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+function load(language,hash='',systemLanguage=language){
+ const elements={},style={};let docclick;
+ for(const id of ['map','floor','legend','locks','info','preview','prevLevel','nextLevel','plus','minus','langEn','langRu','splitter','previewGrip','viewport','legendScroll'])elements[id]={value:'0',style:{},scrollLeft:0,scrollTop:0,innerHTML:'',add(){},addEventListener(n,f){this[n]=f},getContext(){return new Proxy({},{get:(t,p)=>t[p]||(()=>{})})},getBoundingClientRect(){return {left:0,top:0,height:parseFloat(this.style.height)||220}},setPointerCapture(){}};
+ const main={style:{setProperty(k,v){style[k]=v}}},aside={getBoundingClientRect(){return {width:parseFloat(style['--sidebar'])||350}}};
+ const b={innerWidth:1600,innerHeight:1000,document:{documentElement:{lang:language},getElementById:id=>elements[id],querySelectorAll:()=>[],querySelector:s=>s==='aside'?aside:s==='main'?main:null,addEventListener(n,f){docclick=f}},Option:function(){},setInterval(){},navigator:{language:systemLanguage},location:{hash,replace(x){this.redirect=x}},localStorage:{getItem(){throw Error('denied')},setItem(){throw Error('denied')}},scrollX:0,scrollY:0,scrollTo(x,y){this.scrollX=x;this.scrollY=y},requestAnimationFrame(f){f()}};b.window=b;vm.createContext(b);
+ const html=fs.readFileSync('atlas/Cyber-Cop_Atlas'+(language==='en'?'_en':'')+'.html','utf8');vm.runInContext(html.split('<script>')[1].split('</script>')[0],b);return {b,e:elements,html};
+}
+let x=load('ru');vm.runInContext("$('floor').value='11';scale=30;chosen={x:42,y:14};highlightType='rescue';setSidebar(480);setPreview(310);draw();describe(42,14)",x.b);x.e.viewport.scrollLeft=740;x.e.viewport.scrollTop=315;x.e.legendScroll.scrollTop=57;x.b.scrollY=80;x.e.langEn.onclick();
+let url=x.b.location.href;assert(url.startsWith('Cyber-Cop_Atlas_en.html#view='));let y=load('en',url.slice(url.indexOf('#')));
+assert.strictEqual(y.e.floor.value,'11');assert.strictEqual(vm.runInContext('scale',y.b),30);assert.strictEqual(vm.runInContext('highlightType',y.b),'rescue');assert.strictEqual(vm.runInContext('chosen.x',y.b),42);assert.strictEqual(vm.runInContext('viewState().sidebar',y.b),480);assert.strictEqual(y.e.preview.style.height,'310px');assert.strictEqual(y.e.viewport.scrollLeft,740);assert.strictEqual(y.e.viewport.scrollTop,315);assert.strictEqual(y.e.legendScroll.scrollTop,57);assert.strictEqual(y.b.scrollY,80);
+y.e.langRu.onclick();let z=load('ru',y.b.location.href.split('#')[1]?'#'+y.b.location.href.split('#')[1]:'');assert.strictEqual(z.e.floor.value,'11');assert.strictEqual(vm.runInContext('scale',z.b),30);assert(z.html.includes('0 — [<b>5F</b>];'));assert(z.html.includes('6 — +[<b>3F</b>, <b>L4</b>, <b>L6</b>];'));
+for(const malformed of ['#view=oops','#view=%7B%22floor%22%3A999%2C%22scale%22%3A0%7D']){let t=load('ru',malformed);assert.strictEqual(t.e.floor.value,'0');assert.strictEqual(vm.runInContext('scale',t.b),18)}
+console.log('PASS Ru-En-Ru: floor, zoom, splitters, selection, highlighting, scroll positions; storage denied; malformed fragment; ordinary brackets with bold floor names');
+
+const explicitRu=load('ru',url.slice(url.indexOf('#')),'en-US');assert(!explicitRu.b.location.redirect);console.log('PASS explicit Ru selection survives English OS and unavailable localStorage');
