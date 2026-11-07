@@ -1,0 +1,290 @@
+{
+  "purpose": "Explicit source-only initial wip upload; no game assets. Existing main content is inherited unchanged.",
+  "files": [
+    {
+      "path": "amiga_research/check68k.py",
+      "bytes": 1211,
+      "sha256": "dad5dce8d52b827f470d43ac6053364c63a911f430f6fab849d160b23bb2b7f8"
+    },
+    {
+      "path": "amiga_research/maps.py",
+      "bytes": 1968,
+      "sha256": "061c8da228709cd6b6de84d2b7384f7a089d147d6b73cfd362f397c1df6fc60b"
+    },
+    {
+      "path": "amiga_research/unpack.py",
+      "bytes": 1701,
+      "sha256": "22750d3d121c8d8bdf8fd9c33f7f5b5cbeaa715d5bd5bcd0c06e711623ef0503"
+    },
+    {
+      "path": "mission_port36/AUDIO_RU.md",
+      "bytes": 2449,
+      "sha256": "0fd9561dd41c093f0814a8121336d730361826f3294e26420b101efdc356bef9"
+    },
+    {
+      "path": "mission_port36/compare_guards.py",
+      "bytes": 2563,
+      "sha256": "e9bf483b9290f77824d5acaac3593329de16eedffe5d4340529d62ddf12853f0"
+    },
+    {
+      "path": "mission_port36/dos_guard_find.py",
+      "bytes": 267,
+      "sha256": "6b197805faf5ee2fe1d71fda7193d941cb02b59438b95cdf06eff75137050f37"
+    },
+    {
+      "path": "mission_port36/extract_audio.py",
+      "bytes": 1227,
+      "sha256": "25de5fa8865e27c04cad4c573a6b4615de3ed9af4ecdfed858d2733871efd95d"
+    },
+    {
+      "path": "mission_port36/guards.py",
+      "bytes": 1963,
+      "sha256": "f043fa240c9b9b827193841651460fbf4ce8d6e814b0382ed1de3ad8739fa417"
+    },
+    {
+      "path": "mission_port36/pending_fixes.py",
+      "bytes": 410,
+      "sha256": "c4f716e8cec6a9e3a2fac0b1d7465af83f5e501ddbd8bd401597b582cf46c6ec"
+    },
+    {
+      "path": "mission_port36/research.py",
+      "bytes": 406,
+      "sha256": "6092c3216d22214fbee338b2554c8b8a22476340dab3bb9e042c0e6b0cf13b1b"
+    },
+    {
+      "path": "mission_port36/test_password_campaign_bit.py",
+      "bytes": 1192,
+      "sha256": "490b86969c8e0473e7199e575be22e4cfb0fa53aa3a5d6943b7689433ac924e5"
+    },
+    {
+      "path": "mission_port36/test_pending_fixes.py",
+      "bytes": 935,
+      "sha256": "2a67c1905136b02dbef92fcbb0b9ed4ff27dbf421e3ff56a27071647892cce27"
+    },
+    {
+      "path": "mission_port36/unpack_st.py",
+      "bytes": 589,
+      "sha256": "4858b991fea8dc6caaad6939af80312d0936914365e6531d245cdb5c8157c7f7"
+    },
+    {
+      "path": "st2/deice.py",
+      "bytes": 732,
+      "sha256": "902f4284368c6714d46de81e1b48da68e4368a78d32e3bc0b58dc62c47855346"
+    },
+    {
+      "path": "v34/symbols.json",
+      "bytes": 24132,
+      "sha256": "7c0ac12925a6e2d711e9fe310d7e3b16fa65c35b657fad88fdaffc97f8fa0d77"
+    },
+    {
+      "path": "v35c/symbols.json",
+      "bytes": 11389,
+      "sha256": "50833a0da076f8b83b421a1f29424ce8949c59180b228fcf9566964e57590d3e"
+    },
+    {
+      "path": "v36/README_RU.md",
+      "bytes": 13621,
+      "sha256": "6ba85bdd0fd995a24e5c3570a2956e8d6a635398a14027a7af93cd0860d68da0"
+    },
+    {
+      "path": "v36/STATUS_RU.md",
+      "bytes": 2439,
+      "sha256": "426631d53e202a1c3bcc7f798964279b3d471c3a6e77322fc20bff5cffdb9b16"
+    },
+    {
+      "path": "v36/actors.py",
+      "bytes": 4779,
+      "sha256": "1725f0d12bebbe9eb83259f7ecd44aaee25eab78e288174b9244e99f09c34f52"
+    },
+    {
+      "path": "v36/audio.py",
+      "bytes": 3731,
+      "sha256": "7889039b7c06375a0826b69fdc3d5d6f9c56ebddd47261cebf6ee29dbe000c72"
+    },
+    {
+      "path": "v36/build.py",
+      "bytes": 6188,
+      "sha256": "d677cdec283bd53438e45a94bd2889ff6fba430218f4eb94740739ab27ebfa0a"
+    },
+    {
+      "path": "v36/compare_endings.py",
+      "bytes": 1118,
+      "sha256": "ee1f298d1499a6449f4516e410184cc5dcb45f2a0579992200a688fb69e08f38"
+    },
+    {
+      "path": "v36/disasm_range.py",
+      "bytes": 293,
+      "sha256": "17f496a5faa9e0a0184037906c74329936a07dc33cdbf462348b6b0c4978ce55"
+    },
+    {
+      "path": "v36/ending.py",
+      "bytes": 1506,
+      "sha256": "cbfdc33bcb5c33e03d968e1c662c1052fbc4b4cb0271d59ae6946ad11d03f9a3"
+    },
+    {
+      "path": "v36/fixes02.py",
+      "bytes": 1416,
+      "sha256": "d2a3672ad9777c86073da3e2396a6a2314f443f0a9aee183dae94eb37a74f9f9"
+    },
+    {
+      "path": "v36/front_pixels.py",
+      "bytes": 804,
+      "sha256": "366cd202033aad8c9b63461b320faa9271809b50643cbb2c20c48c39a7bffbff"
+    },
+    {
+      "path": "v36/frontend_mouse.py",
+      "bytes": 5630,
+      "sha256": "03ffb9fd5a6518bb3f7dd67469632b51e69d84ffe5d2d4e06d652c7d0a970251"
+    },
+    {
+      "path": "v36/graphics.py",
+      "bytes": 4132,
+      "sha256": "3983ea4f1dd067c653e9f8b88a82c936f5ea6b91729f19cb570679b1aa52fe08"
+    },
+    {
+      "path": "v36/lab02.py",
+      "bytes": 1847,
+      "sha256": "4869167109ddc5602f32d16b70b3e37d17cdc39416884e9a10a3f5f6f41b9104"
+    },
+    {
+      "path": "v36/lamps.py",
+      "bytes": 1024,
+      "sha256": "807c9b1a4f190f66e09cb2d64ed0d31ab3020f0d1fe21d2048032065afc7f210"
+    },
+    {
+      "path": "v36/make_front_frames.py",
+      "bytes": 1068,
+      "sha256": "7499cd5575d728472726d3466b77b6e0b2ca6d3bf3121db952d0d9454a534821"
+    },
+    {
+      "path": "v36/memorial02.py",
+      "bytes": 1673,
+      "sha256": "8dc3720e760b392a9725e1b51c835651d2960b80d83e893af4a88789dd9553ce"
+    },
+    {
+      "path": "v36/menus.py",
+      "bytes": 4804,
+      "sha256": "d51f2c3adef8bb3dc4d19aff2bc11b2a68756225a74c7f875871a6e316b0da29"
+    },
+    {
+      "path": "v36/pty_helper.py",
+      "bytes": 957,
+      "sha256": "2ed6a4f9d66e14d1668edf1cbefdffa51f3aafabed1355df90b642e16e333d9d"
+    },
+    {
+      "path": "v36/render_scene.py",
+      "bytes": 1850,
+      "sha256": "623c2d215084720d1f1c261a4eb377f129eb3878a44441891a8230eb72d4151a"
+    },
+    {
+      "path": "v36/scan_research.py",
+      "bytes": 1120,
+      "sha256": "e0f126ee355daa05eba8ce9d8bd5d95fd3303ed8303d7c8d90c5233b7a4af095"
+    },
+    {
+      "path": "v36/screens02.py",
+      "bytes": 1628,
+      "sha256": "4ccf70f05915a0cc613fe378e740166f2952c2f43ce60765700479875f7a1ad8"
+    },
+    {
+      "path": "v36/symbols.json",
+      "bytes": 14366,
+      "sha256": "08313b3b3dbe1aae3dd6c8295d39085268616eb0ebbe25548c976f87285cedb0"
+    },
+    {
+      "path": "v36/test_actors.py",
+      "bytes": 2022,
+      "sha256": "3ab440940bb7bcb187d504d208001195a5dade4761508705c5504501dc3b68c5"
+    },
+    {
+      "path": "v36/test_audio.py",
+      "bytes": 1187,
+      "sha256": "5674e7625131b5c7dba46ef0d8a49b6765883b59fcb7179e1d97bd0cd98888e1"
+    },
+    {
+      "path": "v36/test_blastem.py",
+      "bytes": 1804,
+      "sha256": "4298a6c614b75d8cb5179f2b58899b81eaeab54e333165db3a87e63d485e6476"
+    },
+    {
+      "path": "v36/test_blastem_audio.py",
+      "bytes": 1698,
+      "sha256": "3e7ab3edca62f4c8d50c444328ca0bc66daf081345bdd330a77f18aa279a570f"
+    },
+    {
+      "path": "v36/test_blastem_ending.py",
+      "bytes": 1057,
+      "sha256": "6d26622f821f1acc618969260fe108d244e02b89d94d6541c01472c9903bd146"
+    },
+    {
+      "path": "v36/test_blastem_front.py",
+      "bytes": 956,
+      "sha256": "2b43f711adc9d99d8e69b765c4581407be23de2370bf8f358a74b2231b4a41a1"
+    },
+    {
+      "path": "v36/test_blastem_gear.py",
+      "bytes": 980,
+      "sha256": "59fe7dacdaae06cf2f788bc8056538af1550d56bcbccded7d21ac259f70f9476"
+    },
+    {
+      "path": "v36/test_blastem_lab02.py",
+      "bytes": 625,
+      "sha256": "df6bd443fc1eddc992fdfdc0dac7c8f81a0277f504b2b0b12aa45cb223c9db58"
+    },
+    {
+      "path": "v36/test_blastem_mouse.py",
+      "bytes": 1952,
+      "sha256": "ddc3db24f8f9f3707cef2accebdb2f30d87e15f63656abf41256bf374d6fb310"
+    },
+    {
+      "path": "v36/test_blastem_reset.py",
+      "bytes": 2174,
+      "sha256": "d2e7d71fbf38da8faac1faf73ba2492e5be4f3476dfc18ce5d05e79d00a9a705"
+    },
+    {
+      "path": "v36/test_core.py",
+      "bytes": 2863,
+      "sha256": "48c2b9e342e27d133593a358b3c3c762221b891ffb3394f4a861cca69de075cb"
+    },
+    {
+      "path": "v36/test_fixes02.py",
+      "bytes": 2725,
+      "sha256": "1bac21501bea16ce1718f03c2e4119598b83ac1d322c88ad5899554d844b8173"
+    },
+    {
+      "path": "v36/test_frontend_mouse.py",
+      "bytes": 2264,
+      "sha256": "f1cf5d478363a5890dd09c1dd36f79dd1319ef6169d292bb2db5a973a44e7a91"
+    },
+    {
+      "path": "v36/test_graphics02.py",
+      "bytes": 983,
+      "sha256": "824e588338e0f506fc35cb807739dfb61068e208ba5662c5fc9caa1869e8a6ca"
+    },
+    {
+      "path": "v36/test_memorial02.py",
+      "bytes": 660,
+      "sha256": "717b6ed6fa1e0258012bc0830ddbab328d0029b79dfd0fb15580bfcc3ec95a3e"
+    },
+    {
+      "path": "v36/test_menu02.py",
+      "bytes": 846,
+      "sha256": "7018d050160baabb4d011d06085412617425ae29ac3be723589db9a746a9c8c5"
+    },
+    {
+      "path": "v36/test_sram.py",
+      "bytes": 2060,
+      "sha256": "05175b096746e933ae1be0bd1c0cd61d53379b3ce8ef5ae3968af4174ac7fca8"
+    },
+    {
+      "path": "v36/test_transitions.py",
+      "bytes": 1523,
+      "sha256": "1df5b34d245788f179d9efbf3c16c6dac97dfef63a896211cbc895b78bdfb70d"
+    },
+    {
+      "path": "v36/world.py",
+      "bytes": 1476,
+      "sha256": "e96297b76dd712c5c3ab9393596efce983cbacd02be264c14e9e85c10b4ff591"
+    }
+  ]
+}

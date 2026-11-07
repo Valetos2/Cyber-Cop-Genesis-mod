@@ -1,0 +1,90 @@
+{
+  "version": "v36 test02",
+  "note": "Local files only. Hashes are identifiers, not downloadable inputs. Last entry is the expected build output.",
+  "files": [
+    {
+      "path": "v35c/Cyber-Cop_v35c.bin",
+      "size": 2097152,
+      "sha256": "fc4ac6984e0499d5bfbf7c18df0c3a153e077c9f67973b57edb1981b14b2fde4",
+      "published": false
+    },
+    {
+      "path": "amiga3/mission.bin",
+      "size": 421888,
+      "sha256": "14c7f3a97dc3eb65e2374c7b83fb5252acef8e9d0f7c0f9e2b88cdc8d1a0a7ff",
+      "published": false
+    },
+    {
+      "path": "amiga3/d2.bin",
+      "size": 280576,
+      "sha256": "196078352d87e9c9b948fea9ee3f7b9f0013d0385a12a2e9bfc205fb4213f0c1",
+      "published": false
+    },
+    {
+      "path": "amiga_research/mission.adf",
+      "size": 901120,
+      "sha256": "f6bd8dce4bc2f1c4087e9574b2487164b9807be872f9a5c7d375013445038bfc",
+      "published": false
+    },
+    {
+      "path": "amiga_research/d2.adf",
+      "size": 901120,
+      "sha256": "94cea2c8f78a46fc4611f6bd5ba16ffea23b5e0b25d912afc822b225171dd8f6",
+      "published": false
+    },
+    {
+      "path": "amiga_research/maps.json",
+      "size": 393939,
+      "sha256": "d2f1485ce7d6043de355a3fbf94f38b476a530a40a111fcfd60d6fe3d238413c",
+      "published": false
+    },
+    {
+      "path": "v36/original_lamps.json",
+      "size": 9656,
+      "sha256": "aff4500cafac7c875b98933aab7556274a80a48720fad1c7a6c63a5debd5fb51",
+      "published": false
+    },
+    {
+      "path": "v36/st_items_pixels.json",
+      "size": 192816,
+      "sha256": "8ecd543bb633c6bb3684ae60f995a599e8411cf4a5cc120137f9fd2201070dde",
+      "published": false
+    },
+    {
+      "path": "mission_port36/st_resources/ILGJ.bin",
+      "size": 20992,
+      "sha256": "692c1dd142ed3d83caa22d14fdffb7fa52eadd3ad94dddebf47a7d44b27bc728",
+      "published": false
+    },
+    {
+      "path": "st2/loader.bin",
+      "size": 41689,
+      "sha256": "ea5a0bb981e2204199c4f2a88cf2022996b00d772c12132c90ff88b5f3ebcba9",
+      "published": false
+    },
+    {
+      "path": "upload/Cyber-Cop_v12.gs4",
+      "size": 140408,
+      "sha256": "5a9032017347577b00dda7883a75218270b50dbb1611db1011ef0a6cb8fa4a56",
+      "published": false
+    },
+    {
+      "path": "upload/Cyber-Cop_v36_test01.gs0",
+      "size": 140408,
+      "sha256": "2100f9e4dc5d9d8666360fa562551f79c58862ec324df9febd4c3d5b50e11b0c",
+      "published": false
+    },
+    {
+      "path": "v36/Cyber-Cop_v36_WORK_IN_PROGRESS.bin",
+      "size": 4194304,
+      "sha256": "e3674c10d75fbaee4bfe77b8000829958b58d8b27c890b12c79cabab986879e6",
+      "published": false
+    }
+  ],
+  "private_checkpoint": {
+    "filename": "Cyber-Cop_v36_test02.zip",
+    "sha256": "4aee603abe3e6fa7a9aeccfce094bc7baa268758de20bbdc40571dc58d0efd4c",
+    "size": 4812954,
+    "published": false
+  }
+}

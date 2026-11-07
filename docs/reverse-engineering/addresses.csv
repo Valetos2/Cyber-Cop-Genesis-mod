@@ -1,0 +1,52 @@
+version,space,address,name,meaning,status,evidence
+Genesis v35c/v36,ROM,0x394,intro hook,Memorial then return39C,CONFIRMED,v36/memorial02.py
+Genesis v35c/v36,ROM,0x2106,world loop,Main world callback,CONFIRMED,v36/test_blastem_lab02.py
+Genesis v35c/v36,ROM,0x2190,panel close,Normal close; preserve existing chain,CONFIRMED,v36/fixes02.py
+Genesis v35c/v36,ROM,0x21D8,close tail,Existing close callback then HUD restore,CONFIRMED,v36/fixes02.py
+Genesis v35c/v36,ROM,0x2930,frame wait,VBlank wait,CONFIRMED,v36/memorial02.py
+Genesis v35c/v36,ROM,0x35FE,nametable write,Tile/name write and HUD shadow tracking,CONFIRMED,v36/fixes02.py
+Genesis v35c/v36,ROM,0x3FB2,initial actors,Native entry; campaign/lab constructor hooks,CONFIRMED,v36/test_actors.py
+Genesis v35c/v36,ROM,0x4584,world draw hook,Draw light circles before native scene,CONFIRMED,v36/fixes02.py
+Genesis v35c/v36,ROM,0x45B8,light rasterizer,45B0 visor gate skipped,CONFIRMED,v36/fixes02.py
+Genesis v35c/v36,ROM,0x4882,floor load,Original/Mission map load,CONFIRMED,v36/test_core.py
+Genesis v35c/v36,ROM,0x495E,lamps hook,Calls4A40/4A06 then resumes4966,CONFIRMED,v36/lamps.py
+Genesis v35c/v36,ROM,0x4966,lab continuation,Do not overwrite: lab loader enters here,CONFIRMED,v36/test_fixes02.py
+Genesis v35c/v36,ROM,0x53A8,controller read,Frontend active-low button input,CONFIRMED,v36/frontend_mouse.py
+Genesis v35c/v36,ROM,0x6588,map dispatch,Low6 map type procedure table,CONFIRMED,v36/actors.py
+Genesis v35c/v36,ROM,0x7F5A/0x7F88/0x7FB8,screen pointers,Select Scanman image bank by CAMP,CONFIRMED,v36/screens02.py
+Genesis v35c/v36,ROM,0x8C66,panel enter,Panel loading entry,CONFIRMED,sources/mouse_lab
+Genesis v35c/v36,ROM,0x8DF4,lift tick,Elapsed>=16 VBlank hook,CONFIRMED,v36/fixes02.py
+Genesis v35c/v36,ROM,0x8E74,lift select,Initialize last-step timestamp,CONFIRMED,v36/fixes02.py
+Genesis v35c/v36,ROM,0x8FAA,password generation,Campaign bit added; checksum retained,CONFIRMED,v36/test_core.py
+Genesis v35c/v36,ROM,0x8EAFC/0x8EEF0,sprite pointers/data,Column pair format,CONFIRMED,v36/graphics.py
+Genesis v35c/v36,ROM,0x10B8C,floor palettes,Pointer table16 floors,CONFIRMED,v36/graphics.py
+Genesis v35c/v36,ROM,0xC8A4..0xCA60,native enemy AI,Relocated/adapted into independent robot callbacks,CONFIRMED,v36/actors.py
+Genesis v36,ROM,0x1F0000,new code,Below SRAM mapping window,CONFIRMED,v36/build.py
+Genesis v36,ROM,0x220000,new assets,Generated from local game inputs,CONFIRMED,v36/build.py
+Genesis v36,RAM,0xFFFF0180,M,Mouse transport block,CONFIRMED,v36/frontend_mouse.py
+Genesis v36,RAM,0xFFFF01A0,N,Cursor mode/coordinates/tilt block,CONFIRMED,v36/frontend_mouse.py
+Genesis v36,RAM,0xFFFF0200,P,Mouse/UI extended state,CONFIRMED,v36/frontend_mouse.py
+Genesis v36,RAM,0xFFFF026C,lab flag,0100 lab01;0101 lab02,CONFIRMED,v36/lab02.py
+Genesis v36,RAM,0xFFFF0280,HUD shadow,Two24-word button rows,CONFIRMED,v36/fixes02.py
+Genesis v36,RAM,0xFFFF0800,CAMP,Word0 original/1Mission,CONFIRMED,v36/build.py
+Genesis v36,RAM,0xFFFF0802,FRONT,Word1character/2equipment,CONFIRMED,v36/frontend_mouse.py
+Genesis v36,RAM,0xFFFF0804,PCM loop state,Cleared on stop/Reset,CONFIRMED,v36/audio.py
+Genesis v36,RAM,0xFFFF0810,frontend sprite staging,Separate from native focus fields,CONFIRMED,v36/frontend_mouse.py
+Genesis v36,RAM,0xFFFF0828/0xFFFF082A,press region/mask,Held feedback state,CONFIRMED,v36/frontend_mouse.py
+Genesis v36,RAM,0xFFFF0830,frontend tiles loaded,Once per frontend entry,CONFIRMED,v36/frontend_mouse.py
+Genesis v36,RAM,0xFFFF0832,last lift tick,Word wrapping elapsed counter,CONFIRMED,v36/fixes02.py
+Genesis v36,RAM,0xFFFF0840,visible menu actions,7word capacity,CONFIRMED,v36/menus.py
+Genesis v36,RAM,0xFFFF0850/0xFFFF0852,menu count/save mask,Logical IDs mapped from visible rows,CONFIRMED,v36/menus.py
+Genesis v36,RAM,0xFFFF0854,memorial countdown,150 VBlank,CONFIRMED,v36/memorial02.py
+Genesis v35c/v36,RAM,0xFFFF218E/0xFFFF2190,lift target/current,Even display codes0..26,CONFIRMED,v36/test_fixes02.py
+Genesis v35c/v36,RAM,0xFFFF2606,floor ID,"0..15, scoped by CAMP",CONFIRMED,v36/test_core.py
+Genesis v35c/v36,RAM,0xFFFF26B8,loop callback,2106world; other callbacks for panels,CONFIRMED,v36/test_blastem_lab02.py
+Genesis v35c/v36,RAM,0xFFFF2798,VBlank counter,Lift elapsed clock source,CONFIRMED,v36/fixes02.py
+Genesis v35c/v36,RAM,0xFFFF305A,map,4000 bytes80x50,CONFIRMED,v36/test_core.py
+Genesis v35c/v36,RAM,0xFFFF4468..0xFFFF4F7E,actor slots,Stride0x56,CONFIRMED,v36/test_actors.py
+Genesis v36,SRAM,0x200001/0x202001,campaign banks,Odd-byte lanes;4096 useful bytes each,CONFIRMED,v36/test_sram.py
+Genesis user GST test01,VRAM,0xEA3C,corrupt HUD word,0220 instead of013F; initial writer unknown,OPEN,v36/test_fixes02.py
+Amiga Mission decoded,offset,0x62D0,resource table,Sector/count pairs,CONFIRMED,v36/scan_research.py
+Amiga original decoded,offset,0x6666,resource table,Distinct from Mission,CONFIRMED,v36/scan_research.py
+Amiga Mission decoded,offset,0x13CEA,lift access table,8 rows x16 words,CONFIRMED,v36/world.py
+Amiga Mission decoded,offset,0x175DE,initial actors,16 pointers to terminated lists,CONFIRMED,v36/test_actors.py
