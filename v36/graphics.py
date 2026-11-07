@@ -45,7 +45,7 @@ def sprite(name,res,x,y,w,h):
  # Native renderer indexes shaded pairs using each sprite's actual height.
  # The fixed mapping keeps frame indices independent of the current floor palette.
  mapping=[0,8,2,3,4,5,6,7,9,9,10,11,12,13,14,15]
- stride=100 if name.startswith('robot_') else h
+ stride=100 if name.startswith('robot_') else h+2
  data=bytes((mapping[image[yy][xx]]<<4)|mapping[image[yy][xx+1]] if yy<y+h else 0 for xx in range(x,x+w,2) for yy in range(y,y+stride))
  idx=len(sprite_offsets);addr=asset(name,data);sprite_offsets.append(addr-0x8eef0);sprite_specs[name]={'index':idx,'resource':res,'crop':[x,y,w,h],'address':addr}
  return idx

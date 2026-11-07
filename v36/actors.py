@@ -39,7 +39,7 @@ c.label('robot_spawn_ready36');fieldw(0,0x38,0);fieldl(0,0x3a,c.labels[label_nat
 
 # New map codes are free dispatch entries in Genesis ($1C..$1E). They are gated
 # to Mission so unused original codes retain their original no-op behaviour.
-strides={h:asset('sprite_stride_'+str(h),struct.pack('>64H',*[i*h for i in range(64)])) for h in (9,19,42)}
+strides={h:asset('sprite_stride_'+str(h),struct.pack('>64H',*[i*(h+2) for i in range(64)])) for h in (9,19,42)}
 for raw,name,idx,h,small in [(0x1c,'barrel36',barrel,42,None),(0x1d,'stool_blue36',stool_blue,19,stool_blue_small),(0x1e,'stool_green36',stool_green,19,stool_green_small)]:
  c.label(name);tstcamp();c.branch('6700',name+'_done');c.call(0xb474)
  fieldw(1,2,7 if raw==0x1c else 5);fieldl(1,4,0xe6e0);fieldw(1,0x12,32);fieldw(1,0x1c,1000);fieldw(1,0x24,0);fieldw(1,0x28,0x200);fieldl(1,0x3a,0xbd62)

@@ -95,12 +95,13 @@ exec((OUT/'fixes02.py').read_text())
 exec((OUT/'screens02.py').read_text())
 exec((OUT/'lab02.py').read_text())
 exec((OUT/'memorial02.py').read_text())
+exec((OUT/'cosmetics03.py').read_text())
 
 for p,name,n in c.fix:c.b[p:p+n]=(c.labels[name] if n==4 else c.labels[name]-(BASE+p)).to_bytes(n,'big',signed=n==2)
 assert len(c.b)<0x10000
 r[BASE:BASE+len(c.b)]=c.b
-r[0x120:0x150]=b'Cyber-Cop v36 test02'.ljust(48,b' ')
-r[0x150:0x180]=b'Cyber-Cop v36 test02'.ljust(48,b' ')
+r[0x120:0x150]=b'Cyber-Cop v36 test03'.ljust(48,b' ')
+r[0x150:0x180]=b'Cyber-Cop v36 test03'.ljust(48,b' ')
 assert src[0xf9f85:0xf9f88]==b'v35';r[0xf9f85:0xf9f88]=b'v36'
 r[0x1a4:0x1a8]=(len(r)-1).to_bytes(4,'big')
 r[0x18e:0x190]=(sum(int.from_bytes(r[i:i+2],'big') for i in range(0x200,len(r),2))&65535).to_bytes(2,'big')
