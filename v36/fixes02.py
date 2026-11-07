@@ -1,6 +1,6 @@
-# Advance once per16 VBlanks, even when slow frames skip the exact multiple.
+# Advance once per80 VBlanks (measured native cadence), even when slow frames skip the exact multiple.
 # Testing the low counter bits can repeat a step or never hit the target phase.
-c.label('lift_clock36b');c.abs('3039',0xffff2798);c.abs('9079',0xffff0832);c.emit('0c400010');c.branch('6500','lift_clock36b_wait');c.abs('33f9',0xffff2798);c.long(0xffff0832);c.jump(0x8e00)
+c.label('lift_clock36b');c.abs('3039',0xffff2798);c.abs('9079',0xffff0832);c.emit('0c400050');c.branch('6500','lift_clock36b_wait');c.abs('33f9',0xffff2798);c.long(0xffff0832);c.jump(0x8e00)
 c.label('lift_clock36b_wait');c.jump(0x8e1a);patch(0x8df4,'lift_clock36b')
 c.label('lift_select36b');c.abs('33f9',0xffff2798);c.long(0xffff0832);c.emit(src[0x8e74:0x8e7a].hex());c.jump(0x8e7a);patch(0x8e74,'lift_select36b')
 # Genesis retains the light-circle builder but never calls its rasterizer.

@@ -98,6 +98,7 @@ exec((OUT/'memorial02.py').read_text())
 exec((OUT/'cosmetics03.py').read_text())
 exec((OUT/'lights03.py').read_text())
 exec((OUT/'light_options03.py').read_text())
+exec((OUT/'lift03.py').read_text())
 
 for p,name,n in c.fix:c.b[p:p+n]=(c.labels[name] if n==4 else c.labels[name]-(BASE+p)).to_bytes(n,'big',signed=n==2)
 assert len(c.b)<0x10000

@@ -11,7 +11,7 @@ print('PASS test map01 geometry and door postprocessing match v35c')
 for start in range(0,28,2):
  for target in range(0,28,2):
   u=machine();w(u,0xffff2190,start);w(u,0xffff218e,target);w(u,0xffff0832,1)
-  for tick in range(1,1000,3):
+  for tick in range(1,2000,3):
    w(u,0xffff2798,tick)
    # Stop at native arrival before floor transition, otherwise at RTS.
    u.reg_write(UC_M68K_REG_A7,0xfffffe00);w(u,0xfffffe00,STOP,4)
