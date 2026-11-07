@@ -59,3 +59,9 @@ for y in range(4):
  for x in range(4):
   c.emit('301c343c'+f'{0xe804+y*128+x*2:04x}');c.call(0x35fe)
 c.emit('4cdf7fff');c.emit(src[0xfb88:0xfb8e].hex());c.jump(0xfb8e);patch(0xfb88,'gear_portrait36c')
+
+# Mission's airlock sets a fixed BCD8652 (Amiga9F04). It is not a door
+# randomizer entry. Laboratory override0451 remains first in priority.
+c.label('airlock_code36c');tstcamp();c.branch('6700','airlock_code36c_native')
+c.abs('4a79',0xffff026c);c.branch('6600','airlock_code36c_native');wi(0xffff243a,0x8652);c.jump(0x7798)
+c.label('airlock_code36c_native');c.jump(S['airlock_code35']);patch(0x7790,'airlock_code36c',8)
