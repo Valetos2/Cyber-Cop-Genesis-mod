@@ -3,7 +3,7 @@
 import math
 ellipse=[]
 for h in range(1,513):
- ellipse.append(asset('ellipse36c_'+str(h),struct.pack('>'+str(h+1)+'H',*[round(math.sqrt(max(0,1-(y/h)**2))*256) for y in range(h+1)])))
+ ellipse.append(asset('ellipse36c_'+str(h),struct.pack('>'+str(h+1)+'H',*[round(math.sqrt(max(0,1-(y/(h+0.5))**2))*256) for y in range(h+1)])))
 ep=asset('ellipse_ptrs36c',struct.pack('>512I',*ellipse))
 c.label('ellipse_draw36c');c.emit('302800060c400200');c.branch('6200','ellipse_native36c')
 c.emit('4a40');c.branch('6600','ellipse_height36c');c.emit('7001')

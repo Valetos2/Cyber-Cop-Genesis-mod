@@ -3,7 +3,7 @@ for start in range(0,28,2):
  for target in range(0,28,2):
   for button in [0,1]:
    u=machine();w(u,0xffff260a,start);w(u,0xffff2182,target);w(u,0xffff2186,0);w(u,0xffff2798,65500);u.reg_write(UC_M68K_REG_D0,button);run(u,0x8c4c,0x8c54)
-   expected=20 if start==target else abs(start-target)//2*80+(160 if (target<start)!=(button==0) else 0)
+   expected=80 if start==target else abs(start-target)//2*80+(320 if (target<start)!=(button==0) else 0)
    assert rd(u,0xffff085a)==expected,(start,target,button)
    for t in range(5,expected+1,5):
     w(u,0xffff2798,65500+t)
