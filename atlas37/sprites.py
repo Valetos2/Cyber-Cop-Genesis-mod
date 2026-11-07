@@ -24,7 +24,7 @@ if __name__=='__main__':
  for j,s in enumerate(specs):
   for k,delta in enumerate([0,4]):
    im=enemy(s,delta if s[0]!='811B' else 0,p);im=im.resize((im.width*2,im.height*2));sheet.paste(im,(j*160,k*260+25),im);d.text((j*160,k*260+5),s[0]+' +'+str(delta),fill='white')
- sheet.save('atlas37/contact.png')
+ sheet.save('atlas36/contact.png')
 
 def pngdata(im):
  b=io.BytesIO();im.save(b,format='PNG');return 'data:image/png;base64,'+base64.b64encode(b.getvalue()).decode()
@@ -49,8 +49,8 @@ if __name__=='__main__':
   p=pal(long(0x10b8c+f*4));images['enemies'][str(f)]={s[0]:pngdata(enemy(s,4 if s[0]!='811B' else 0,p)) for s in specs}
   images['objects'][str(f)]={str(t):pngdata(part(idx,w,h,p)) for t,(idx,w,h) in objects.items()}
  images['items']={str(i):pngdata(icon(i)) for i in range(35)}
- Path('atlas37/images.json').write_text(json.dumps(images))
+ Path('atlas36/images.json').write_text(json.dumps(images))
  sheet=Image.new('RGB',(800,560),'#18212c');d=ImageDraw.Draw(sheet)
  for i in range(35):
   im=icon(i);im=im.resize((im.width*2,im.height*2));x=i%8*100;y=i//8*110;sheet.paste(im,(x,y+18),im);d.text((x,y),str(i),fill='white')
- sheet.save('atlas37/items_check.png')
+ sheet.save('atlas36/items_check.png')
