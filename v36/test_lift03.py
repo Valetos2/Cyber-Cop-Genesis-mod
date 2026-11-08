@@ -11,11 +11,13 @@ for start in range(0,28,2):
    assert rd(u,0xffff085a)==expected,(start,target,button)
    for t in range(5,expected+1,5):
     w(u,0xffff2798,65500+t)
-    try:run(u,0x8b18,0x8b2a if t>=expected else STOP)
+    try:run(u,0x8b18)
     except Exception:
      print(start,target,button,t,expected,rd(u,0xffff085a),rd(u,0xffff0858));raise
     shown=rd(u,0xffff260a);assert shown==route[min(t//80,len(route)-1)],(start,target,button,t,shown,route)
-   assert rd(u,0xffff2186)==0 and rd(u,0xffff260a)==target
+   assert rd(u,0xffff2186)==1 and rd(u,0xffff260a)==target
+   run(u,0x8b18,0x8b2a)
+   assert rd(u,0xffff2186)==0
 print('PASS all392 external lift calls: floor distance, end-floor detour, visible route, tick wrap and arrival')
 for camp in [0,1]:
  u=machine();w(u,S['CAMP'],camp);w(u,0xffff2190,0);w(u,0xffff218e,2);w(u,0xffff0832,0)
