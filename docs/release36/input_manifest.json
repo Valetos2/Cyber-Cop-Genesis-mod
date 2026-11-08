@@ -1,0 +1,17 @@
+{
+  "sha256": {
+    "upload/Cyber-Cop_(W)_[c][!].bin": "98838ed8d69349ab64a99e4a4e0ea72843d47b175b69fda36957283932f0aba9",
+    "v35c/Cyber-Cop_v35c.bin": "fc4ac6984e0499d5bfbf7c18df0c3a153e077c9f67973b57edb1981b14b2fde4",
+    "v36/release_final/Cyber-Cop_v36.bin": "8f585c6218d8f193a01478f8bbe6d7c40406d1c53ecf9a4bbe01da96d5faf43b"
+  },
+  "cpu_suites_passed": 18,
+  "lift_calls": 392,
+  "complete_drop_cases": 52,
+  "complete_pickup_cases": 52,
+  "pickup_sprite_comparisons": 26,
+  "indicator_changed_pixels": 20,
+  "ips_original_roundtrip": true,
+  "ips_v35c_roundtrip": true,
+  "blastem_boot_to_menu": true,
+  "kega_cursor_jump": "OPEN: not reproduced in BlastEm; no fix claimed"
+}

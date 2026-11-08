@@ -23,8 +23,8 @@ print('PASS temporary second-button texture: hold, release, pointer exit, owners
 u=machine();u.mem_write(0xffbe,bytes.fromhex('4e75'));u.mem_write(V['sram17_load'],bytes.fromhex('70004e75'));texts=[]
 def text_hook(uc,a,s,d):
  if a==0xffbe:texts.append(bytes(uc.mem_read(uc.reg_read(UC_M68K_REG_A5),(uc.reg_read(UC_M68K_REG_D7)&65535)+1)))
-u.hook_add(UC_HOOK_CODE,text_hook);run(u,S['main36_text']);assert b'v36 test05' in texts
-print('PASS main menu draws v36 test05')
+u.hook_add(UC_HOOK_CODE,text_hook);run(u,S['main36_text']);assert b'v36' in texts
+print('PASS main menu draws v36')
 assert R[0xb8b0:0xb8b2]==bytes.fromhex('0040')
 assert R[0x196000+0xb1*128:0x196000+0xb2*128]==OLD[0x196000+0xb1*128:0x196000+0xb2*128]
 print('PASS native barrel world centre64; armed red bomb lens unchanged')

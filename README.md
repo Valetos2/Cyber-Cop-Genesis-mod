@@ -1,6 +1,6 @@
 # Cyber-Cop / Corporation — Genesis Improvement Project
 
-**Current public build: v35c.** [Download IPS patch](patches/Cyber-Cop_v35c.ips) · [v35c release notes](RELEASE_NOTES_v35c.md) · [Build instructions](DEVELOPMENT.md) · [Offline Atlas r37](atlas/README_EN.md). Previous version: [v34](RELEASE_NOTES_v34.md).
+**Current source release: v36.** [v36 release notes (Russian)](RELEASE_NOTES_v36_RU.md) · [Development state](DEVELOPMENT_STATE.md) · [Build instructions](DEVELOPMENT.md). v36 adds the Amiga Mission Disk campaign, independent saves, new objects/enemies and further interface fixes. ROMs and extracted assets are not hosted here. The older public patch remains available: [v35c IPS](patches/Cyber-Cop_v35c.ips). The reported Kega Fusion cursor jump remains unresolved; see the v36 notes.
 
 > **Major new feature in v35c: Sega Mouse support with MouseLook!** Use a Sega Mouse in **controller port 2** to look around and aim, or switch to a free cursor for interacting with the game world, panels and inventory. The **middle mouse button** toggles captured-look and free-cursor modes; sensitivity is adjustable in Options. The original controller remains supported. [See the mouse controls and release details](RELEASE_NOTES_v35c.md).
 
@@ -320,6 +320,7 @@ And perhaps, after all these years, I'll finally stop thinking about it.
 *Although, considering my plans for the missing features and extra levels... probably not.*
 
 — **Valentin "Valet2" Kozin**, October 2026
+
 
 
 
