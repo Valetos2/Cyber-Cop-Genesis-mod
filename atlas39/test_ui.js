@@ -14,7 +14,8 @@ for(let camp=0;camp<2;camp++)for(let f=0;f<16;f++){
  assert(!/undefined/.test(el('info').innerHTML),[camp,f,el('info').innerHTML]);assert(!/src="undefined"/.test(el('preview').innerHTML));
 }
 vm.runInContext('switchCampaign(1);scale=26',sandbox);el('floor').value='12';el('langEn').onclick();const transferred=JSON.parse(decodeURIComponent(sandbox.location.href.split('#view=')[1]));assert.equal(transferred.campaign,1);assert.equal(transferred.floor,12);assert.equal(transferred.scale,26);
-vm.runInContext('terminalOn=true;airlockOn=true;blinkPhase=0;blinkTerminals()',sandbox);assert.equal(vm.runInContext('airlockOn',sandbox),true);vm.runInContext('blinkTerminals()',sandbox);assert.equal(vm.runInContext('airlockOn',sandbox),true);vm.runInContext('blinkTerminals()',sandbox);assert.equal(vm.runInContext('airlockOn',sandbox),false);
+vm.runInContext('terminalOn=true;airlockOn=true;blinkPhase=0',sandbox);for(let i=0;i<5;i++){vm.runInContext('blinkTerminals()',sandbox);assert.equal(vm.runInContext('airlockOn',sandbox),true)}vm.runInContext('blinkTerminals()',sandbox);assert.equal(vm.runInContext('airlockOn',sandbox),false);
+assert(vm.runInContext('legendRank(33)<legendRank(34)&&legendRank(34)<legendRank(39)&&legendRank(61)<legendRank(14)&&legendRank(16)>legendRank(9)&&legendRank(16)<legendRank(10)',sandbox));
 const dots=vm.runInContext('[7,9,10,19,21,22,23,24].map(i=>pickupDot({item_ids:{37:i},rare_items:[]},37))',sandbox);assert.equal(new Set(dots).size,8);assert.equal(dots[3],'#000000');
 console.log('PASS',filename,'32 maps, every type/enemy, campaigns retain view and language carries campaign');
 }

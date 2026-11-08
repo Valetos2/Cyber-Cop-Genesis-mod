@@ -78,8 +78,12 @@ s=s.replace("t===33&&!terminalOn", "(t===33&&!terminalOn||t===31&&!airlockOn)")
 s=s.replace("(t!==33||terminalOn)", "(t!==33||terminalOn)&&(t!==31||airlockOn)")
 s=s.replace("t===2?'lampMarker'", "t===22?'capsuleMarker':t===2?'lampMarker'")
 s=s.replace("else if(t>=37){", "else if(t===22){ctx.fillStyle='#00e86a';ctx.beginPath();ctx.arc(x+scale/2,y+scale/2,scale*.34,0,Math.PI*2);ctx.fill();if(scale>=18){ctx.fillStyle='#07101a';ctx.font=Math.floor(scale*.52)+'px monospace';ctx.fillText(m.symbol,x+scale/2,y+scale/2)}}\n else if(t>=37){")
-s=s.replace("function blinkTerminals(){terminalOn=!terminalOn;", "function blinkTerminals(){terminalOn=!terminalOn;blinkPhase++;if(blinkPhase%3===0){airlockOn=!airlockOn;const l=current();l.cells.forEach((v,i)=>{if((v&63)!==31)return;paintCell(l,i);if(highlightType===31)outline(i%80,Math.floor(i/80),'#ffff00');if(chosen&&chosen.x===i%80&&chosen.y===Math.floor(i/80))outline(chosen.x,chosen.y,'#ffffff')});const sw=document.querySelector('#legend [data-type=\"31\"] .sw');if(sw)sw.classList.toggle('terminalOff',!airlockOn)}")
+s=s.replace("function blinkTerminals(){terminalOn=!terminalOn;", "function blinkTerminals(){terminalOn=!terminalOn;blinkPhase++;if(blinkPhase%6===0){airlockOn=!airlockOn;const l=current();l.cells.forEach((v,i)=>{if((v&63)!==31)return;paintCell(l,i);if(highlightType===31)outline(i%80,Math.floor(i/80),'#ffff00');if(chosen&&chosen.x===i%80&&chosen.y===Math.floor(i/80))outline(chosen.x,chosen.y,'#ffffff')});const sw=document.querySelector('#legend [data-type=\"31\"] .sw');if(sw)sw.classList.toggle('terminalOff',!airlockOn)}")
 s=s.replace('</style>', '.sw.capsuleMarker{position:relative;isolation:isolate}.sw.capsuleMarker:before{content:\"\";position:absolute;inset:16%;background:#00e86a;border-radius:50%;z-index:-1}</style>')
+
+# Atlas40: stable gameplay-first legend order; camera immediately precedes alarm.
+s=s.replace('Object.entries(l.legend).map', "Object.entries(l.legend).sort(([a],[b])=>legendRank(+a)-legendRank(+b)).map")
+s=s.replace('function draw(){', "function legendRank(t){if(t===27)return 0;if([33,31,32].includes(t))return 10+[33,31,32].indexOf(t);if(t===34)return 20;if(t>=37)return 30+t;if([14,36,12,35,4,3].includes(t))return 100+[14,36,12,35,4,3].indexOf(t);return 200+(t===16?9.5:t)}\nfunction draw(){")
 
 (D/'template.html').write_text(s)
 page=s.replace('__DATA__',(D/'data.json').read_text()).replace('__IMAGES__',(D/'images.json').read_text())
