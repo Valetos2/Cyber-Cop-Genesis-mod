@@ -10,3 +10,13 @@ c.label('lamp_radius_ready36d');c.jump(0xd074);patch(0xd050,'lamp_radius36d',10)
 
 # Native repair release updates its icon and clears the repair-active word.
 c.label('sleep_release36d');c.emit('48e7fffe');c.call(S['release_ui']);c.call(0x71e2);c.emit('4cdf7fff');c.jump(c.labels['sleep_sound_stop36']);patch(V['sleep17_begin'],'sleep_release36d')
+# One copy per reusable tool in equipment selection. Use the existing disabled
+# icon sentinel; each distinct mask remains a separate choice.
+c.label('gear_unique36d');c.emit('0c400014');c.branch('6700','gear_disable36d');c.emit('0c40000c');c.branch('6500','gear_unique_native36d');c.emit('0c400012');c.branch('6200','gear_unique_native36d')
+c.label('gear_disable36d')
+c.emit('3200e54922701000337cffff0000');c.jump(0xfdb0)
+c.label('gear_unique_native36d');c.emit('0c40000b');c.branch('6600','gear_unique_other36d');c.jump(0xfd8a);c.label('gear_unique_other36d');c.jump(0xfd94);patch(0xfd84,'gear_unique36d')
+# First aid explicitly does nothing for droids (native754C/7552). Keep
+# electronics available to humans: bionic limbs can require it.
+# Gas loop31F4 exits for droids before testing either mask (3210/3216).
+for a in [0x104a6,0x104b2,0x10506]:r[a]=255
