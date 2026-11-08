@@ -102,6 +102,7 @@ exec((OUT/'lift03.py').read_text())
 exec((OUT/'aim03.py').read_text())
 exec((OUT/'fixes04.py').read_text())
 exec((OUT/'save04.py').read_text())
+exec((OUT/'aim04.py').read_text())
 
 for p,name,n in c.fix:c.b[p:p+n]=(c.labels[name] if n==4 else c.labels[name]-(BASE+p)).to_bytes(n,'big',signed=n==2)
 assert len(c.b)<0x10000
