@@ -45,7 +45,7 @@ for raw,name,idx,h,small in [(0x1c,'barrel36',barrel,42,None),(0x1d,'stool_blue3
  fieldw(1,2,7 if raw==0x1c else 5);fieldl(1,4,0xe6e0);fieldw(1,0x12,32);fieldw(1,0x1c,1000);fieldw(1,0x24,0);fieldw(1,0x28,0x200);fieldl(1,0x3a,0xbd62)
  if small is not None:
   c.emit('08000006');c.branch('6700',name+'_large');fieldw(1,0xa,18);fieldw(1,0x14,9);fieldw(1,0x20,small);fieldl(1,0x4e,strides[9]);c.branch('6000',name+'_done');c.label(name+'_large')
- fieldw(1,0xa,h*2);fieldw(1,0x14,h);fieldw(1,0x20,idx);fieldl(1,0x4e,strides[h])
+ fieldw(1,0xa,h*2-20 if raw==0x1c else h*2);fieldw(1,0x14,h);fieldw(1,0x20,idx);fieldl(1,0x4e,strides[h])
  if raw==0x1c:fieldw(1,0x2c,64);fieldw(1,0x2e,84)
  c.label(name+'_done');c.emit('4e75');r[0x6588+raw*4:0x658c+raw*4]=struct.pack('>I',c.labels[name])
 

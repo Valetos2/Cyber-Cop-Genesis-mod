@@ -18,6 +18,7 @@ for idx,title in enumerate(['start original game','start amiga mission disk','co
  c.abs('3039',COUNT);c.emit('3200d040');c.abs('41f9',VISIBLE);c.emit('31bc'+f'{idx:04x}'+'0000')
  a=asset('menu36_title_'+str(idx),title.ljust(24).encode());c.abs('4bf9',a);c.emit('3601e14b0643e2123e3c00173c3c2000');c.call(0xffbe);c.abs('5279',COUNT)
  c.label('main36_skip_'+str(idx))
+draw('v36 test05',0xe800+2*(40-len('v36 test05')))
 c.emit('4cdf7fff4e75');patch(V['main18_text'],'main36_text')
 
 c.label('main36_enter')
