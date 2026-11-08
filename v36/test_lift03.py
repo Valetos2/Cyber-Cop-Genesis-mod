@@ -5,8 +5,9 @@ for start in range(0,28,2):
    u=machine();w(u,0xffff260a,start);w(u,0xffff2182,target);w(u,0xffff2186,0);w(u,0xffff2798,65500);u.reg_write(UC_M68K_REG_D0,button);run(u,0x8c4c,0x8c54)
    wrong=start!=target and (target<start)!=(button==0)
    waypoint=(0 if button==0 else 26) if wrong else target
-   expected=80 if start==target else (abs(start-waypoint)+abs(waypoint-target))//2*80
+   expected=80 if start==target else (abs(start-waypoint)+abs(waypoint-target))//2*80+(80 if wrong else 0)
    route=list(range(start,waypoint,2 if waypoint>start else -2))+list(range(waypoint,target,2 if target>waypoint else -2))+[target]
+   if wrong:route.insert(abs(start-waypoint)//2,waypoint)
    assert rd(u,0xffff085a)==expected,(start,target,button)
    for t in range(5,expected+1,5):
     w(u,0xffff2798,65500+t)
