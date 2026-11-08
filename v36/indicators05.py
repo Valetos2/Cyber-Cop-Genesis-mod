@@ -20,3 +20,6 @@ r[0x7736:0x773a]=struct.pack('>I',airbank)
 # B is used by the bomb display and must retain its native red.
 r[0x1813a+20:0x1813a+22]=struct.pack('>H',0x440)
 shade_lens(0x196000,0xe1,{12:10,13:1,14:7})
+# Lift denial uses the same red B2 lens; A/B are unused by its remaining tiles.
+r[0x18222+20:0x18222+24]=struct.pack('>HH',0x200,0x500)
+r[0x8cb8:0x8cbc]=struct.pack('>I',keybank)
