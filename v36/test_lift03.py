@@ -3,16 +3,19 @@ for start in range(0,28,2):
  for target in range(0,28,2):
   for button in [0,1]:
    u=machine();w(u,0xffff260a,start);w(u,0xffff2182,target);w(u,0xffff2186,0);w(u,0xffff2798,65500);u.reg_write(UC_M68K_REG_D0,button);run(u,0x8c4c,0x8c54)
-   expected=80 if start==target else abs(start-target)//2*80+(320 if (target<start)!=(button==0) else 0)
+   wrong=start!=target and (target<start)!=(button==0)
+   waypoint=(0 if button==0 else 26) if wrong else target
+   expected=80 if start==target else (abs(start-waypoint)+abs(waypoint-target))//2*80
+   route=list(range(start,waypoint,2 if waypoint>start else -2))+list(range(waypoint,target,2 if target>waypoint else -2))+[target]
    assert rd(u,0xffff085a)==expected,(start,target,button)
    for t in range(5,expected+1,5):
     w(u,0xffff2798,65500+t)
     try:run(u,0x8b18,0x8b2a if t>=expected else STOP)
     except Exception:
      print(start,target,button,t,expected,rd(u,0xffff085a),rd(u,0xffff0858));raise
-    shown=rd(u,0xffff260a);assert min(start,target)<=shown<=max(start,target)
+    shown=rd(u,0xffff260a);assert shown==route[min(t//80,len(route)-1)],(start,target,button,t,shown,route)
    assert rd(u,0xffff2186)==0 and rd(u,0xffff260a)==target
-print('PASS all392 external lift calls: floor distance, directional penalty, visible route, tick wrap and arrival')
+print('PASS all392 external lift calls: floor distance, end-floor detour, visible route, tick wrap and arrival')
 for camp in [0,1]:
  u=machine();w(u,S['CAMP'],camp);w(u,0xffff2190,0);w(u,0xffff218e,2);w(u,0xffff0832,0)
  for tick in range(80):w(u,0xffff2798,tick);run(u,S['lift_clock36b']);assert rd(u,0xffff2190)==0
