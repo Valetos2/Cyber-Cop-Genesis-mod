@@ -10,7 +10,7 @@ import sys
 TEXT_EXTENSIONS = {'.py', '.md', '.csv', '.yml', '.yaml', '.toml', '.txt'}
 JSON_NAMES = {'symbols.json', 'input_manifest.json', 'PUBLICATION_MANIFEST.json'}
 # Reviewed source-only web template/test; generated atlas HTML remains blocked.
-SPECIAL_NAMES = {'.gitignore', '.githooks/pre-commit', 'atlas37/template.html', 'atlas38/template.html', 'atlas38/test_ui.js'}
+SPECIAL_NAMES = {'.gitignore', '.githooks/pre-commit', 'atlas37/template.html', 'atlas38/template.html', 'atlas38/test_ui.js', 'atlas39/template.html', 'atlas39/test_ui.js'}
 BLOCKED_PARTS = {'upload', 'transfer_helpers', 'transfer_test02', '__pycache__', 'st_resources', 'rebuild_verify_test02'}
 
 def problem(name, data):

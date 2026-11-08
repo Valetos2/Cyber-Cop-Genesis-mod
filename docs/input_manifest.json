@@ -1,5 +1,5 @@
 {
-  "version": "v36 test03",
+  "version": "v36 test04",
   "note": "Local files only. Hashes are identifiers, not downloadable inputs. Last entry is the expected build output.",
   "files": [
     {
@@ -77,7 +77,7 @@
     {
       "path": "v36/Cyber-Cop_v36_WORK_IN_PROGRESS.bin",
       "size": 4194304,
-      "sha256": "8086af50b4cd5b206b1ef9d35f5f8694052f413092d7de614087b5f7552cccb8",
+      "sha256": "c07530ee98c0fd3de85d4db6ab1f5087043cd1c88a6bd1aa77dddd523e86aec1",
       "published": false
     }
   ],
