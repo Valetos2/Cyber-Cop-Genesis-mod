@@ -1,8 +1,10 @@
 # Cyber-Cop / Corporation — Genesis Improvement Project
 
-**Current source release: v36.** [v36 release notes (Russian)](RELEASE_NOTES_v36_RU.md) · [Development state](DEVELOPMENT_STATE.md) · [Build instructions](DEVELOPMENT.md). v36 adds the Amiga Mission Disk campaign, independent saves, new objects/enemies and further interface fixes. ROMs and extracted assets are not hosted here. The older public patch remains available: [v35c IPS](patches/Cyber-Cop_v35c.ips). The reported Kega Fusion cursor jump remains unresolved; see the v36 notes.
+**English** · [Русский README](README_RU.md)
 
-> **Major new feature in v35c: Sega Mouse support with MouseLook!** Use a Sega Mouse in **controller port 2** to look around and aim, or switch to a free cursor for interacting with the game world, panels and inventory. The **middle mouse button** toggles captured-look and free-cursor modes; sensitivity is adjustable in Options. The original controller remains supported. [See the mouse controls and release details](RELEASE_NOTES_v35c.md).
+**Milestones:** [`main`: v36](RELEASE_NOTES_v36_RU.md) (second Amiga Mission Disk campaign, separate saves, new enemies and lighting); [`wip`: v36a hotfix](https://github.com/Valetos2/Cyber-Cop-Genesis-mod/blob/wip/v36/RELEASE_V36A_RU.md) (indicator palettes, card lenses and elevator arrival display). The game changes in v36a **have not been merged into `main`**. The latest standalone IPS actually stored in this repository is the [v35c patch](patches/Cyber-Cop_v35c.ips); the v36/v36a game ROMs and their private release packages are not hosted here.
+
+**Highlights:** second 16-floor campaign (32 maps total), native Sega Mouse with MouseLook, streamlined controller and inventory input, optimizations and lighting, SRAM checkpoints, new robot and objects, and a companion bilingual Atlas 40. This is an unofficial improvement project, not a remake.
 
 ### Making Cyber-Cop the game it always deserved to be.
 
@@ -131,67 +133,103 @@ For the first time in nearly thirty years, the Corporation I had always imagined
 
 ---
 
-## What has been improved?
+## Complete changes compared with the original Genesis game
 
-The following changes have been developed for the Sega Genesis / Mega Drive version.
+This is a **cumulative feature list for the v36a milestone**. A tag at the end of each item denotes the first **documented** release containing that feature. `≤v32` means it predates the separately documented v33 release: the exact introduction build is not established by the available archival notes. `[v36a]` features are on **`wip` only**, not in the `main` game build. Atlas revision numbers describe a separate tool, not game versions.
 
-### Sega Mouse and MouseLook — new in v35c
+### Controls, movement and Sega Mouse
 
-- **Native Sega Mouse support in controller port 2**, alongside the existing controller controls.
-- **MouseLook / captured-look mode** for mouse-driven aiming and looking around; press the **middle mouse button** to switch between this mode and a **free on-screen cursor**.
-- **Free-cursor mode** for clicking world objects, interacting with inventory panels, and operating the sleep menu. The right button can fire at the cursor's aim point when the cursor is over the world.
-- **Adjustable mouse sensitivity** in Options and support for looking up/down by shifting the rendered view and horizon (a screen-space projection offset, not a full 3D camera pitch).
-- More reliable mouse input: panels use precise clickable areas, buttons show a held state without repeated activation, and elevator travel temporarily blocks mouse input after a valid floor is selected.
+- Faster turning, with a precise original-sized first step when turning in place; holding the direction accelerates subsequent steps. [≤v32]
+- Strafing with A+Left/Right, including diagonals without double movement speed; normal jumps prevent strafing. [≤v32]
+- Context-sensitive A picks up objects and interacts with the world, without breaking movement combinations. [≤v32]
+- Six-button pads: X/Z cycle backpack items, Y uses one, Mode toggles sleep; three-button pads still work. [≤v32]
+- VBlank buffering catches short action presses during slow frames; directional menu navigation no longer skips entries through unwanted repeat. [≤v32]
+- A missing previously connected controller triggers native sleep at a safe point, where the controller reports a detectable disconnection. [≤v32]
+- Native Sega Mouse support in controller port 2, with captured MouseLook and a free pointer, switched by the middle mouse button. [v35c]
+- Mouse aiming and world/panel/inventory interaction, including single-trigger clicks, visual held-button feedback, and prevention of unintended repeat actions. [v35c]
+- Adjustable mouse sensitivity and vertical screen-space look offset (not geometric 3D pitch); controller controls remain available. [v35c]
+- Mouse input is suppressed during an accepted elevator journey; frontend Options/sleep-menu controls and the sensitivity slider receive dedicated handling. [v35c]
+- Mouse-driven character and equipment selection, precise hit areas, a character portrait on the equipment screen, and fourth-button confirmation. [v36]
 
-See the [v35c release notes](RELEASE_NOTES_v35c.md) and [detailed controls (Russian)](docs/v35c_README_RU.md) for operating instructions.
+### Inventory, object panels and interaction fixes
 
-### Controller controls and movement
+- After using one of several identical consumables, the same item type remains selected; selection advances sensibly when the last copy is gone. [≤v32]
+- Hotkeys correctly initialize item panels, including the timed bomb; broken items can focus Repair on the next inventory opening. [≤v32]
+- Automatic ID-card/lockpick selection focuses Use; inserting an ID card can preselect Flying Lead. [≤v32]
+- When Use becomes unavailable, the cursor seeks an enabled icon to the left instead of wrapping around to Sleep. [≤v32]
+- When Drop becomes unavailable, it too searches left; manual cursor navigation remains unchanged. [v34]
+- Scanman automatically selects an available Screen in the game's priority order and focuses Use. [v34]
+- Exterior elevator call buttons no longer forcibly move the cursor or replace the selected item. [v34]
+- A stale Use-block flag is cleared when the elevator arrives, so the next Y/use action is not swallowed. [v33]
+- Refill and Chemicals cannot be wasted outside their intended refill contexts; world-item preview and dropped-Embryo rendering defects are fixed. [≤v32]
+- A temporary, centered HUD label identifies the selected item without obscuring the underlying interface. [≤v32]
+- Bomb timing uses explicit Enter confirmation before arming; feedback lamps distinguish confirmation, armed state and keypad errors. [≤v32]
+- Keypads and airlock panels get improved cursor paths and feedback; switching panels cleans up the previous interface. [≤v32]
+- Bomb confirmation feedback, Scanman brightness controls and panel click zones are refined for mouse use. [v35c]
+- Screen items are labeled Holo. a / Holo. b / Holo. c; Scanman brightness resets on re-entry, and terminal closure restores damaged inventory HUD rows. [v36]
+- The original item-breakage flag survives dropping, picking up and floor persistence; an already broken item cannot become repaired by being picked up again. [v36]
+- Lock/elevator number palettes are restored, so the green digits remain correct alongside newly shaded red indicators. [v36a]
+- Inserted-ID-card indicators on the elevator and airlock receive shading without replacing the original number colors. [v36a]
 
-- Faster and more responsive turning.
-- Strafing support for more natural first-person movement.
-- Improved directional control behavior.
-- VBlank-based buffering for discrete action presses, reducing missed inputs during slow frames without turning movement into queued steps.
-- Six-button controller support: X/Z cycle backpack items, Y uses the selected item, and Mode toggles sleep.
-- Contextual A interaction/pickup and finer initial turning steps while stationary.
-- More convenient interactions with objects and the inventory: invalid Use/Drop icons fall back to the left, Scanman focuses Use after selecting a Screen, and exterior lift call buttons preserve the cursor and selected item.
+### Rendering and performance
 
-### Graphics and performance
+- Selectable distance-based wall dithering: Off, 2×2, 4×4, 4×8 or vertical stripes; the pattern is screen-space, not a perspective wall texture. [≤v32]
+- Optional horizontal reference stripe below the wall center, with depth-sensitive tone and corrected near-plane clipping. [≤v32]
+- Faster scene sorting, wall filling and sprite scaling; some hidden ordinary walls are rejected early without treating doors or special surfaces as solid walls. [≤v32]
+- Optimized large sprites and destruction animations retain nearest-neighbor sampling and transparency. [≤v32]
+- Ceiling lights and floor pools of light are restored; lamps can be toggled in Options and the sleep menu. [v36]
+- Lights are inserted into verified empty cells of the original campaign; optimized ellipse drawing reduces artifacts and some expensive rendering paths. [v36]
+- Mission floor/ceiling color bands and imported-sprite trailing strips are corrected; both barrel sprites are lowered consistently in world space. [v36]
 
-- Reduced slowdowns through rendering optimizations.
-- Improved visual orientation in corridors and rooms.
-- Selectable screen-space wall dithering and a horizontal wall stripe, with separate options to disable either effect. The dithering is not a perspective-mapped wall texture.
-- Rendering and visual improvements intended to preserve the original game's style.
+### Menus, presentation, sleep and audio
 
-### Gameplay and bug fixes
+- Restructured Start New Game, Resume Saved Game, Enter Password and Options; a hidden Cheats menu unlocks after four distinct Down presses on Options. [≤v32]
+- Configurable Music/Sound FX, wall effects, a Sound Test and additional sleep-menu settings; cheat entries include infinite energy/battery, invincibility, access level and Auto Sleep. [≤v32]
+- Publisher logos and story can be skipped; Cyber-Cop and Corporation title screens alternate, with the mod version and credits added. [≤v32]
+- The main menu stops at its ends even after Cheats unlock, and its idle timeout is doubled. [v34]
+- An energy-exhaustion warning and optional Auto Sleep preserve the native sleep mechanics; the native Energy bar refreshes during rest. [≤v32]
+- The sleep Energy preview now uses only the native HUD renderer, preventing the old value from overwriting the recovered value. [v34]
+- The separate numeric sleep-energy overlay was removed in favor of the original bar; Gas Mask now takes priority over Face Mask. [v33]
+- Sound Test plays native music and effects on demand; Music Off suppresses the main theme without suppressing all environmental sequences. [≤v32]
+- Corrected music restarts, gas-effect stereo panning, password-menu sound transitions and ending-theme playback. [≤v32]
+- Jet Pack audio stops on battery exhaustion but does not silence a higher-priority alarm; the pack sequence can resume after the alarm. [v33]
+- An in-memory-of-Kevin-Bulmer screen precedes the Sega logo, using the adapted Amiga portrait; repeat-entry palette/scroll glitches are fixed. [v36]
+- Additional shading and held-button feedback are provided for keypad, airlock and bomb indicator lenses. [v36]
 
-- Fixed various problems with environmental damage handling.
-- Added varied door-lock codes between new games. The original game reinitializes its random generator with a fixed seed, producing repeatable codes. The native eight-swap shuffle can leave individual codes unchanged. The fixed airlock code remains 9831.
-- Added low-energy warning flashes at 15% or below, optional Auto Sleep before fatal exhaustion, and a periodically refreshed native Energy bar during sleep, drawn by the native HUD alone to prevent competing old/new readings.
-- Give Gas Mask priority over Face Mask; block lockpick activation during alarms; clear the leftover Use block on elevator arrival.
-- Toggle Jet Pack off by using it again, returning to standing with native descent physics. Stop the jetpack sequence when its battery runs out without cancelling other active environmental sequences. Alarms take priority; simultaneous jetpack/main-theme mixing is not implemented.
-- Corrected numerous issues discovered through gameplay testing.
-- Added optional infinite energy, infinite battery, invincibility, and selectable access levels, plus a sound test.
+### Gameplay, combat, equipment and elevators
 
-### Interface improvements
+- New games vary the native shuffled door-code table instead of always starting from the same random seed; fixed airlock codes remain fixed. [≤v32]
+- Fixed map-boundary and destructible-cell handling for Eye; grenades affect destructible map objects within a bounded 11×11 area (still without wall occlusion). [≤v32]
+- Destroyed fuse boxes keep the lights off longer through an extended restoration countdown, without making blackout permanent. [≤v32]
+- Lockpicks cannot activate while the actual in-game alarm flag is set. [v33]
+- Using an already active Jet Pack switches it off and allows the original descent physics to restore standing posture. [v34]
+- Alarm duration is increased fivefold; enemy auto-aim prioritizes active threats over cameras and alarm lamps, with additional obstruction checks. [v36]
+- Character equipment creation avoids excess copies of reusable devices and unsuitable medical/mask supplies for the droid. [v36]
+- Elevators retain the original 80-VBlank-per-floor timing across both campaigns; infinite-travel regressions are fixed. [v36]
+- A wrong-direction exterior call first sends the lift to the opposite extreme floor, waits there one extra floor interval, then returns; clicks during the call cannot reroute it. [v36]
+- The elevator call panel now shows the final destination floor for a full rendered frame before closing. [v36a]
 
-- Improved automatic cursor positioning during certain interactions.
-- Added identification of the currently selected inventory item.
-- Improved contextual controls and interface responsiveness.
-- Fixed visual and functional issues in several interface elements.
-- Added music, sound-effects and wall-appearance settings to the sleep menu, with cheats on a second page.
-- Hide Cheats in the main menu until four separate Down presses on Options; navigation remains bounded at both ends after unlocking it.
-- Improved front-end navigation and intro skipping. Main-menu idle timeout is doubled. Both regional title logos alternate between title-screen visits.
+### Saving, campaigns and new content
 
-### Saving and continuing
+- Extended SRAM checkpoints capture character state, inventory, injuries, access and original floor histories when an elevator ID-card action creates a password. [≤v32]
+- Resume Saved Game validates and restores extended data; unsafe body-part damage reconstruction after continuation is corrected. [≤v32]
+- The original per-floor history capacity remains limited, so SRAM is not a full emulator save state. [≤v32]
+- Original v35c builds extend the ROM to 2 MiB and retain the required SRAM layout. [≤v32]
+- The Amiga Mission Disk is adapted as a second, selectable 16-map Genesis campaign while preserving the original 16-map game. [v36]
+- Each campaign has independent SRAM checkpoints and continuation; passwords select the proper campaign and Continue only appears for valid saves. [v36]
+- Mission adds its original map layouts, equipment placement, enemies, respawn data, access progression, prison and scripted alarm behavior. [v36]
+- Mission adds a walking/attacking/dying bipedal robot with two PCM sound effects, plus barrel, chairs and chair debris; source enemy behavior is adapted for Genesis. [v36]
+- Mission Scanman imagery and its alternate ending image/text are incorporated; original Genesis credits and mod credits remain available. [v36]
+- Mission airlock code 8652, original airlock code 9831, and laboratory code 0451 follow their campaign rules; repeated terminals on the same floor cannot grant duplicate access. [v36]
+- Two isolated test maps are available through the hidden new-character menu; the second demonstrates Mission objects and the robot. [v36]
+- The combined game ROM grows to 4 MiB to hold the second campaign and its additional assets. [v36]
 
-- Added SRAM-based checkpoint functionality.
-- Checkpoints are written when an ID card produces a password in the elevator. They supplement the original password with selected character and floor-history data.
-- Manual password entry remains available. A password is not equivalent to the extended SRAM checkpoint.
-- SRAM is not a full emulator save state: exact moment-to-moment world state, every dropped item, and permanently destroyed geometry are not preserved. The original per-floor item-history limit still applies.
+### Companion atlas (separate from the game ROM)
 
-The objective is not to eliminate the game's difficulty, but to eliminate unnecessary frustration caused by its technical shortcomings.
+- Standalone bilingual offline atlas with selectable map cells, item/enemy previews, access notes, panels and exports. [≤Atlas r37]
+- Atlas 40 covers both 16-map campaigns (32 maps), preserving floor/view parameters when switching campaign and language. [Atlas r40]
+- Expanded marker legend, resource previews and distinctive airlock-terminal blinking; full exported image packs remain separate from the source repository. [Atlas r40]
 
-**Note:** Some improvements may evolve or change as development continues. Detailed technical changes and version-specific features will be documented in release notes.
 
 ---
 
@@ -207,47 +245,38 @@ Possible future work includes:
 - Additional fixes for gameplay mechanics and interface behavior.
 - Investigation of missing features documented in the original manuals.
 - Restoring selected functionality from the Atari ST, Amiga, or DOS versions where technically feasible.
-- Exploring the possibility of adapting the additional Amiga levels for the Genesis version.
+- Further polishing the **already integrated Amiga Mission Disk** campaign through playtesting and targeted fixes.
 - Expanding the accompanying ROM analysis and level-viewing tools.
 
 These are ambitions, not promises. The project will develop according to what is technically possible, what can be tested reliably, and how much time and enthusiasm I can devote to it.
 
 Most importantly, I want the game to remain recognizably **Corporation**.
 
-## Downloads and installation
+## Downloads, patch compatibility and build status
 
-This project distributes IPS patches and development tools, **not the original game ROM**.
+**The repository does not distribute original or modified commercial game ROMs.**
 
-To play the modified version:
+- **Ready-to-use public patch:** [Cyber-Cop v35c IPS](patches/Cyber-Cop_v35c.ips), for the exact unmodified 1 MiB **Cyber-Cop (W) [c][!]** image (no copier header). See [v35c release notes](RELEASE_NOTES_v35c.md).
+- **Latest game sources in `main`:** v36, with Amiga Mission Disk and a 4 MiB output. See [v36 release notes](RELEASE_NOTES_v36_RU.md), [source tree](v36/) and [development state](DEVELOPMENT_STATE.md).
+- **Latest milestone in `wip`:** v36a hotfix. Read its [Russian notes](https://github.com/Valetos2/Cyber-Cop-Genesis-mod/blob/wip/v36/RELEASE_V36A_RU.md). A ready-made public v36a IPS is **not** in `patches/`; having sources here does not imply every private input needed for a full rebuild is included.
 
-1. Obtain the appropriate original Sega Genesis / Mega Drive ROM from a lawful source.
-2. Download the IPS patch from this repository's Releases section when a release is available.
-3. Apply the patch using a compatible IPS patching utility.
-4. Run the patched ROM using a compatible emulator. Gameplay testing has primarily used Kega Fusion; real-cartridge compatibility has not yet been verified.
-
-Always keep an untouched backup of the original ROM.
-
-The current patch targets the original 1 MiB **Cyber-Cop** ROM with SHA-256:
+Original Cyber-Cop SHA-256:
 
 ```text
 98838ed8d69349ab64a99e4a4e0ea72843d47b175b69fda36957283932f0aba9
 ```
 
-Apply each cumulative patch to that original ROM, not to a previously modified build. The resulting ROM is 2 MiB.
-
-Rebuilding the patch from source also requires the **Corporation** ROM used for its regional title graphics, with SHA-256:
+The **Corporation** regional ROM is also required by the source-based builder for title artwork (but **not** to apply a ready IPS); its SHA-256 is:
 
 ```text
 226368b1693af2db21bb1cc640b94d5b021c9ff20fcb86207d2b76590503cc98
 ```
 
-The second ROM is needed by the source builder, not by the player applying a ready-made IPS patch. Keep a backup of SRAM before moving between versions. Emulator save states can contain old code addresses and are not guaranteed to work with a different patch version.
+**Never chain cumulative IPS patches at random.** Apply the patch designed for your exact base ROM, or use a specifically labeled incremental patch for its stated earlier build. Keep backups of the original ROM and SRAM. Emulator save states from older versions may point at outdated machine-code addresses. For historical v35c build instructions, see [DEVELOPMENT.md](DEVELOPMENT.md).
 
 ## Companion atlas
 
-The offline Russian/English atlas covers all 16 maps, with item and enemy previews, native interaction-panel renders, code notes, access groups and arrival markers. Revision 35 adds resizable previews and blinking terminals. Default code previews do not reveal the code in a randomized running session; terminal access labels assume a documented route.
-
-This repository contains the atlas source template and research scripts, **not** the generated HTML with embedded game graphics, extracted maps or sprite PNGs. The complete atlas is supplied separately. A browser-side local ROM importer is a proposed next step, not an implemented feature of this revision. See [development notes](DEVELOPMENT.md) for the current reproduction limits.
+The separately produced **Atlas 40** covers **32 maps across two campaigns** with Russian and English interfaces, clickable cells, enemies and objects, access and code notes, distinct item markers, equipment/panel previews, and remembered map/view settings. The generated HTML and extracted graphical packs are separate artifacts, not content embedded in the ROM and not necessarily present in this source repository. See [Atlas 40 documentation](atlas39/README_RU.md) and [its source folder](atlas39/). Original game imagery remains owned by the respective rights holders.
 
 ## Development tools
 
@@ -319,7 +348,7 @@ And perhaps, after all these years, I'll finally stop thinking about it.
 
 *Although, considering my plans for the missing features and extra levels... probably not.*
 
-— **Valentin "Valet2" Kozin**, October 2026
+— **Valentin "Valet2" Kozin**, 2026
 
 
 
