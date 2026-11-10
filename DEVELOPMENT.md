@@ -2,7 +2,7 @@
 
 ## Source milestones and published patch
 
-The **`main` source tree contains v36** (two campaigns, 4 MiB ROM); the **`wip` branch contains the v36a hotfix milestone**. The latest **ready-made IPS actually included under `patches/` remains v35c**. Game sources, independently supplied release packages and binary patches are different publication artifacts; having the source code in GitHub does not imply the completed commercial-ROM output can be downloaded here. See [English project overview](README.md), [Russian cumulative overview](README_RU.md), [v36 release notes](RELEASE_NOTES_v36_RU.md) and [v36a hotfix notes in wip](https://github.com/Valetos2/Cyber-Cop-Genesis-mod/blob/wip/v36/RELEASE_V36A_RU.md).
+The **`main` source tree contains v36a** (the completed hotfix on top of the two-campaign, 4 MiB v36 ROM). The `wip` branch was merged via [PR #2](https://github.com/Valetos2/Cyber-Cop-Genesis-mod/pull/2). The latest **ready-made IPS actually included under `patches/` remains v35c**. Game sources, independently supplied release packages and binary patches are different publication artifacts; having the source code in GitHub does not imply the completed commercial-ROM output can be downloaded here. See [English project overview](README.md), [Russian cumulative overview](README_RU.md), [v36 release notes](RELEASE_NOTES_v36_RU.md) and [v36a hotfix notes](v36/RELEASE_V36A_RU.md).
 
 ### Historical reproducible v35c builder
 
