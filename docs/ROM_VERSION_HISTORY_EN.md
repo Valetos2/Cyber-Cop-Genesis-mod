@@ -1,16 +1,16 @@
 # Cyber-Cop version provenance — archival reconstruction
 
-Compiled from 66 README files and technical notes covering v0.1 through v36a. This is a **development and testing timeline**, not a list of every feature still active in the final build: some intermediary solutions were replaced or corrected. Early v0.1–v0.9 numbering later changed to v10–v36. MouseLab was a **separate experimental ROM line**: prototype behavior should not automatically be claimed as part of the main game until integrated in v35.
+Compiled from 66 README files and technical notes covering v01 through v36a. This is a **development and testing timeline**, not a list of every feature still active in the final build: some intermediary solutions were replaced or corrected. Early v01–v09 (versions 1–9; leading zeros were only for filename sorting) were followed by v10–v36. MouseLab was a **separate experimental ROM line**: prototype behavior should not automatically be claimed as part of the main game until integrated in v35.
 
-- Faster turning while standing and moving; the very first gameplay patch only changed angular-step constants. [v0.1]
-- Prevented unwanted direction repeat in in-game menus; added six-button pad polling and Mode sleep/wake. XYZ were not yet assigned. [v0.2]
-- Added A+Left/Right strafing and X/Z/Y item cycling/use; reverted the experimental reverse-turn inversion from v0.2. [v0.3]
-- Disabled ordinary strafing during jumps, broadened hotkey contexts and tested vertical-striped wall shading in an experimental variant. [v0.4]
-- Fixed hotkey context after inserting an ID card in a terminal and added a perspective-projected horizontal wall stripe. [v0.5]
-- Lowered the wall stripe and added depth-sensitive tone; enabled XYZ in object panels and Start skipping of early logos/story. [v0.6]
-- Added context-sensitive tap-A interaction on release and a 4×4 distance-based wall dithering pattern. [v0.7]
-- Introduced optimized depth sorting without changing rendered frames or game logic. [v0.8]
-- Optimized enlarged sprites using cached pixel pairs and transparency masks. [v0.9]
+- Faster turning while standing and moving; the very first gameplay patch only changed angular-step constants. [v01]
+- Prevented unwanted direction repeat in in-game menus; added six-button pad polling and Mode sleep/wake. XYZ were not yet assigned. [v02]
+- Added A+Left/Right strafing and X/Z/Y item cycling/use; reverted the experimental reverse-turn inversion from v02. [v03]
+- Disabled ordinary strafing during jumps, broadened hotkey contexts and tested vertical-striped wall shading in an experimental variant. [v04]
+- Fixed hotkey context after inserting an ID card in a terminal and added a perspective-projected horizontal wall stripe. [v05]
+- Lowered the wall stripe and added depth-sensitive tone; enabled XYZ in object panels and Start skipping of early logos/story. [v06]
+- Added context-sensitive tap-A interaction on release and a 4×4 distance-based wall dithering pattern. [v07]
+- Introduced optimized depth sorting without changing rendered frames or game logic. [v08]
+- Optimized enlarged sprites using cached pixel pairs and transparency masks. [v09]
 - Simplified ordinary-wall depth calculations and improved pointer-list sorting. [v10]
 - Early rejection of ordinary wall cells fully occluded by continuous ordinary-wall segments; alternate dithering experiments. [v11]
 - Selected 2×2 as the standard dithering pattern; skipped rasterizing fully offscreen projected surfaces and stripes. [v12]
