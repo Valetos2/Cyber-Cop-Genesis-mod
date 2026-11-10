@@ -1,8 +1,10 @@
 # Development and building
 
-## Current version: v35c
+## Source milestones and published patch
 
-The current published patch is **v35c**. The offline map viewer is **Atlas r37**; atlas revisions are separate from game build versions.
+The **`main` source tree contains v36** (two campaigns, 4 MiB ROM); the **`wip` branch contains the v36a hotfix milestone**. The latest **ready-made IPS actually included under `patches/` remains v35c**. Game sources, independently supplied release packages and binary patches are different publication artifacts; having the source code in GitHub does not imply the completed commercial-ROM output can be downloaded here. See [English project overview](README.md), [Russian cumulative overview](README_RU.md), [v36 release notes](RELEASE_NOTES_v36_RU.md) and [v36a hotfix notes in wip](https://github.com/Valetos2/Cyber-Cop-Genesis-mod/blob/wip/v36/RELEASE_V36A_RU.md).
+
+### Historical reproducible v35c builder
 
 To build v35c, use Python 3 (the builder itself only requires the standard library):
 
@@ -33,11 +35,11 @@ python3 v34/build_v34.py /path/to/Cyber-Cop.bin /path/to/Corporation.bin build/v
 
 Some earlier test scripts require original ROMs, intermediate historical builds, Fusion GST snapshots or local fixtures not shipped in this repository. Testing under Unicorn/Capstone/Pillow is a targeted research technique, not a substitute for complete playthrough testing or real hardware verification.
 
-## Offline atlas r37
+## Offline atlas: current Atlas 40 and historical r37
 
-The finished bilingual viewer is at `atlas/Cyber-Cop_Atlas.html` and `atlas/Cyber-Cop_Atlas_en.html`. Both files need to remain together for language switching. It works locally without a web server or remote asset downloads.
+**Atlas 40** adds both campaigns (32 maps), bilingual UI, preserved view settings and richer map markers. Its source tools and [current Russian documentation](atlas39/README_RU.md) are retained under `atlas39/`; fully generated HTML/image packages are separate from source-only files. The directory name is historical and the documented package is Atlas 40.
 
-The `atlas/` folder also includes map PNGs, extracted `data.json`, `cells.csv`, documentation and existing research scripts. The `atlas35/` directory holds older research/rendering tools, which may still depend on original ROMs and save states.
+The legacy r37 bilingual viewer and its source material remain under `atlas/` where available; older tools also reside in `atlas35/`. These archive directories may depend on original ROMs or local emulator states. Atlas revision numbers are independent of game build versions.
 
 **Rights note:** HTML embeds game imagery, and PNG/JSON/CSV outputs contain material extracted from the original game. These resources are acknowledged for their original copyright owners; they are **not** relicensed under Apache 2.0. Publishing them does not establish that redistribution rights have been cleared.
 
