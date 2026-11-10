@@ -25,6 +25,17 @@ See [detailed build notes](sources/BUILD_RU.md), [release notes](RELEASE_NOTES_v
 
 **Precomputed source inputs:** `sources/v35/boot_vram.bin` is a VRAM snapshot used by the current build process; `sources/v34/easter_tiles.bin` contains custom tiles. The VRAM snapshot may incorporate original game graphics; the project's Apache 2.0 license does **not** grant rights to third-party material within any generated data. A self-contained ROM-driven asset extractor is a possible future improvement.
 
+## Why older source directories are retained
+
+A source-dependency review was done when v36a was merged into `main`:
+
+- `sources/build_v35.py` rebuilds v35c using **`sources/v13/` → `sources/v34/` → `sources/mouse_lab/` → `sources/v35/`** in that order. These are build dependencies, not redundant leftovers.
+- `v36/build.py` starts from a locally produced **`v35c/Cyber-Cop_v35c.bin`**, loads **`v35c/symbols.json`** and **`v34/symbols.json`**, and uses scripts/data from **`mission_port36/`**, **`amiga_research/`** and **`v36/`**. The prebuilt v35c BIN is intentionally not committed: build and runtime tests depending on it cannot be performed from a pristine source checkout alone.
+- `atlas39/` (the source for Atlas 40) also reads files produced by **`atlas37/`** and the v36 ROM research/build environment. A directory's older number therefore does **not** prove it is safe to remove.
+- Root `v13/`, `v33/`, earlier atlas revisions and historical tests preserve alternative build/test paths and reverse-engineering evidence. Some are not on the latest build path, but that is **not sufficient justification for deleting archival research**.
+
+No historical directories were removed with the v36a merge. A future cleanup should first create a verified end-to-end build from user-owned ROM inputs, trace every dependency, then archive optional legacy trees separately instead of deleting them by version number.
+
 ## Historical builds and research
 
 Older build scripts remain in `v13/`, `v33/` and `v34/` to preserve the development history. The previous v34 build is:
