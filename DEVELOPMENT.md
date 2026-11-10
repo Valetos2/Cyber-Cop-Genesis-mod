@@ -34,7 +34,7 @@ A source-dependency review was done when v36a was merged into `main`:
 - `atlas39/` (the source for Atlas 40) also reads files produced by **`atlas37/`** and the v36 ROM research/build environment. A directory's older number therefore does **not** prove it is safe to remove.
 - Root `v13/`, `v33/`, earlier atlas revisions and historical tests preserve alternative build/test paths and reverse-engineering evidence. Some are not on the latest build path, but that is **not sufficient justification for deleting archival research**.
 
-No historical directories were removed with the v36a merge. A future cleanup should first create a verified end-to-end build from user-owned ROM inputs, trace every dependency, then archive optional legacy trees separately instead of deleting them by version number.
+No historical directories were removed **during** the v36a merge. A later focused Atlas cleanup removed obsolete Atlas outputs and the no-longer-referenced `atlas35/` and `atlas38/` trees, retaining `atlas37/` because it is used by `atlas39/`. All removed material remains recoverable from Git history; game build directories were not changed.
 
 ## Historical builds and research
 
@@ -50,7 +50,7 @@ Some earlier test scripts require original ROMs, intermediate historical builds,
 
 **Atlas 40** adds both campaigns (32 maps), bilingual UI, preserved view settings and richer map markers. Its source tools and [current Russian documentation](atlas39/README_RU.md) are retained under `atlas39/`; fully generated HTML/image packages are separate from source-only files. The directory name is historical and the documented package is Atlas 40.
 
-The legacy r37 bilingual viewer and its source material remain under `atlas/` where available; older tools also reside in `atlas35/`. These archive directories may depend on original ROMs or local emulator states. Atlas revision numbers are independent of game build versions.
+Retained `atlas37/` scripts are required by the Atlas 40 generator in `atlas39/`. Old generated r37 HTML, map images, CSV and JSON under `atlas/`, and superseded `atlas35/` and `atlas38/` source trees, were removed from the current branch. Their contents can still be recovered from Git history. Atlas revisions are independent of game versions.
 
 **Rights note:** HTML embeds game imagery, and PNG/JSON/CSV outputs contain material extracted from the original game. These resources are acknowledged for their original copyright owners; they are **not** relicensed under Apache 2.0. Publishing them does not establish that redistribution rights have been cleared.
 
@@ -61,7 +61,7 @@ A future alternative would import a user-provided ROM and extract visual resourc
 - **Never commit original or fully modified commercial ROM files.**
 - Release approved standalone IPS patch files in `patches/` and script/tool sources in `sources/`.
 - Include supporting documentation and tests, with limitations stated clearly.
-- The atlas and its data are kept separately under `atlas/` from the game patch.
+- Store current Atlas 40 builder sources under `atlas39/` and its required legacy generator sources under `atlas37/`. Distribute fully generated image-containing Atlas packages separately.
 - Historic files and experiments should not be deleted merely because they are absent from later update packages.
 - Keep user-supplied save data, credentials, emulator states, full ROMs and temporary builds out of commits.
 

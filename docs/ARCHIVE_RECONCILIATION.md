@@ -13,3 +13,10 @@ Published in main: the small, validated incremental v36-to-v36a IPS and selected
 The supplied v36 archive also includes original DOS data (CORPRTNC.DAT), Amiga and Atari game resources, emulator save states, PCM samples and generated game imagery. **Those binaries were deliberately not committed.** In a reorganized private archive, the DOS data file was moved from rebuild/next/dos/corporation/corporation/CORPRTNC.DAT to rebuild/next/dos/CORPRTNC.DAT. Existing analysis scripts search recursively within next/dos, so their expected search root remains the same.
 
 The new source scripts reference user-provided ROMs, research files, emulator states or local emulator executables that are not in GitHub. Validating syntax and archive/patch integrity does not replace a complete source rebuild or game playthrough.
+
+
+## Atlas 40 standalone package and cleanup
+
+The user-provided standalone Atlas 40 ZIP passed CRC validation: two self-contained HTML files, README, JSON, CSV, and 984 PNG exports. This package remains separate from GitHub source.
+
+Retained: `atlas39/` (current Atlas 40 generator) and `atlas37/` (required template, sprite tool and generator inputs). Removed from current HEAD: old generated Atlas r37 outputs and legacy research scripts under `atlas/` plus redundant sources in `atlas35/` and `atlas38/`. Everything remains recoverable in Git history at commit `1edde6660f9962bf161f645d7b2da42eb98d16c2`. Updated r37 tests to read locally regenerated files in `atlas37/`. Preserved `Cyber-Cop_v34_Wall_Comparison.png` and `checks/v35c/*.png`. No commercial game assets or complete Atlas ZIP were uploaded to GitHub in this cleanup. Full rebuilding still requires private ROM and research input files.

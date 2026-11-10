@@ -1,5 +1,5 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert');
-const html=fs.readFileSync('atlas/Cyber-Cop_Atlas.html','utf8');const script=html.split('<script>')[1].split('</script>')[0];
+const html=fs.readFileSync('atlas37/Cyber-Cop_Atlas.html','utf8');const script=html.split('<script>')[1].split('</script>')[0];
 let entries=[],docclick;const ctx=new Proxy({},{get:(t,p)=>t[p]||(()=>{})});
 const elements={};for(const id of ['map','floor','legend','locks','info','preview','prevLevel','nextLevel','plus','minus','langEn','langRu','splitter','previewGrip','viewport','legendScroll'])elements[id]={value:'0',scrollLeft:0,scrollTop:0,style:{},_html:'',addEventListener(n,fn){this[n]=fn},add(){},getContext(){return ctx},getBoundingClientRect(){return {left:0,top:0,width:350,height:220}},set innerHTML(s){this._html=s;if(id==='legend')entries=[...s.matchAll(/data-type="([^"]+)"/g)].map(m=>({dataset:{type:m[1]}}))},get innerHTML(){return this._html}};
 const box={window:{scrollX:0,scrollY:0},setInterval(){},innerWidth:1200,innerHeight:900,document:{getElementById:id=>elements[id],querySelectorAll:()=>entries,querySelector:s=>s==='aside'?{getBoundingClientRect:()=>({width:350})}:null,addEventListener:(n,f)=>docclick=f},Option:function(){}};vm.createContext(box);vm.runInContext(script,box);
@@ -28,7 +28,7 @@ console.log('PASS enemy legend first, rescue toggle/description, Parking ending 
 assert(vm.runInContext("Object.keys(images.panels.lift).length",box)===16);
 for(const t of [31,32,33,34,36]){let floor=dataUnused=0; for(let f=0;f<16;f++){elements.floor.value=String(f);let i=vm.runInContext(`current().cells.findIndex(v=>(v&63)===${t})`,box);if(i>=0){vm.runInContext(`describe(${i%80},${Math.floor(i/80)})`,box);assert(elements.preview.innerHTML.includes("panelImage"));break;}}}
 console.log("PASS interaction previews and 16 lift displays");
-const en=fs.readFileSync('atlas/Cyber-Cop_Atlas_en.html','utf8');assert(!/[А-Яа-яЁё]/.test(en));
+const en=fs.readFileSync('atlas37/Cyber-Cop_Atlas_en.html','utf8');assert(!/[А-Яа-яЁё]/.test(en));
 const enscript=en.split('<script>')[1].split('</script>')[0];
 for(const [language,saved,blocked,want] of [['ru-RU',null,false,null],['en-US',null,false,'Cyber-Cop_Atlas_en.html'],['de-DE',null,true,'Cyber-Cop_Atlas_en.html'],['en-US','ru',false,null]]){
  let moved=null;const b={...box,document:{...box.document,documentElement:{lang:'ru'}},navigator:{language},localStorage:{getItem(){if(blocked)throw Error();return saved},setItem(){}},location:{replace(x){moved=x}}};vm.createContext(b);vm.runInContext(script,b);assert.strictEqual(moved,want);

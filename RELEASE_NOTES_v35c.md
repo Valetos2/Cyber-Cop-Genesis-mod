@@ -43,9 +43,9 @@ The packaged build was tested using targeted CPU/UI tests and a BlastEm 1.0.0 st
 
 ## Atlas r37
 
-The separate [offline atlas](atlas/README_EN.md) covers **16 floors**, with clickable cells, map legend, resource previews, English and Russian user interfaces, and viewer-state preservation when switching languages.
+The separate [historical r37 offline atlas](https://github.com/Valetos2/Cyber-Cop-Genesis-mod/tree/1edde6660f9962bf161f645d7b2da42eb98d16c2/atlas) covers **16 floors**, with clickable cells, map legend, resource previews, English and Russian user interfaces, and viewer-state preservation when switching languages.
 
-Download both [`Cyber-Cop_Atlas.html`](atlas/Cyber-Cop_Atlas.html) and [`Cyber-Cop_Atlas_en.html`](atlas/Cyber-Cop_Atlas_en.html) into the same folder before opening them locally. Embedded images mean no network access is required. The [atlas source data](atlas/data.json) and [cell table](atlas/cells.csv) are also provided.
+This is a historical release description: the old exported r37 files were removed from current `main` when Atlas 40 became a separate package. The old viewer and its source data can be retrieved from [that Git history snapshot](https://github.com/Valetos2/Cyber-Cop-Genesis-mod/tree/1edde6660f9962bf161f645d7b2da42eb98d16c2/atlas). Current Atlas 40 build sources are under [`atlas39/`](atlas39/); its self-contained ZIP includes the bilingual HTML viewers, images, JSON and CSV.
 
 ## Copyright and attribution
 
