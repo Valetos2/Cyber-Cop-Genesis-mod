@@ -2,7 +2,7 @@
 
 **English** · [Русский README](README_RU.md)
 
-**Milestones:** [`main`: v36](RELEASE_NOTES_v36_RU.md) (second Amiga Mission Disk campaign, separate saves, new enemies and lighting); [`wip`: v36a hotfix](https://github.com/Valetos2/Cyber-Cop-Genesis-mod/blob/wip/v36/RELEASE_V36A_RU.md) (indicator palettes, card lenses and elevator arrival display). The game changes in v36a **have not been merged into `main`**. The latest standalone IPS actually stored in this repository is the [v35c patch](patches/Cyber-Cop_v35c.ips); the v36/v36a game ROMs and their private release packages are not hosted here.
+**Current source milestone: [`main` v36a](v36/RELEASE_V36A_RU.md)** — the v36 Amiga Mission Disk campaign plus the completed v36a palette/indicator and elevator-panel hotfix, merged from `wip` in [PR #2](https://github.com/Valetos2/Cyber-Cop-Genesis-mod/pull/2). The latest standalone IPS actually stored in this repository is the [v35c patch](patches/Cyber-Cop_v35c.ips); the v36/v36a game ROMs and their private release packages are not hosted here.
 
 **Highlights:** second 16-floor campaign (32 maps total), native Sega Mouse with MouseLook, streamlined controller and inventory input, optimizations and lighting, SRAM checkpoints, new robot and objects, and a companion bilingual Atlas 40. This is an unofficial improvement project, not a remake.
 
@@ -135,7 +135,7 @@ For the first time in nearly thirty years, the Corporation I had always imagined
 
 ## Complete changes compared with the original Genesis game
 
-This is a **cumulative feature list through the v36a milestone**, checked against **66 archived README and technical-note files** from v01 onward. Bracketed tags identify the earliest documented build(s) and meaningful later refinements. **MouseLab was a separate test-ROM line**; `integrated v35` distinguishes experiments from released game features. `[v36a]` features are on **`wip` only**; the main-game source release in `main` remains v36. Atlas revision numbers refer to a separate tool. For a detailed chronology and superseded experiments, see [version history](docs/ROM_VERSION_HISTORY_EN.md).
+This is a **cumulative feature list through the v36a milestone**, checked against **66 archived README and technical-note files** from v01 onward. Bracketed tags identify the earliest documented build(s) and meaningful later refinements. **MouseLab was a separate test-ROM line**; `integrated v35` distinguishes experiments from released game features. `[v36a]` features are now part of **`main`**, following the merge of the completed hotfix. Atlas revision numbers refer to a separate tool. For a detailed chronology and superseded experiments, see [version history](docs/ROM_VERSION_HISTORY_EN.md).
 
 ### Controls, movement and Sega Mouse
 
@@ -304,8 +304,8 @@ Most importantly, I want the game to remain recognizably **Corporation**.
 **The repository does not distribute original or modified commercial game ROMs.**
 
 - **Ready-to-use public patch:** [Cyber-Cop v35c IPS](patches/Cyber-Cop_v35c.ips), for the exact unmodified 1 MiB **Cyber-Cop (W) [c][!]** image (no copier header). See [v35c release notes](RELEASE_NOTES_v35c.md).
-- **Latest game sources in `main`:** v36, with Amiga Mission Disk and a 4 MiB output. See [v36 release notes](RELEASE_NOTES_v36_RU.md), [source tree](v36/) and [development state](DEVELOPMENT_STATE.md).
-- **Latest milestone in `wip`:** v36a hotfix. Read its [Russian notes](https://github.com/Valetos2/Cyber-Cop-Genesis-mod/blob/wip/v36/RELEASE_V36A_RU.md). A ready-made public v36a IPS is **not** in `patches/`; having sources here does not imply every private input needed for a full rebuild is included.
+- **Current game sources in `main`:** v36a, based on the two-campaign 4 MiB v36 game. See [v36 release notes](RELEASE_NOTES_v36_RU.md), [source tree](v36/) and [development state](DEVELOPMENT_STATE.md).
+- **v36a hotfix (merged):** [Russian hotfix notes](v36/RELEASE_V36A_RU.md). A ready-made public v36a IPS is **not** in `patches/`; having sources here does not imply every private input needed for a full rebuild is included.
 
 Original Cyber-Cop SHA-256:
 
