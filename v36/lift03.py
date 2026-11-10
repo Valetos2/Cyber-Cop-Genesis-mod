@@ -17,7 +17,9 @@ c.abs('3039',0xffff260a);c.abs('b079',CALL_WAYPOINT);c.branch('6600','lift_call_
 c.label('lift_call_move36e');c.abs('b079',CALL_WAYPOINT);c.branch('6700','lift_call_after_step36e');c.branch('6d00','lift_call_move_down36c');c.emit('5540');c.branch('6000','lift_call_display36c');c.label('lift_call_move_down36c');c.emit('5440');c.label('lift_call_display36c');c.abs('33c0',0xffff260a)
 c.label('lift_call_after_step36e');c.abs('4a79',CALL_STEP);c.branch('6f00','lift_call_step36e')
 c.label('lift_call_wait36c');c.jump(0x8b74)
-c.label('lift_call_arrive36c');c.abs('4279',0xffff2186);c.abs('4279',CALL_TIME);c.abs('33f9',0xffff2182);c.long(0xffff260a);c.jump(0x8b2a)
+# Show destination through one complete native render/upload before closing.
+c.label('lift_call_arrive36c');c.abs('4a79',CALL_TIME);c.branch('6700','lift_call_close36g');c.abs('4279',CALL_TIME);c.abs('33f9',0xffff2182);c.long(0xffff260a);c.jump(0x8b74)
+c.label('lift_call_close36g');c.abs('4279',0xffff2186);c.jump(0x8b2a)
 c.label('lift_call_idle36c');c.jump(0x8b5c);patch(0x8b18,'lift_call_tick36c')
 # Ignore the action BEFORE native code can latch another button's texture.
 c.label('lift_call_guard36e');c.abs('4a79',0xffff2186);c.branch('6600','lift_call_guard_done36e');c.emit(src[0x8c36:0x8c38].hex());c.branch('6600','lift_call_guard_down36e');wi(0xffff7e30,0xc1);c.jump(0x8c4c)
