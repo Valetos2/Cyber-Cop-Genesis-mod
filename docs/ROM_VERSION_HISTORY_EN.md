@@ -57,10 +57,10 @@ Compiled from 66 README files and technical notes covering v01 through v36a. Thi
 - Fixed memorial palette/scroll, lift persistence, access logic, barrel rendering and auto-aim prioritization; restricted unnecessary droid supplies. [v36 test04]
 - Lowered both barrel sprites; improved wrong-direction lift calls, second-button feedback and shaded indicators. [v36 test05]
 - Final cumulative build: extra dwell at the lift's extreme floor, preserved breakage of dropped items and the v36 menu label. The Kega cursor issue was not claimed as fixed. [v36]
-- The `wip` hotfix restores lock/lift digit palettes, shades inserted-card indicators and renders the final destination floor before closing the call panel. [v36a]
+- The v36a hotfix, first developed in `wip` and later merged into `main`, restores lock/lift digit palettes, shades inserted-card indicators and renders the final destination floor before closing the call panel. [v36a]
 
 ## Separate research and claims to avoid
 
 The supplied archive mentions a **custom Atari ST character disk** as a separate research topic (e.g. v33_QUESTIONS_RU.md and v34_DEVELOPMENT.md). **No documentation or implementation of a completed disk-image generator was present in these 66 text files**, so it is not listed as a Genesis ROM feature. The bilingual 32-map Atlas 40 is a separate companion tool ([documentation](../atlas39/README_RU.md)), not game-ROM functionality. The Kega cursor-jump report, all extreme near-plane artifacts and real-console compatibility have **not** been established as fixed.
 
-The [English project README](../README.md) describes **current cumulative game features**; the [v36 release notes](../RELEASE_NOTES_v36_RU.md) and [v36a hotfix record](https://github.com/Valetos2/Cyber-Cop-Genesis-mod/blob/wip/v36/RELEASE_V36A_RU.md) provide additional technical detail.
+The [English project README](../README.md) describes **current cumulative game features**; the [v36 release notes](../RELEASE_NOTES_v36_RU.md) and [v36a hotfix record](../v36/RELEASE_V36A_RU.md) provide additional technical detail.
