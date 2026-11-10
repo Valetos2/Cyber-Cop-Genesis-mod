@@ -1,0 +1,5 @@
+exec(open('v36/test_blastem_front.py').read().split("cmd('frames 900')")[0])
+s=json.loads(Path('v36/symbols.json').read_text())
+cmd('breakpoint $'+format(s['memorial_wait36b'],'x'));cmd('continue');cmd('delete 0');cmd('binddown "ui.screenshot"');cmd('bindup "ui.screenshot"');print(cmd('frames 2'),flush=True)
+cmd('frames 1200');print(cmd('bt'),flush=True);cmd('binddown "ui.screenshot"');cmd('bindup "ui.screenshot"');print(cmd('frames 2'),flush=True)
+c.sendline('quit');c.expect(pexpect.EOF);log.close()
