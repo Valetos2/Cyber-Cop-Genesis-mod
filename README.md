@@ -2,7 +2,7 @@
 
 **English** · [Русский README](README_RU.md)
 
-**Current source milestone: [`main` v36a](v36/RELEASE_V36A_RU.md)** — the v36 Amiga Mission Disk campaign plus the completed v36a palette/indicator and elevator-panel hotfix, merged from `wip` in [PR #2](https://github.com/Valetos2/Cyber-Cop-Genesis-mod/pull/2). The latest standalone IPS actually stored in this repository is the [v35c patch](patches/Cyber-Cop_v35c.ips); the v36/v36a game ROMs and their private release packages are not hosted here.
+**Current source milestone: [`main` v36a](v36/RELEASE_V36A_RU.md)** — the v36 Amiga Mission Disk campaign plus the completed v36a palette/indicator and elevator-panel hotfix, merged from `wip` in [PR #2](https://github.com/Valetos2/Cyber-Cop-Genesis-mod/pull/2). The latest **standalone IPS from the original ROM** stored here is the [v35c patch](patches/Cyber-Cop_v35c.ips). A separate [v36 → v36a incremental IPS](patches/v36_to_v36a.ips) is also published; it requires the **exact v36 ROM** and is not suitable for the original ROM or v35c. Full game ROMs and private release packages are not hosted here.
 
 **Highlights:** second 16-floor campaign (32 maps total), native Sega Mouse with MouseLook, streamlined controller and inventory input, optimizations and lighting, SRAM checkpoints, new robot and objects, and a companion bilingual Atlas 40. This is an unofficial improvement project, not a remake.
 
@@ -305,7 +305,7 @@ Most importantly, I want the game to remain recognizably **Corporation**.
 
 - **Ready-to-use public patch:** [Cyber-Cop v35c IPS](patches/Cyber-Cop_v35c.ips), for the exact unmodified 1 MiB **Cyber-Cop (W) [c][!]** image (no copier header). See [v35c release notes](RELEASE_NOTES_v35c.md).
 - **Current game sources in `main`:** v36a, based on the two-campaign 4 MiB v36 game. See [v36 release notes](RELEASE_NOTES_v36_RU.md), [source tree](v36/) and [development state](DEVELOPMENT_STATE.md).
-- **v36a hotfix (merged):** [Russian hotfix notes](v36/RELEASE_V36A_RU.md). A ready-made public v36a IPS is **not** in `patches/`; having sources here does not imply every private input needed for a full rebuild is included.
+- **v36a hotfix (merged):** [Russian hotfix notes](v36/RELEASE_V36A_RU.md) · [incremental IPS from exact v36](patches/v36_to_v36a.ips) (1,690 bytes). Required base v36 SHA-256: `8f585c6218d8f193a01478f8bbe6d7c40406d1c53ecf9a4bbe01da96d5faf43b`; resulting v36a SHA-256: `0c60ac5b22650f704dcc90eeea59a32be39eb6d56f69a918dce7f7925237ec41`. A ready-made IPS applying v36a **directly to the original game** is not in `patches/`.
 
 Original Cyber-Cop SHA-256:
 
