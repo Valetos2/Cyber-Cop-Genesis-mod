@@ -135,20 +135,20 @@ For the first time in nearly thirty years, the Corporation I had always imagined
 
 ## Complete changes compared with the original Genesis game
 
-This is a **cumulative feature list through the v36a milestone**, checked against **66 archived README and technical-note files** from v0.1 onward. Bracketed tags identify the earliest documented build(s) and meaningful later refinements. **MouseLab was a separate test-ROM line**; `integrated v35` distinguishes experiments from released game features. `[v36a]` features are on **`wip` only**; the main-game source release in `main` remains v36. Atlas revision numbers refer to a separate tool. For a detailed chronology and superseded experiments, see [version history](docs/ROM_VERSION_HISTORY_EN.md).
+This is a **cumulative feature list through the v36a milestone**, checked against **66 archived README and technical-note files** from v01 onward. Bracketed tags identify the earliest documented build(s) and meaningful later refinements. **MouseLab was a separate test-ROM line**; `integrated v35` distinguishes experiments from released game features. `[v36a]` features are on **`wip` only**; the main-game source release in `main` remains v36. Atlas revision numbers refer to a separate tool. For a detailed chronology and superseded experiments, see [version history](docs/ROM_VERSION_HISTORY_EN.md).
 
 ### Controls, movement and Sega Mouse
 
-- Faster turning, with a precise original-sized first step when turning in place; holding the direction accelerates subsequent steps. [v0.1; fine first step v24]
-- The original v0.2 automobile-style reverse-turn inversion was reverted, keeping conventional backward-turn directions. [v0.3]
-- A+Left/Right adds basic side-stepping without rotating the view. [v0.3]
-- Strafing is blocked during ordinary jumps while horizontal momentum is preserved. [v0.4]
+- Faster turning, with a precise original-sized first step when turning in place; holding the direction accelerates subsequent steps. [v01; fine first step v24]
+- The original v02 automobile-style reverse-turn inversion was reverted, keeping conventional backward-turn directions. [v03]
+- A+Left/Right adds basic side-stepping without rotating the view. [v03]
+- Strafing is blocked during ordinary jumps while horizontal momentum is preserved. [v04]
 - Diagonal A+direction strafing uses one shared movement speed; a follow-up fix prevents unintended camera rotation. [v26; corrected v27]
 - Jump and crouch gestures are recognized on releasing A; a strafe gesture cannot accidentally trigger them. [v26]
-- Context-sensitive A picks up objects and interacts with the world, without breaking movement combinations. [v0.7]
-- A six-button pad is detected while three-button input remains supported; Mode toggles native sleep and waking. [v0.2]
-- Six-button controller detection and Mode-controlled native sleep were added before the XYZ shortcuts. [v0.2]
-- In-game menu navigation now moves only on fresh directional presses instead of unintentionally repeating held input. [v0.2]
+- Context-sensitive A picks up objects and interacts with the world, without breaking movement combinations. [v07]
+- A six-button pad is detected while three-button input remains supported; Mode toggles native sleep and waking. [v02]
+- Six-button controller detection and Mode-controlled native sleep were added before the XYZ shortcuts. [v02]
+- In-game menu navigation now moves only on fresh directional presses instead of unintentionally repeating held input. [v02]
 - Short B/C/Start and six-button action presses are remembered during VBlank and consumed once by the game loop; continuous movement is not queued. [v26]
 - A missing previously connected controller triggers native sleep at a safe point, where the controller reports a detectable disconnection. [v28]
 - Native Sega Mouse support in controller port 2, with captured MouseLook and a free pointer, switched by the middle mouse button. [MouseLab Test01–02; integrated v35]
@@ -188,12 +188,12 @@ This is a **cumulative feature list through the v36a milestone**, checked agains
 ### Rendering and performance
 
 - Five selectable screen-space wall dithering modes (Off, 2×2, 4×4, 4×8 and vertical bars) replace a single mandatory pattern. [v19]
-- The earliest experimental wall shading used vertical screen-space stripes rather than textured 3D walls. [v0.4]
-- The 4×4 Bayer variant was tested before 2×2 was chosen for the main release; the full five-option selector arrived later. [v0.7; 2×2 v12; selector v19]
-- A perspective-projected reference stripe was added to wall faces; subsequent fixes improved its distance shading and near-plane behavior. [v0.5; v0.6; v17/v21]
-- The horizontal stripe gained correct depth-relative tone and a lower position, rather than remaining uniformly bright. [v0.6]
+- The earliest experimental wall shading used vertical screen-space stripes rather than textured 3D walls. [v04]
+- The 4×4 Bayer variant was tested before 2×2 was chosen for the main release; the full five-option selector arrived later. [v07; 2×2 v12; selector v19]
+- A perspective-projected reference stripe was added to wall faces; subsequent fixes improved its distance shading and near-plane behavior. [v05; v06; v17/v21]
+- The horizontal stripe gained correct depth-relative tone and a lower position, rather than remaining uniformly bright. [v06]
 
-- Scene depth sorting was first accelerated without changing the final order of equal-depth items. [v0.8]
+- Scene depth sorting was first accelerated without changing the final order of equal-depth items. [v08]
 - Projection of ordinary wall centers uses a simpler depth calculation with fewer divisions and multiplications. [v10]
 - Continuous ordinary wall segments can hide fully occluded ordinary cells before projection and sorting. [v11]
 - Entirely offscreen projected wall surfaces and their reference stripes are skipped before rasterization. [v12]
@@ -212,7 +212,7 @@ This is a **cumulative feature list through the v36a milestone**, checked agains
 - Sleep acquired an in-game settings page, later expanded to a second page with five cheats. [v16; extended v31]
 - Auto Sleep enters native sleep near exhaustion; it is off by default and does not cure existing injuries. [v24]
 
-- A/B/C/Start can skip the scrolling background story; Start can skip earlier logo sequences. [v0.6; extended v15]
+- A/B/C/Start can skip the scrolling background story; Start can skip earlier logo sequences. [v06; extended v15]
 - The two regional title logos alternate without replacing the underlying game with a different regional version. [v14]
 - The mod's version number appears on the main menu; the fan credits appear after the original credits. [v23; mod credits v26–28]
 - Previously restored tiles from the author's 2003 Russian translation are preserved as an unused ROM Easter egg. [v26]
@@ -278,7 +278,7 @@ This is a **cumulative feature list through the v36a milestone**, checked agains
 
 ## Version-by-version history and MouseLab
 
-The [archival release history](docs/ROM_VERSION_HISTORY_EN.md) traces v0.1–v36a, including the nine experimental MouseLab builds and all five v36 test builds. It distinguishes first prototypes, later corrections and the consolidated main-game versions. The separate [Russian chronology](docs/ROM_VERSION_HISTORY_RU.md) is also available.
+The [archival release history](docs/ROM_VERSION_HISTORY_EN.md) traces v01–v36a, including the nine experimental MouseLab builds and all five v36 test builds. It distinguishes first prototypes, later corrections and the consolidated main-game versions. The separate [Russian chronology](docs/ROM_VERSION_HISTORY_RU.md) is also available.
 
 ## Future plans
 
