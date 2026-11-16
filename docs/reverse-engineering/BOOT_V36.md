@@ -63,3 +63,11 @@ G keeps the actual v36b upper half byte-for-byte, including padding, and uses th
 User photograph: `w 76ff 7600 76ff 76ff`, `b e1ff e100 e1ff e1ff`. Neither access width returns the expected words. The invariant high bytes match nearby instruction encodings in G ($76 from MOVEQ, $E1 from LSL), consistent with a bus that is not fully driven by ROM; this is a hypothesis, not an established wiring fault.
 
 H retains G's exact probe code and upper asset block. It uses the working D's header (recomputing checksum) and copies D's nonblank filler into both the gap before the asset block and the trailing region. BlastEm reached the title; 68000 checks verified both expected output lines. If hardware reads are now correct, separate the header from filler before proposing a release fix that preserves SRAM. SHA256 H: 612ecaddce22a9e0028c8309dc5a11de3c3de66b3ba2709b496b1a6986804767.
+
+## H reads real upper assets correctly on hardware
+
+Photo: `w 7374 f3ed 002e 0000`, `b 7374 f3ed 002e 0000`. Real v36b data is accessible on this clone with the H layout. Split diagnostics derived from the same H, with unchanged probe code and asset block:
+
+- I restores only the 12-byte SRAM header declaration, preserving D filler, title, and checksum. SHA256 692b20edc62d7f6c9184f50181d9b97b4fff8de315eb259b14de9f46bb020032.
+- J restores only the erased upper padding before and after the assets. H's title and blank SRAM header remain; checksum recomputed. SHA256 356b0f873096d02310c163dee080b2f41242f1fb6fbac17ab9c4f23eacaf2eeb.
+- Both reach the stock startup continuation with correct w/b values in CPU emulation. Hardware verification pending. If both pass, the remaining combined effects (or header identity) still need testing. These probes are not actual v36b gameplay builds and do not validate SRAM persistence.
