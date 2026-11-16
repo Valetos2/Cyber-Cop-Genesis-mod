@@ -5,7 +5,7 @@ for button in [0,1]:
  assert rd(u,0xffff7e30,4)==0xc100ae and bytes(u.mem_read(0xffff0858,8))==before
 # Idle native up/down paths still initiate the requested journey.
 for button in [0,1]:
- u=machine();w(u,0xffff2186,0);w(u,0xffff260a,12);w(u,0xffff2182,16);u.reg_write(UC_M68K_REG_D0,button);run(u,0x8c36);assert rd(u,0xffff2186)==1
+ u=machine();w(u,0xffff2186,0);w(u,0xffff260a,12);w(u,0xffff2606,10);w(u,0xffff2182,16);u.reg_write(UC_M68K_REG_D0,button);run(u,0x8c36);assert rd(u,0xffff2186)==1
  assert rd(u,0xffff7e30+button*2)==0xc1+button
 print('PASS busy action guard and idle native calls')
 old=json.loads(Path('v35c/symbols.json').read_text())
@@ -23,8 +23,8 @@ print('PASS temporary second-button texture: hold, release, pointer exit, owners
 u=machine();u.mem_write(0xffbe,bytes.fromhex('4e75'));u.mem_write(V['sram17_load'],bytes.fromhex('70004e75'));texts=[]
 def text_hook(uc,a,s,d):
  if a==0xffbe:texts.append(bytes(uc.mem_read(uc.reg_read(UC_M68K_REG_A5),(uc.reg_read(UC_M68K_REG_D7)&65535)+1)))
-u.hook_add(UC_HOOK_CODE,text_hook);run(u,S['main36_text']);assert b'v36a' in texts
-print('PASS main menu draws v36a')
+u.hook_add(UC_HOOK_CODE,text_hook);run(u,S['main36_text']);assert b'v36b' in texts
+print('PASS main menu draws v36b')
 assert R[0xb8b0:0xb8b2]==bytes.fromhex('0040')
 assert R[0x196000+0xb1*128:0x196000+0xb2*128]==OLD[0x196000+0xb1*128:0x196000+0xb2*128]
 print('PASS native barrel world centre64; armed red bomb lens unchanged')
