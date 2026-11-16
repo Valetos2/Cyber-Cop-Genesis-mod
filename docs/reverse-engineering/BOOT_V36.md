@@ -45,3 +45,9 @@ CPU execution verified correct data and a wholly erased upper half: both return 
 On the real EverDrive-MD clone, D boots and displays exactly `rom 915e a55a 6d92 f00d be71`. The upper address space is demonstrably readable with that image. D differs from B/C in more than padding (notably reports word reads rather than comparing longwords), so the cause of B/C and v36 failures is still open.
 
 E starts from confirmed test01 and changes only the erased tail at and above `$2AA392`. Entire header, checksum, code, resources, early upper gap, and physical file size unchanged. This isolates trailing padding. BlastEm reached the normal menu. Hardware result pending. SHA256 E: fee026d9cce2fabe0360f09c9b0220be8be24d48ba59bee7929ec9ef48637f74.
+
+## E fails on hardware; isolate the early Z80 copy with F
+
+User reports E does not work. Changing the trailing padding alone is insufficient. Before any splash, the startup path through $366 calls $15062, with the driver upload at $1567A–$1568C. The 68000 copies 5120 bytes to Z80 RAM byte-by-byte. v35c reads the driver from $0157A8; v36b reads it from $2408AC, above 2 MiB. D only sampled 16-bit words and did not exercise the audio startup transfer.
+
+F is a private test01-based ROM with the identical modified Z80 image copied to the unused $1F8000 region and only its startup source pointer changed. The original upper copy is kept, preserving existing pointers. Header checksum recalculated; all other bytes identical to test01. 68000 emulation verified the entire native copy into Z80 RAM; BlastEm booted to the title menu. Hardware result pending. SHA256 F: 89873b4b91ff3a66cb8d8ae1cf9d90cf4da93f5b95437fde9f1a13788963dfa7.
