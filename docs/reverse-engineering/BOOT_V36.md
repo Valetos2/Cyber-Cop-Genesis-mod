@@ -71,3 +71,9 @@ Photo: `w 7374 f3ed 002e 0000`, `b 7374 f3ed 002e 0000`. Real v36b data is acces
 - I restores only the 12-byte SRAM header declaration, preserving D filler, title, and checksum. SHA256 692b20edc62d7f6c9184f50181d9b97b4fff8de315eb259b14de9f46bb020032.
 - J restores only the erased upper padding before and after the assets. H's title and blank SRAM header remain; checksum recomputed. SHA256 356b0f873096d02310c163dee080b2f41242f1fb6fbac17ab9c4f23eacaf2eeb.
 - Both reach the stock startup continuation with correct w/b values in CPU emulation. Hardware verification pending. If both pass, the remaining combined effects (or header identity) still need testing. These probes are not actual v36b gameplay builds and do not validate SRAM persistence.
+
+## I passes on hardware; J reproduces the bad reads
+
+I gives the expected codes even with the SRAM declaration. J returns the same incorrect codes previously seen with G when the free regions before and after the asset block are erased. This confirms the effect of the free-region layout plus its derived checksum in the H/I/J diagnostics. It does not isolate the initial gap from the tail or prove how the loader detects the layout. The successful I retained the v35c title fields, so the playable K retains them as well.
+
+K combines F's full game code and low Z80 startup image with I's complete upper half and loader-facing header (checksum recalculated). The SRAM declaration and runtime SRAM code remain intact. BlastEm cold boot reached v36b title code; CPU tests passed all 32 maps, both campaign passwords and SRAM namespaces/full restores, and the menu plus busy lift-call guard. Console artwork, gameplay and persistence remain to be confirmed. SHA256 K: 0f86f8421e65feecf44c8569f69ac8095446d3d01b73011ba1cc78a330ff2053.
