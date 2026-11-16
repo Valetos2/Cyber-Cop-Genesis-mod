@@ -14,3 +14,9 @@
 Следующий контроль — исходный v35c (2 MiB) против v35c с заполнением верхних 2 MiB байтами FF (изменено только поле ROM end в заголовке нижней половины, остальное совпадает, включая checksum). Успех обоих показывает, что картридж принимает образ 4 MiB, но не проверяет чтение данных из верхней половины. Неуспех только варианта 4 MiB сужает поиск до смены размера/заголовка и режима загрузки. Если не стартует даже оригинальный v35c, сравнение этого прогона не локализует регрессию v36.
 
 Скрипт: v36/build_boot_size_control.py. SHA256 контроля: 7acea947eb1cfb0a7e610b251a3e22a319b2dc230a0af60b793cbf714981c0af.
+
+## 4 MiB control starts on real hardware
+
+User confirmed that the padded v35c boots on the console. File size alone does not account for the failure. The next probe uses this exact control as its base and checks distinct markers at `$220000`, `$260000`, and `$2AA000` immediately before stock SEGA setup. Match: boot normally. Mismatch: stop without drawing SEGA. The probe does not enable SRAM or test access while SRAM is enabled. A pass tests selected reads at boot, not every address or transfer mode.
+
+The 68000 execution check reached `$39C` with all markers present; separately replacing each marker with erased bytes took the intended failure branch. Hardware result pending. Script: v36/build_boot_upper_probe.py. SHA256: 1ac42854193d0a9407d2311b3e15901649c899e7116c9123b7324ce24cc8e346.
