@@ -57,3 +57,9 @@ F is a private test01-based ROM with the identical modified Z80 image copied to 
 User reports yellow screen and, on Start, main menu with red squares instead of text. Moving just the startup Z80 image below 2 MiB allowed execution to reach the menu. Text strings for v36b main menu are in upper ROM near $228168, while the memorial graphics and palette are near $25601E and $257EBE. Corruption is consistent with bad reads but can involve mode/timing/transfer width; not established that every upper read fails.
 
 G keeps the actual v36b upper half byte-for-byte, including padding, and uses the v36b header with only the checksum recomputed. Lower half contains the known v35c boot/menu plus a diagnostics hook. At the same point as D, with explicit SRAM gate zero, G takes a word read and two separate byte reads at each of $228168, $2408AC, $257EC0, $25625E. Expect both lines to show 7374 f3ed 002e 0000, labelled w/b. Both capture and display verified in emulation. Hardware result pending; G is not a playable v36 build. SHA256: 28d60b5a5a7e5f732de3115435cea2a58552f3731a225b1fe93d83f151ca79c0.
+
+## G boots on hardware but reports bad upper data
+
+User photograph: `w 76ff 7600 76ff 76ff`, `b e1ff e100 e1ff e1ff`. Neither access width returns the expected words. The invariant high bytes match nearby instruction encodings in G ($76 from MOVEQ, $E1 from LSL), consistent with a bus that is not fully driven by ROM; this is a hypothesis, not an established wiring fault.
+
+H retains G's exact probe code and upper asset block. It uses the working D's header (recomputing checksum) and copies D's nonblank filler into both the gap before the asset block and the trailing region. BlastEm reached the title; 68000 checks verified both expected output lines. If hardware reads are now correct, separate the header from filler before proposing a release fix that preserves SRAM. SHA256 H: 612ecaddce22a9e0028c8309dc5a11de3c3de66b3ba2709b496b1a6986804767.
