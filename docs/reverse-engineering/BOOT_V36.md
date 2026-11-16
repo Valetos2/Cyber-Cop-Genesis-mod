@@ -39,3 +39,9 @@ This confirms the lower comparison/control path is executable. Neither upper pro
 Firmware version unknown; user reports other 4 MiB ROMs launch on the same cart. Removing the SRAM declaration did not make the previous read-and-stop test pass. D reports read values in the v35c title menu instead of intentionally stopping. Keeps C's header and gate state, and fills the upper bank with non-erased diagnostic data so this test also exercises a fully occupied upper half. ROM addresses in displayed order: `$200000 $220000 $260000 $2AA000 $3FFFFE`. Expected `rom 915e a55a 6d92 f00d be71`; the original first-half words at the corresponding modulo-2-MiB addresses can be compared if hardware reports other values. A success here would establish that these sampled words are readable with this image, not that the previous failure was definitely related to padding.
 
 CPU execution verified correct data and a wholly erased upper half: both return to the stock boot, with expected distinct RAM strings. Hardware result pending. SHA256 D: f97ee3f4b8db8aa5ef4c408fc54f31c14a51148f447914acf7eadf890a237c03.
+
+## D passes on hardware; tail-only test E
+
+On the real EverDrive-MD clone, D boots and displays exactly `rom 915e a55a 6d92 f00d be71`. The upper address space is demonstrably readable with that image. D differs from B/C in more than padding (notably reports word reads rather than comparing longwords), so the cause of B/C and v36 failures is still open.
+
+E starts from confirmed test01 and changes only the erased tail at and above `$2AA392`. Entire header, checksum, code, resources, early upper gap, and physical file size unchanged. This isolates trailing padding. BlastEm reached the normal menu. Hardware result pending. SHA256 E: fee026d9cce2fabe0360f09c9b0220be8be24d48ba59bee7929ec9ef48637f74.
