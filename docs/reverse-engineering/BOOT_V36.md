@@ -20,3 +20,12 @@
 User confirmed that the padded v35c boots on the console. File size alone does not account for the failure. The next probe uses this exact control as its base and checks distinct markers at `$220000`, `$260000`, and `$2AA000` immediately before stock SEGA setup. Match: boot normally. Mismatch: stop without drawing SEGA. The probe does not enable SRAM or test access while SRAM is enabled. A pass tests selected reads at boot, not every address or transfer mode.
 
 The 68000 execution check reached `$39C` with all markers present; separately replacing each marker with erased bytes took the intended failure branch. Hardware result pending. Script: v36/build_boot_upper_probe.py. SHA256: 1ac42854193d0a9407d2311b3e15901649c899e7116c9123b7324ce24cc8e346.
+
+## Upper-read probe does not show SEGA on hardware
+
+User reports the upper-only probe does not start. The padded v35c control worked; the failed probe alone cannot distinguish a data mismatch from trouble executing the new hook.
+
+- A (`lower`): same hook, comparisons and upper markers as earlier; compares copies of the markers at `$1F0100..$1F010B` instead. If A also fails, the upper-read result is not interpretable on its own.
+- B (`sram_off`): same upper comparisons as earlier, but writes zero to `$A130F1` just before checking. If B succeeds, explicitly changing that register helps on this configuration; keep it a hypothesis for v36 until verified with v36 itself.
+- A succeeds/B fails: the hook is executable, but the checked upper reads are not resolved by disabling the SRAM gate. Identify exact cartridge/configuration before choosing the next probe.
+- Both variants passed 68000 emulation checks of the continuation, individual corrupted markers, and expected state of the SRAM register at exit. Hardware results pending.
