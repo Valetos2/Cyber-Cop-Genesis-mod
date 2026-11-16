@@ -29,3 +29,7 @@ User reports the upper-only probe does not start. The padded v35c control worked
 - B (`sram_off`): same upper comparisons as earlier, but writes zero to `$A130F1` just before checking. If B succeeds, explicitly changing that register helps on this configuration; keep it a hypothesis for v36 until verified with v36 itself.
 - A succeeds/B fails: the hook is executable, but the checked upper reads are not resolved by disabling the SRAM gate. Identify exact cartridge/configuration before choosing the next probe.
 - Both variants passed 68000 emulation checks of the continuation, individual corrupted markers, and expected state of the SRAM register at exit. Hardware results pending.
+
+## Hardware: A passes; B fails
+
+This confirms the lower comparison/control path is executable. Neither upper probe with the SRAM header succeeded; writing zero to $A130F1 was insufficient. This is not evidence that all upper addresses fail. Variant C is byte-identical to B apart from the SRAM declaration at $1B0..$1BB, allowing a test of how the cartridge or loader chooses its mode. Verified distinct header and success/failure CPU paths; pending hardware result and cartridge/loader identification. Stop at SEGA or menu, no need to try saving. SHA256 C: 63ab43ccb0ee2a42def91042f9e6e43d5c9bb2ec80d79cf0940c40cf60e10541.
