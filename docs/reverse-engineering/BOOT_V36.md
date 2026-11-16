@@ -1,4 +1,12 @@
-# v36: холодный запуск на Mega Drive (OPEN)
+# v36: холодный запуск на Mega Drive
+
+## K confirmed on the user's Mega Drive
+
+User confirmed an actual boot on the affected console/cart, successful load of the existing save, and start of a new game in each campaign. New save write and persistence after resetting/power cycling were not separately reported. K is the playable compatibility baseline, independent of the remaining sleep-menu work.
+
+Carry forward the known-good combination: Z80 boot source at $1F8000, v35c loader-facing title fields, SRAM header preserved, and deterministic non-FF padding before and after the upper asset block. The header checksum must match the output ROM. Reproduce K byte-for-byte from the normal build before applying gameplay changes. This test does not determine whether the cartridge skips erased areas, has a loader heuristic, or fails for another internal reason. In particular, the title-field dependency and the roles of the initial gap and recalculated checksum were not isolated.
+
+## Первоначальная диагностика
 
 - v35c имеет размер 2 MiB, v36b test01 — 4 MiB; заголовок указывает пределы 0x1FFFFF и 0x3FFFFF соответственно. SRAM header и строка регионов совпадают. Проблема на физической приставке заявлена начиная с v36; точная точка остановки неизвестна.
 - В v36 перехват по 0x394 вызывает мемориальную заставку до штатной загрузки SEGA. Заставка читает данные выше 2 MiB, использует общую процедуру передачи графики через RAM/VBlank и дополнительно очищает CRAM прямой записью. Это отличия стартового пути, не доказательство причины.
