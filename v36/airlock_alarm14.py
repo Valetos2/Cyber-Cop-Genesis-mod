@@ -26,3 +26,37 @@ c.abs('4a79',0xffff29ba);c.branch('6600','airlock_alarm_block14')
 c.jump(S['airlock_lab'])
 c.label('airlock_alarm_block14');c.emit('4e75')
 patch(p,'airlock_alarm_open14')
+
+# Only the successful mouse action owns the activation frame. Generic hover
+# feedback must not rotate it before authorization, or for joystick activation.
+AIR_MOUSE_OPEN=0xffff086b
+p=0x771c
+assert r[p:p+6]==src[p:p+6] and src[p:p+2]==bytes.fromhex('4ef9')
+c.label('airlock_enter15')
+c.abs('4239',AIR_MOUSE_OPEN);c.emit(src[p:p+6].hex())
+patch(p,'airlock_enter15')
+p=S['press_external']
+assert r[p:p+10]==bytes.fromhex('044000092a79ffff226e')
+c.label('airlock_pressed15')
+c.emit('0c40006d');c.branch('6600','airlock_dispatch15')
+c.emit('0cb9000077a8ffff26b8');c.branch('6600','airlock_dispatch15')
+c.abs('4a79',0xffff29ba);c.branch('6600','airlock_dispatch15')
+c.abs('4a39',0xffff26ec);c.branch('6700','airlock_dispatch15')
+bi(AIR_MOUSE_OPEN,1)
+c.label('airlock_dispatch15');c.emit(src[p:p+10].hex());c.jump(p+10)
+patch(p,'airlock_pressed15',10)
+
+p=S['panel_border']
+c.label('airlock_border15')
+c.emit('0cb9000077a8ffff26b8');c.branch('6600','airlock_border_native15')
+c.abs('4a79',P);c.branch('6700','airlock_border_native15')
+c.abs('4a39',AIR_MOUSE_OPEN);c.branch('6700','airlock_border_wait15')
+c.abs('2079',0xffff227e);c.emit('0c6800c00074')
+c.branch('6600','airlock_border_wait15')
+# Same bounds as the generic projected button ($6052), in framebuffer pixels.
+c.emit('303c00a1343c0041363c00af383c004f3a003c02');c.jump(S['border_top'])
+c.label('airlock_border_wait15')
+c.emit('0cb900006052ffff01b4');c.branch('6700','airlock_border_done15')
+c.label('airlock_border_native15');c.emit(src[p:p+6].hex());c.jump(p+6)
+c.label('airlock_border_done15');c.emit('4e75')
+patch(p,'airlock_border15')

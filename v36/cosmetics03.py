@@ -18,14 +18,6 @@ r[0xfc72:0xfc74]=struct.pack('>h',0xfd2a-0xfc72)
 assert src[0x7d46:0x7d4a]==bytes.fromhex('33fc0064')
 r[0x7d48:0x7d4a]=struct.pack('>H',500)
 
-# Native airlock activation latches its texture until closing the interface.
-# Border upload is reversible: run the same swap before and after VRAM upload.
-c.label('airlock_border36c');c.abs('4a79',P);c.branch('6700','airlock_border36c_normal')
-c.emit('0cb9000077a8');c.long(0xffff26b8);c.branch('6600','airlock_border36c_normal')
-c.emit('0c7900c0');c.long(0xffff22f2);c.branch('6600','airlock_border36c_normal')
-c.emit('303c00a1343c0041363c00af383c004f3a003c02');c.jump(S['border_top'])
-c.label('airlock_border36c_normal');c.emit(src[S['panel_border']:S['panel_border']+6].hex());c.jump(S['panel_border']+6);patch(S['panel_border'],'airlock_border36c')
-
 # Name rendering trims native spaces before centering. Add padding AFTER trim,
 # only for the exact card label, keeping the packed native string table intact.
 card=asset('card_padded36c',b'card ')
