@@ -111,6 +111,7 @@ exec((OUT/'start_sleep12.py').read_text())
 exec((OUT/'hotkey_focus12.py').read_text())
 exec((OUT/'mouse_reconnect13.py').read_text())
 exec((OUT/'mouse_sleep13.py').read_text())
+exec((OUT/'sleep_view14.py').read_text())
 # Match both barrels: lower their world-space sprite centre by20units.
 assert src[0xb8b0:0xb8b2]==bytes.fromhex('0054')
 r[0xb8b0:0xb8b2]=bytes.fromhex('0040')
