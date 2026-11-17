@@ -43,7 +43,7 @@ for enabled in [0, 1]:
     assert rd(u, P) == rd(u, P+38) == 0
     good(u, 0)
     run(u, old['detect04'])
-    assert rd(u, P) == rd(u, P+38) == 1
+    assert rd(u, P) == enabled and rd(u, P+38) == 1
 
 u = machine()
 for _ in range(31):
