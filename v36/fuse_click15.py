@@ -16,11 +16,3 @@ c.label('fuse_close15');c.jump(0x7a78)
 c.label('fuse_keep15');c.emit('4e75')
 patch(p,'fuse_exit15')
 
-# The shared dispatcher subtracts 9 from a UI node ID. Only 14 indices
-# belong to this callback; don't let a mismatched selection write past either table.
-p=0x7a92
-assert r[p:p+6]==bytes.fromhex('4ef9')+struct.pack('>I',S['fuse_lab'])
-c.label('fuse_switch15')
-c.emit('0c40000d');c.branch('6200','fuse_keep15')
-c.jump(S['fuse_lab'])
-patch(p,'fuse_switch15')

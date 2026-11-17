@@ -114,6 +114,7 @@ exec((OUT/'mouse_sleep13.py').read_text())
 exec((OUT/'sleep_view14.py').read_text())
 exec((OUT/'airlock_alarm14.py').read_text())
 exec((OUT/'fuse_click15.py').read_text())
+exec((OUT/'fuse_state16.py').read_text())
 exec((OUT/'terminal_charge15.py').read_text())
 exec((OUT/'hud_capture15.py').read_text())
 # Match both barrels: lower their world-space sprite centre by20units.
