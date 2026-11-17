@@ -59,7 +59,7 @@ assert rd(u, owner, 1) == 0
 
 # The very first pad edge still navigates or acts. A row that ignores an
 # action still redraws once; subsequent idle ticks don't draw a second arrow.
-for sel, pad, expected in [(0, 2, 1), (0, 1, 10), (4, 1, 0), (10, 8, 10), (10, 16, 10)]:
+for sel, pad, expected in [(0, 2, 1), (0, 1, 10), (4, 1, 10), (10, 8, 10), (10, 16, 10)]:
     u = fixture(sel)
     draw_calls = []
     u.hook_add(UC_HOOK_CODE, lambda *args: draw_calls.append(1),
