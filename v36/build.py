@@ -105,6 +105,7 @@ exec((OUT/'save04.py').read_text())
 exec((OUT/'aim04.py').read_text())
 exec((OUT/'indicators05.py').read_text())
 exec((OUT/'items06.py').read_text())
+exec((OUT/'sleep_cursor09.py').read_text())
 # Match both barrels: lower their world-space sprite centre by20units.
 assert src[0xb8b0:0xb8b2]==bytes.fromhex('0054')
 r[0xb8b0:0xb8b2]=bytes.fromhex('0040')
