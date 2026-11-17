@@ -41,6 +41,29 @@ start(u)
 assert rd(u, VIEW, 4) == 0x2106 and rd(u, INV, 1) == 255
 print('PASS Start sleep and wake, held Start ignored, Mouse Off retains inventory')
 
+# The fourth mouse button is an edge, not a held Start. It behaves like
+# Mode in the world and does not take over the other panel controls.
+u = setup(1, 0)
+w(u, 0xffff0192, 255, 1)
+w(u, P+58, 8)
+run(u, V['mode_action'])
+assert rd(u, VIEW, 4) == 0x7070
+w(u, P+58, 0)
+run(u, V['mode_action'])
+assert rd(u, VIEW, 4) == 0x7070
+w(u, P+58, 8)
+run(u, V['mode_action'], 0x2190)
+assert rd(u, VIEW, 4) == 0x2106
+for mouse, presence, view in [(0, 255, 0x2106), (1, 0, 0x2106), (1, 255, 0x8576)]:
+    u = setup(mouse, 0)
+    w(u, VIEW, view, 4)
+    w(u, 0xffff0192, presence, 1)
+    w(u, P+58, 8)
+    w(u, 0xffff0010, 0)
+    run(u, V['mode_action'])
+    assert rd(u, VIEW, 4) == view
+print('PASS fourth mouse button enters and exits normal sleep')
+
 for item, refill, supply, panel, applied in [
     (0x12, 0x13, 0xffff272e, 0x8576, 0xffff26f1), # Drink / Refill
     (0x14, 0x15, 0xffff272c, 0x8476, 0xffff26f0), # Medi Kit / Chemicals

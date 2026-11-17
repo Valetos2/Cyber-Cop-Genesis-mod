@@ -18,6 +18,7 @@ bi(START_SLEEP,1);bi(0xffff0118,1);bi(0xffff0119,0)
 c.abs('4239',0xffff011c) # bypass Mode's ABC chord gate
 wi(P+4,1)
 c.emit('08b90007ffff0007') # don't deliver the entry edge again next tick
+c.emit('08b90003ffff023b') # simultaneous fourth mouse button must not wake immediately
 c.label('start_sleep_done12');c.emit('4e75')
 c.label('start_sleep_native12');c.emit(src[p:p+8].hex());c.jump(p+8)
 patch(p,'start_sleep12',8)
