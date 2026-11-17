@@ -5,7 +5,10 @@ c.label('lift_clock36b_wait');c.jump(0x8e1a);patch(0x8df4,'lift_clock36b')
 c.label('lift_select36b');c.abs('33f9',0xffff2798);c.long(0xffff0832);c.emit(src[0x8e74:0x8e7a].hex());c.jump(0x8e7a);patch(0x8e74,'lift_select36b')
 # Genesis retains the light-circle builder but never calls its rasterizer.
 # Draw lights after clearing the framebuffer and before walls/actors occlude them.
-c.label('lights_draw36b');c.emit('48e7fffe');c.call(0x45b8);c.emit('4cdf7fff');c.emit(src[0x4584:0x458a].hex());c.jump(0x458a);patch(0x4584,'lights_draw36b')
+c.label('lights_draw36b');c.emit('48e7fffe')
+# Use the same floor-to-breaker mapping as the native world palette.
+c.call(0x7b2a);c.branch('6600','lights_power_off14');c.call(0x45b8)
+c.label('lights_power_off14');c.emit('4cdf7fff');c.emit(src[0x4584:0x458a].hex());c.jump(0x458a);patch(0x4584,'lights_draw36b')
 # A terminal may leave a nametable word from its graphics in the HUD button row.
 # Rebuild both rows from the tracked native HUD state after the normal close.
 # This does not reload tiles or overwrite the inventory/energy indicators.
