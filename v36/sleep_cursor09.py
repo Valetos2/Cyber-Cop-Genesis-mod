@@ -1,6 +1,7 @@
 # Cursor ownership is transient and separate from the actual Mouse On setting.
 SLEEP_PAD=0xffff0862       # byte: zero = mouse, one = pad
 SLEEP_REDRAW=0xffff0863    # byte: pad took ownership; erase/redraw if needed
+START_SLEEP=0xffff0864     # byte: require a new Start press for this sleep
 SLEEP_ACTIVE=0xffff0118
 SLEEP_MODE=0xffff26b8
 
@@ -99,5 +100,6 @@ patch(p,'sleep_cursor_toggle_on36')
 assert r[0x709a:0x70a2]==bytes.fromhex('4ef9')+struct.pack('>I',V['sleep16_wake'])+bytes.fromhex('4e71')
 c.label('sleep_cursor_wake36')
 sleep_owner_clear();c.abs('4279',P+70);c.abs('4279',P+4)
+c.abs('4239',START_SLEEP)
 c.jump(V['sleep16_wake'])
 patch(0x709a,'sleep_cursor_wake36',8)
