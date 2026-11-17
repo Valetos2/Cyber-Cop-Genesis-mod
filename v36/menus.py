@@ -1,5 +1,9 @@
 # Executed inside build.py so every symbol and asset has one owner.
 STATE=0xffff0100;P=0xffff0200;N=0xffff01a0
+# Both the normal and skipped intro route through this title setup call.
+# Reuse the menu's existing queued/current-theme check instead of restarting.
+assert r[0xf042a:0xf0432]==bytes.fromhex('70014eb9000150b4')
+r[0xf042e:0xf0432]=struct.pack('>I',V['music20_ensure'])
 def bi(a,v):c.emit('13fc'+f'{v:04x}');c.long(a)
 def draw(text,where):
  a=asset('text36_'+str(len(assets)),text.encode('ascii'))
