@@ -59,7 +59,7 @@ assert rd(u, owner, 1) == 0
 
 # The very first pad edge still navigates or acts. A row that ignores an
 # action still redraws once; subsequent idle ticks don't draw a second arrow.
-for sel, pad, expected in [(0, 2, 1), (4, 1, 10), (10, 8, 10), (10, 16, 10)]:
+for sel, pad, expected in [(0, 2, 1), (0, 1, 10), (4, 1, 0), (10, 8, 10), (10, 16, 10)]:
     u = fixture(sel)
     draw_calls = []
     u.hook_add(UC_HOOK_CODE, lambda *args: draw_calls.append(1),
@@ -72,6 +72,30 @@ for sel, pad, expected in [(0, 2, 1), (4, 1, 10), (10, 8, 10), (10, 16, 10)]:
     activity(u)
     draw_ticks(u)
     assert len(draw_calls) == 1
+
+# Down from Mouse On actually draws the stationary arrow beside the slider
+# and clears the old arrow. Inspect the live framebuffer, not just selection.
+def arrow_pixels(u):
+    base = 0xffff8934
+    return bytes().join(bytes(u.mem_read(base+512*col,512)) for col in range(20,23))
+
+u = fixture(9)
+run(u, V['sleep16_draw'])
+background = arrow_pixels(u)
+w(u, selection, 11, 1)
+activity(u, pad=2)
+draw_ticks(u)
+assert rd(u, selection, 1) == 9
+before = arrow_pixels(u)
+activity(u)
+draw_ticks(u)
+activity(u, pad=2)
+draw_ticks(u)
+after = arrow_pixels(u)
+assert rd(u, selection, 1) == 10
+pixels = lambda frame: {(i//512, i%512) for i, (a,b) in enumerate(zip(frame,background)) if a != b}
+assert pixels(before)
+assert pixels(after) == {(col,y+64) for col,y in pixels(before)}
 
 # Returning the mouse sprite erases the native arrow on the real framebuffer.
 u = fixture(9)
