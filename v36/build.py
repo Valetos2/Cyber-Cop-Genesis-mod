@@ -7,7 +7,7 @@ from pending_fixes import darken_scanman_inset
 src=(ROOT/'v35c/Cyber-Cop_v35c.bin').read_bytes();r=bytearray(src)+bytearray([255])*0x200000
 S=json.loads((ROOT/'v35c/symbols.json').read_text());V=json.loads((ROOT/'v34/symbols.json').read_text())
 darken_scanman_inset(r,S)
-CAMP=0xffff0800;BASE=0x1f0000;DATA=0x220000
+CAMP=0xffff0800;BASE=0x1f0000;DATA=0x220000;Z80_BOOT=0x1f8000
 assert set(src[BASE:BASE+0x10000])=={255}
 class Code:
  def __init__(self):self.b=bytearray();self.labels={};self.fix=[]
@@ -110,10 +110,21 @@ assert src[0xb8b0:0xb8b2]==bytes.fromhex('0054')
 r[0xb8b0:0xb8b2]=bytes.fromhex('0040')
 
 for p,name,n in c.fix:c.b[p:p+n]=(c.labels[name] if n==4 else c.labels[name]-(BASE+p)).to_bytes(n,'big',signed=n==2)
-assert len(c.b)<0x10000
+assert BASE+len(c.b)<=Z80_BOOT
 r[BASE:BASE+len(c.b)]=c.b
-r[0x120:0x150]=b'Cyber-Cop v36b'.ljust(48,b' ')
-r[0x150:0x180]=b'Cyber-Cop v36b'.ljust(48,b' ')
+# Match hardware test K: leave v35c's title fields and SRAM declaration intact.
+# Fill only the free areas in the upper bank, leaving every asset in place.
+assert r[0x120:0x180]==src[0x120:0x180] and r[0x1b0:0x1bc]==src[0x1b0:0x1bc]
+assert pos%2==0
+for bank in range(32):
+ start=0x200000+(bank<<16);end=start+0x10000
+ lo,hi=max(start,0x200000),min(end,DATA)
+ if lo<hi:r[lo:hi]=struct.pack('>H',0x5100+bank)*((hi-lo)//2)
+ lo=max(start,pos)
+ if lo<end:r[lo:end]=struct.pack('>H',0x5100+bank)*((end-lo)//2)
+for addr,word in [(0x200000,0x915e),(0x3ffffe,0xbe71)]:
+ assert not DATA<=addr<pos
+ r[addr:addr+2]=struct.pack('>H',word)
 assert src[0xf9f85:0xf9f88]==b'v35';r[0xf9f85:0xf9f88]=b'v36'
 r[0x1a4:0x1a8]=(len(r)-1).to_bytes(4,'big')
 r[0x18e:0x190]=(sum(int.from_bytes(r[i:i+2],'big') for i in range(0x200,len(r),2))&65535).to_bytes(2,'big')

@@ -4,7 +4,7 @@
 
 User confirmed an actual boot on the affected console/cart, successful load of the existing save, and start of a new game in each campaign. New save write and persistence after resetting/power cycling were not separately reported. K is the playable compatibility baseline, independent of the remaining sleep-menu work.
 
-Carry forward the known-good combination: Z80 boot source at $1F8000, v35c loader-facing title fields, SRAM header preserved, and deterministic non-FF padding before and after the upper asset block. The header checksum must match the output ROM. Reproduce K byte-for-byte from the normal build before applying gameplay changes. This test does not determine whether the cartridge skips erased areas, has a loader heuristic, or fails for another internal reason. In particular, the title-field dependency and the roles of the initial gap and recalculated checksum were not isolated.
+Carry forward the known-good combination: Z80 boot source at $1F8000, v35c loader-facing title fields, SRAM header preserved, and deterministic non-FF padding before and after the upper asset block. The header checksum must match the output ROM. The normal build now reproduces the exact K SHA-256 before applying any sleep-menu changes (17 November 2026). This test does not determine whether the cartridge skips erased areas, has a loader heuristic, or fails for another internal reason. In particular, the title-field dependency and the roles of the initial gap and recalculated checksum were not isolated.
 
 ## Первоначальная диагностика
 
