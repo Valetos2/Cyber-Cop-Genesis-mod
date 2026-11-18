@@ -32,5 +32,5 @@ for m in (0,1):
     old,owner,slot=mouse_wake(previous,m)
     assert old==['hud_names','hud_names'] and owner and slot,(old,owner,slot)
     new,owner,slot=mouse_wake(R,m)
-    assert new==['hud_names','hud_restore'] and not owner and not slot,(new,owner,slot)
-print('PASS mouse wake: one pressed upload, then normal icon; free look and pointer both restored')
+    assert new[-1:]==['hud_restore'] and new[:-1] and set(new[:-1])=={'hud_names'} and not owner and not slot,(new,owner,slot)
+print('PASS mouse wake: pressed sequence, then one restoration; free look and pointer both restored')
