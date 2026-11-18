@@ -118,6 +118,7 @@ exec((OUT/'disruptor17.py').read_text())
 exec((OUT/'lift_controls19.py').read_text())
 exec((OUT/'scanman20.py').read_text())
 exec((OUT/'scanman_native21.py').read_text())
+exec((OUT/'repair_inventory22.py').read_text())
 # Match both barrels: lower their world-space sprite centre by20units.
 assert src[0xb8b0:0xb8b2]==bytes.fromhex('0054')
 r[0xb8b0:0xb8b2]=bytes.fromhex('0040')
