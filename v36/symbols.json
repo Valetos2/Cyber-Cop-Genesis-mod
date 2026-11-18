@@ -628,6 +628,8 @@
   "mouse_jump_held26": 2044944,
   "mouse_jump_released26": 2044962,
   "mouse_jump_store26": 2044968,
+  "robot_floor27": 2044980,
+  "robot_floor_store27": 2045030,
   "mission_planar_maps": 2228224,
   "lut_0": 2260224,
   "lut_1": 2260232,
