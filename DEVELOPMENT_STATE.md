@@ -1,3 +1,5 @@
+18 ноября 2026 — test22: пять предметов, перенос содержимого старого SRAM без вытеснения. См. [TEST22_ITEMS.md](docs/reverse-engineering/TEST22_ITEMS.md).
+
 18 ноября 2026 — сверены предметы, правила газа и состояние двух сейвов Kega. Результаты и отложенная замена кадра лазера: [PLAYTHROUGH_CLOSEOUT.md](docs/reverse-engineering/PLAYTHROUGH_CLOSEOUT.md). ROM остаётся test21.
 
 Test21: на gs9 исправлена горизонтальная ступенька у края изображения лазера. Проверены кадры при углах $37A/$38A/$39A. Ожидается проверка игроком. ROM SHA256 500defe307c2fddca489303baa002835d4f8bca0c340d31550bb5f7c51cb4bc6.

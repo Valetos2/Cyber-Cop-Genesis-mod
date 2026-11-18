@@ -59,6 +59,7 @@ items=bytearray(768)
 for i,lev in enumerate(levels):
  for j,(x,y,v) in enumerate(lev['items']):items[i*48+j*3:i*48+j*3+3]=bytes([x,49-y,v])
 table_hook(0x2944,asset('mission_items',items),'items36')
+exec((OUT/'pickups36.py').read_text())
 # Every SRAM absolute address in native checkpoint routines is selected at runtime.
 # Keep CC17/X21 original byte locations. Mission uses second 4096-byte slot,
 # bus offset $2000 on odd-byte SRAM. Code remains below2MiB while SRAM is enabled.
@@ -131,6 +132,7 @@ exec((OUT/'sleep_overlay31.py').read_text())
 exec((OUT/'sleep_hold32.py').read_text())
 exec((OUT/'fuse_sram34.py').read_text())
 exec((OUT/'sram_audio33.py').read_text())
+hook_legacy_pickups36()
 exec((OUT/'laser_clip35.py').read_text())
 # Match both barrels: lower their world-space sprite centre by20units.
 assert src[0xb8b0:0xb8b2]==bytes.fromhex('0054')
