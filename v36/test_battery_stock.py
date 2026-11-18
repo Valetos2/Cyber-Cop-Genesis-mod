@@ -18,4 +18,4 @@ for rom in (original,R):
     assert drain(rom)==1
     assert all(drain(rom,phase=p)==0 for p in range(1,16))
     assert drain(rom,armor=3)==0
-print('PASS original and current ROM agree: gs2 Armor 3 drains one charge per 16 updates with other drains off')
+print('PASS original and current ROM agree: gs2 Armor 4 drains one charge per 16 updates with other drains off')
