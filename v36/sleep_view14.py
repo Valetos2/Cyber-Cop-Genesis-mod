@@ -4,7 +4,7 @@ SLEEP_VIEW=0xffff0868  # 0: no saved mode, 1: free look, 2: pointer
 p=0x6fb2
 assert r[p:p+6]==bytes.fromhex('4ef9')+struct.pack('>I',V['sleep17_begin'])
 c.label('sleep_save_view14')
-c.abs('4239',SLEEP_VIEW)
+c.abs('4239',SLEEP_VIEW);c.abs('4239',START_WAKE_PENDING)
 c.abs('4a79',P);c.branch('6700','sleep_enter_native14')
 c.abs('4a39',0xffff0192);c.branch('6700','sleep_enter_native14')
 c.abs('4a79',N);c.branch('6600','sleep_save_pointer14')

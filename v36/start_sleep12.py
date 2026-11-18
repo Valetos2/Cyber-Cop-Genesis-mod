@@ -23,16 +23,15 @@ c.label('start_sleep_done12');c.emit('4e75')
 c.label('start_sleep_native12');c.emit(src[p:p+8].hex());c.jump(p+8)
 patch(p,'start_sleep12',8)
 
-# Native sleep checked Start as a held button. A sleep entered by Start (or
-# used with the mouse enabled) must wait for another edge instead.
+# Wake on a Start press edge in either mouse mode. Check both halves so
+# the transition back to released never counts as a press.
 p=0x708e
 assert r[p:p+12]==bytes.fromhex('3039ffff0004080000076678')
 c.label('start_sleep_check12')
+c.abs('4a39',START_WAKE_PENDING);c.branch('6600','start_sleep_consume12')
 c.abs('3039',0xffff0004);c.emit('08000007');c.branch('6600','start_sleep_wait12')
-c.abs('4a79',P);c.branch('6600','start_sleep_edge12')
-c.abs('4a39',START_SLEEP);c.branch('6700','start_sleep_wake12')
-c.label('start_sleep_edge12')
 c.emit('08390007ffff0007');c.branch('6700','start_sleep_wait12')
+c.label('start_sleep_consume12');c.abs('4239',START_WAKE_PENDING)
 c.emit('08b90007ffff0007')
 c.label('start_sleep_wake12');c.jump(0x709a)
 c.label('start_sleep_wait12');c.jump(0x7112)

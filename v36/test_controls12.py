@@ -86,10 +86,12 @@ for item, refill, supply, panel, applied in [
         assert rd(u, INV, 1) == (255 if mouse or inv else 0)
         if not (mouse or inv):
             for edge, want in [(4, item), (1, refill)]:
+                w(u, 0xffff0012, 0)  # next buffered press
                 w(u, 0xffff0010, edge)
                 run(u, V['item_keys'])
                 assert rd(u, 0xffff21ba) == want and rd(u, INV, 1) == 0
             w(u, 0xffff0010, 2)
+        w(u, 0xffff0012, 0)  # independent, newly pressed Y
         run(u, V['item_keys'])  # a second Y uses the preselected item
         assert rd(u, applied, 1) == 255
         assert rd(u, INV, 1) == (255 if mouse or inv else 0)
