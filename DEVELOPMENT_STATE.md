@@ -1,3 +1,5 @@
+18 ноября 2026 — отдельный QR ROM на четыре масштаба готов; [проверка на ЭЛТ](docs/reverse-engineering/ATLAS_QR_CRT.md) ожидает пользователя.
+
 18 ноября 2026 — test22: пять предметов, перенос содержимого старого SRAM без вытеснения. См. [TEST22_ITEMS.md](docs/reverse-engineering/TEST22_ITEMS.md).
 
 18 ноября 2026 — сверены предметы, правила газа и состояние двух сейвов Kega. Результаты и отложенная замена кадра лазера: [PLAYTHROUGH_CLOSEOUT.md](docs/reverse-engineering/PLAYTHROUGH_CLOSEOUT.md). ROM остаётся test21.
