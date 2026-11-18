@@ -89,9 +89,11 @@ s=s.replace('function draw(){', "function legendRank(t){if(t===27)return 0;if([3
 # independently. A robot sharing a cell must not replace the tile preview.
 s=s.replace('<title>Cyber-Cop — атлас 16 уровней</title>', '<title>Cyber-Cop · Atlas 41 · v37</title>')
 s=s.replace('<h2>Легенда этажа</h2>', '<h2>Легенда этажа</h2><p id="pickupTotal"></p>')
+s=s.replace("function setLanguage(lang){try", "function setLanguage(lang){if(lang===document.documentElement.lang)return;try")
+s=s.replace("$('langEn').onclick=", "for(const [id,lang] of [['langEn','en'],['langRu','ru']])$(id).setAttribute('aria-pressed',String(document.documentElement.lang===lang));\n$('langEn').onclick=")
 s=s.replace('в наш ROM v36 test04','в наш ROM v37')
 s=s.replace('Луч показан в режиме Visor 1: три соседние клетки в восьми клетках от игрока, камера в прыжке.',
-            'Лазер показан в обычной палитре, на игровом ракурсе из v37.')
+            'Луч показан на игровом ракурсе из v37 (в обычной палитре).')
 s=s.replace("+' · '+m.name+'</span>", "+' · '+m.name+(+id>=37?' ×'+l.pickup_counts[id]:'')+'</span>")
 s=s.replace("$('legend').innerHTML=", "$('pickupTotal').textContent='Подбираемых предметов: '+l.pickup_total;\n$('legend').innerHTML=")
 start=s.index(';let src=images.scenes[t]')
@@ -99,7 +101,7 @@ end=s.index('\nfunction cellAt',start)
 s=s[:start]+''';
 const scene=images.scenes[t];
 const baseImage=scene||(item!==null?images.items[item]:images.objects[l.id][t]);
-const sceneLabel=t===11?'Лазер в обычной палитре':t===2?'Светильник: потолочный свет и тень на полу':t===24?'Игровой рендер с расстояния три клетки':'Игровой рендер с расстояния шесть клеток';
+const sceneLabel=t===11?'Лазер (в обычной палитре)':t===2?'Светильник: потолочный свет и тень на полу':t===24?'Игровой рендер с расстояния три клетки':'Игровой рендер с расстояния шесть клеток';
 const card=(src,label,role,width)=>src?'<figure class="previewCard" data-preview="'+role+'"><img alt="'+label+'" src="'+src+'" style="width:'+width+'px"><figcaption>'+label+'</figcaption></figure>':'';
 const cards=[
  card(baseImage,scene?sceneLabel:m.name,'tile',scene?176:128),
@@ -111,20 +113,18 @@ $('preview').innerHTML=cards||([34,36].includes(t)?'<small>Панель рису
 s=s.replace('</style>', '#preview:has(.previewCard){overflow:auto;flex-wrap:wrap;align-content:start;align-items:start;gap:8px;padding:6px;box-sizing:border-box}#preview .previewCard{display:flex;flex:0 1 calc(50% - 4px);min-width:0;max-width:176px;flex-direction:column;align-items:center;margin:0}#preview .previewCard:only-child{flex-basis:95%}#preview .previewCard img{max-height:clamp(60px,18vh,140px);height:auto;width:100%!important;max-width:100%}#preview .previewCard figcaption{font-size:12px;text-align:center;color:#cbd8e3}#pickupTotal{margin:.3em 0 .65em;color:#cbd8e3}</style>')
 actor_start=s.index('l.objects.forEach(p=>{ctx.fillStyle=')
 actor_end=s.index('\n',actor_start)
-s=s[:actor_start]+"l.objects.forEach(p=>paintEnemy(l,p));"+s[actor_end:]
-s=s.replace('function draw(){', """function paintEnemy(l,p){
- const tile=l.cells[p.y*80+p.x]&63;
- const [x,y,r]=tile>1?[.79,.23,.19]:[.5,.5,.4];
+s=s[:actor_start]+"l.objects.forEach(p=>paintEnemy(p));"+s[actor_end:]
+s=s.replace('function draw(){', """function paintEnemy(p){
  ctx.fillStyle='#ff2436';ctx.beginPath();
- ctx.moveTo((p.x+x)*scale,(p.y+y-r)*scale);
- ctx.lineTo((p.x+x+r)*scale,(p.y+y+r)*scale);
- ctx.lineTo((p.x+x-r)*scale,(p.y+y+r)*scale);
+ ctx.moveTo((p.x+.5)*scale,(p.y+.08)*scale);
+ ctx.lineTo((p.x+.9)*scale,(p.y+.9)*scale);
+ ctx.lineTo((p.x+.1)*scale,(p.y+.9)*scale);
  ctx.closePath();ctx.fill();
 }
 function draw(){""")
 # Keep enemies visible when blinking underlying terminals.
-s=s.replace("paintCell(l,i);if(highlightType===31)", "paintCell(l,i);l.objects.filter(p=>p.y*80+p.x===i).forEach(p=>paintEnemy(l,p));if(highlightType===31)")
-s=s.replace("if(highlightType===33)outline(x,y", "l.objects.filter(p=>p.x===x&&p.y===y).forEach(p=>paintEnemy(l,p));if(highlightType===33)outline(x,y")
+s=s.replace("paintCell(l,i);if(highlightType===31)", "paintCell(l,i);l.objects.filter(p=>p.y*80+p.x===i).forEach(p=>paintEnemy(p));if(highlightType===31)")
+s=s.replace("if(highlightType===33)outline(x,y", "l.objects.filter(p=>p.x===x&&p.y===y).forEach(p=>paintEnemy(p));if(highlightType===33)outline(x,y")
 assert 'pickup_counts[id]' in s and 'function paintEnemy' in s
 
 (D/'template.html').write_text(s)
