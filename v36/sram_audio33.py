@@ -26,7 +26,8 @@ c.emit('02000001d000') # bit 1 = music on
 c.abs('4a39',0xffff2711);c.branch('6600','sram_audio_mark33')
 c.emit('5200') # bit 0 = SFX on
 c.label('sram_audio_mark33')
-c.emit('1740000646001740000816bc00a1') # flags, complement, validity mark
+c.emit('17400006460017400008')
+fuse_fields34('write');c.emit('16bc00a2') # flags, complement, validity mark
 c.emit(src[p:p+8].hex());c.jump(p+8);patch(p,'sram_audio_save33',8)
 
 # Restore before the existing late-resume music check. This path runs only
@@ -35,7 +36,9 @@ p=0xf872a
 assert r[p:p+8] == bytes.fromhex('13fc000000a130f1')
 c.label('sram_audio_restore33')
 c.call(c.labels['sram_audio_addr33'])
+c.emit('0c1300a2');c.branch('6700','sram_audio_valid34')
 c.emit('0c1300a1');c.branch('6600','sram_audio_done33')
+c.label('sram_audio_valid34')
 for off, legacy in [(2,0x20004d),(4,0x20004f)]:
     rel=(legacy-AUDIO_SIDE)&0xffff
     c.emit(f'102b{off:04x}b02b{rel:04x}');c.branch('6600','sram_audio_done33')
@@ -43,5 +46,8 @@ c.emit('102b00060c000003');c.branch('6200','sram_audio_done33')
 c.emit('12004601b22b0008');c.branch('6600','sram_audio_done33')
 for bit,addr in [(1,0xffff2710),(0,0xffff2711)]:
     c.emit(f'0800{bit:04x}');c.abs('57f9',addr) # seq.b: clear bit means off
+c.emit('0c1300a2');c.branch('6600','fuse_bad34')
+fuse_fields34('check');fuse_fields34('read')
+c.label('fuse_bad34')
 c.label('sram_audio_done33')
 c.emit(src[p:p+8].hex());c.jump(p+8);patch(p,'sram_audio_restore33',8)

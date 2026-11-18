@@ -40,13 +40,13 @@ for flags in range(4):
     sram=checkpoint(u,1,flags^3)
     for camp,expected in [(0,flags),(1,flags^3)]:
         off=camp*0x2000
-        assert sram[off+SIDE:off+SIDE+10:2]==bytes([0xa1,sram[off+0x4d],sram[off+0x4f],expected,expected^255])
+        assert sram[off+SIDE:off+SIDE+10:2]==bytes([0xa2,sram[off+0x4d],sram[off+0x4f],expected,expected^255])
         resume(sram,camp,expected)
         for offset in (0,2,8):
             corrupt=bytearray(sram);corrupt[off+SIDE+offset]^=1
             resume(bytes(corrupt),camp,expected,fallback=True)
         resume(sram,camp,expected,manual=True)
-    assert all(a&1 and n==1 and (a-BUS)%0x2000<=SIDE+8 for a,n in writes)
+    assert all(a&1 and n==1 and (a-BUS)%0x2000<=SIDE+140 for a,n in writes)
 
 sram=checkpoint(fresh(PRIOR),0,0)
 assert sram[SIDE:SIDE+10]==bytes([255])*10
