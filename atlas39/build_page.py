@@ -85,6 +85,48 @@ s=s.replace('</style>', '.sw.capsuleMarker{position:relative;isolation:isolate}.
 s=s.replace('Object.entries(l.legend).map', "Object.entries(l.legend).sort(([a],[b])=>legendRank(+a)-legendRank(+b)).map")
 s=s.replace('function draw(){', "function legendRank(t){if(t===27)return 0;if([33,31,32].includes(t))return 10+[33,31,32].indexOf(t);if(t===34)return 20;if(t>=37)return 30+t;if([14,36,12,35,4,3].includes(t))return 100+[14,36,12,35,4,3].indexOf(t);return 200+(t===16?9.5:t)}\nfunction draw(){")
 
+# Atlas 41: count map pickups, and display the base tile and each actor
+# independently. A robot sharing a cell must not replace the tile preview.
+s=s.replace('<title>Cyber-Cop — атлас 16 уровней</title>', '<title>Cyber-Cop · Atlas 41 · v37</title>')
+s=s.replace('<h2>Легенда этажа</h2>', '<h2>Легенда этажа</h2><p id="pickupTotal"></p>')
+s=s.replace('в наш ROM v36 test04','в наш ROM v37')
+s=s.replace('Луч показан в режиме Visor 1: три соседние клетки в восьми клетках от игрока, камера в прыжке.',
+            'Лазер показан в обычной палитре, на игровом ракурсе из v37.')
+s=s.replace("+' · '+m.name+'</span>", "+' · '+m.name+(+id>=37?' ×'+l.pickup_counts[id]:'')+'</span>")
+s=s.replace("$('legend').innerHTML=", "$('pickupTotal').textContent='Подбираемых предметов: '+l.pickup_total;\n$('legend').innerHTML=")
+start=s.index(';let src=images.scenes[t]')
+end=s.index('\nfunction cellAt',start)
+s=s[:start]+''';
+const scene=images.scenes[t];
+const baseImage=scene||(item!==null?images.items[item]:images.objects[l.id][t]);
+const sceneLabel=t===11?'Лазер в обычной палитре':t===2?'Светильник: потолочный свет и тень на полу':t===24?'Игровой рендер с расстояния три клетки':'Игровой рендер с расстояния шесть клеток';
+const card=(src,label,role,width)=>src?'<figure class="previewCard" data-preview="'+role+'"><img alt="'+label+'" src="'+src+'" style="width:'+width+'px"><figcaption>'+label+'</figcaption></figure>':'';
+const cards=[
+ card(baseImage,scene?sceneLabel:m.name,'tile',scene?176:128),
+ ...os.map(o=>card(images.enemies[l.id][o.type],enemyNames[o.type],'enemy',128)),
+ ...(t===14?spawnTypes[l.id].map(type=>card(images.enemies[l.id][type],enemyNames[type],'spawn',100)):[]),
+ card(panel,'Начальный интерфейс взаимодействия','panel',176)
+].join('');
+$('preview').innerHTML=cards||([34,36].includes(t)?'<small>Панель рисуется геометрией стены, отдельного спрайта нет.</small>':'');}'''+s[end:]
+s=s.replace('</style>', '#preview:has(.previewCard){overflow:auto;flex-wrap:wrap;align-content:start;align-items:start;gap:8px;padding:6px;box-sizing:border-box}#preview .previewCard{display:flex;flex:0 1 calc(50% - 4px);min-width:0;max-width:176px;flex-direction:column;align-items:center;margin:0}#preview .previewCard:only-child{flex-basis:95%}#preview .previewCard img{max-height:clamp(60px,18vh,140px);height:auto;width:100%!important;max-width:100%}#preview .previewCard figcaption{font-size:12px;text-align:center;color:#cbd8e3}#pickupTotal{margin:.3em 0 .65em;color:#cbd8e3}</style>')
+actor_start=s.index('l.objects.forEach(p=>{ctx.fillStyle=')
+actor_end=s.index('\n',actor_start)
+s=s[:actor_start]+"l.objects.forEach(p=>paintEnemy(l,p));"+s[actor_end:]
+s=s.replace('function draw(){', """function paintEnemy(l,p){
+ const tile=l.cells[p.y*80+p.x]&63;
+ const [x,y,r]=tile>1?[.79,.23,.19]:[.5,.5,.4];
+ ctx.fillStyle='#ff2436';ctx.beginPath();
+ ctx.moveTo((p.x+x)*scale,(p.y+y-r)*scale);
+ ctx.lineTo((p.x+x+r)*scale,(p.y+y+r)*scale);
+ ctx.lineTo((p.x+x-r)*scale,(p.y+y+r)*scale);
+ ctx.closePath();ctx.fill();
+}
+function draw(){""")
+# Keep enemies visible when blinking underlying terminals.
+s=s.replace("paintCell(l,i);if(highlightType===31)", "paintCell(l,i);l.objects.filter(p=>p.y*80+p.x===i).forEach(p=>paintEnemy(l,p));if(highlightType===31)")
+s=s.replace("if(highlightType===33)outline(x,y", "l.objects.filter(p=>p.x===x&&p.y===y).forEach(p=>paintEnemy(l,p));if(highlightType===33)outline(x,y")
+assert 'pickup_counts[id]' in s and 'function paintEnemy' in s
+
 (D/'template.html').write_text(s)
 page=s.replace('__DATA__',(D/'data.json').read_text()).replace('__IMAGES__',(D/'images.json').read_text())
 (D/'Cyber-Cop_Atlas.html').write_text(page)

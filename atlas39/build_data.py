@@ -1,14 +1,21 @@
 """Build private atlas data/images from locally supplied ROM assets."""
 exec(open('v36/test_core.py').read().split('levels=json')[0])
 from PIL import Image
-import copy,base64,io,struct,sys
+import copy,base64,csv,io,struct,sys
+from render_laser import DEFAULT_SAVE, laser_frame
 out=Path('atlas39');out.mkdir(exist_ok=True)
+assert R[0xf9f85:0xf9f88] == b'v37', 'Build the v37 ROM before generating Atlas 41'
 def pngdata(im):
  b=io.BytesIO();im.save(b,format='PNG');return 'data:image/png;base64,'+base64.b64encode(b.getvalue()).decode()
 def pal(a):return [tuple(round(((int.from_bytes(R[a+i*2:a+i*2+2],'big')>>s)&14)*255/14) for s in (0,4,8)) for i in range(16)]
 original=json.loads(Path('atlas37/data.json').read_text());meta={k:v for l in original for k,v in l['legend'].items()}
 meta.update({'2':{'name':'Светильник','symbol':'','color':'#788474'},'28':{'name':'Бочка Mission (неразрушаемая)','symbol':'1C','color':'#a57bed'},'29':{'name':'Синий стул Mission','symbol':'1D','color':'#a57bed'},'30':{'name':'Зелёный стул Mission','symbol':'1E','color':'#a57bed'}})
 meta['9']=dict(meta['9'],color='#d93949',symbol='');meta['16']=dict(meta['16'],color='#d98430',symbol='')
+# The v37 additions can introduce pickup types absent from every older map.
+item_ids={str(t):R[0x9ee2+t-31] for t in range(37,64)}
+for t,item in item_ids.items():
+ a=0x103f3+item*12
+ meta[t]=dict(name=R[a:a+11].decode('ascii').strip(),symbol=f'{int(t):02X}',color='#80d3a8')
 ctor={}
 for addr in [0x4038,0x4144,0x432e,0x4438]:
  u=machine();run(u,0x685e);u.reg_write(UC_M68K_REG_D0,0x1080);u.reg_write(UC_M68K_REG_D2,0x2080);run(u,addr);ctor[addr]=f'{rd(u,u.reg_read(UC_M68K_REG_A0)+2):04X}'
@@ -18,7 +25,7 @@ for camp in [0,1]:
  levels=[]
  for f in range(16):
   u=machine();w(u,S['CAMP'],camp);run(u,0x2360);run(u,0x2944);w(u,0xffff2606,f);run(u,0x4882);run(u,0x685e);run(u,0x3fb2)
-  l=copy.deepcopy(original[f]);l['cells']=list(u.mem_read(0xffff305a,4000));l['campaign']=camp;l['logical_id']=f+camp*16
+  l=copy.deepcopy(original[f]);l['cells']=list(u.mem_read(0xffff305a,4000));l['campaign']=camp;l['logical_id']=f+camp*16;l['item_ids']=item_ids
   l['objects']=[]
   for a in range(0xffff4468,0xffff4f7e,0x56):
    if rd(u,a+2):l['objects'].append(dict(x=rd(u,a+8)//256,y=49-rd(u,a+12)//256,type=f'{rd(u,a+2):04X}',sprite=rd(u,a+0x20)))
@@ -37,6 +44,16 @@ for levels in banks:
  counts=Counter(l['item_ids'][str(v&63)] for l in levels for v in l['cells'] if v&63>=37)
  for l in levels:
   l['rare_items']=sorted({i for i,n in counts.items() if n<=3}|{8,12,15,16})
+  counts_on_floor=Counter(v&63 for v in l['cells'] if v&63>=37)
+  l['pickup_counts']=dict(sorted(counts_on_floor.items()))
+  l['pickup_total']=sum(counts_on_floor.values())
+with (out/'cells.csv').open('w',encoding='utf-8-sig',newline='') as fp:
+ writer=csv.writer(fp)
+ writer.writerow(['campaign','level','x','y','byte','type'])
+ for levels in banks:
+  for l in levels:
+   writer.writerows((l['campaign'],l['name'],i%80,i//80,f'{v:02X}',v&63)
+                    for i,v in enumerate(l['cells']))
 (out/'data.json').write_text(json.dumps(banks,ensure_ascii=False,separators=(',',':')))
 images=json.loads(Path('atlas37/images.json').read_text());imagebanks=[images,copy.deepcopy(images)]
 # New Holo names use the relocated item bank.
@@ -70,6 +87,10 @@ for f in range(16):
 ns={};source=Path('v36/render_scene.py').read_text().split('for raw,name,robot in [')[0]
 source=source.replace('(49-26)*80','(49-40)*80').replace('(49-24)*80','(49-26)*80')
 exec(source,ns);im=ns['render'](0x82,'lamp_atlas03');(out/'scenes').mkdir(exist_ok=True);im.save(out/'scenes/2.png')
-for bank in imagebanks:bank['scenes']['2']=pngdata(im)
+beam=laser_frame(sys.argv[1] if len(sys.argv)>1 else DEFAULT_SAVE).resize((576,384),Image.Resampling.NEAREST)
+beam.save(out/'scenes/11.png')
+for bank in imagebanks:
+ bank['scenes']['2']=pngdata(im)
+ bank['scenes']['11']=pngdata(beam)
 (out/'images.json').write_text(json.dumps(imagebanks,separators=(',',':')))
 print('Built32 ROM maps, actor lists, lamp scene, Mission sprites and Holo icons')
