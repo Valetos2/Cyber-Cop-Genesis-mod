@@ -696,6 +696,9 @@
   "hud_publish_done37": 2046518,
   "drop_hold37": 2046530,
   "drop_hold_other37": 2046568,
+  "atlas_qr38": 2046580,
+  "atlas_qr_wait38": 2046754,
+  "atlas_qr_end38": 2046796,
   "mission_planar_maps": 2228224,
   "lut_0": 2260224,
   "lut_1": 2260232,
@@ -1380,5 +1383,7 @@
   "sleep_lamps_nav36c_2": 2728836,
   "keypad_shaded_bank36e": 2728850,
   "airlock_shaded_bank36e": 2761618,
+  "atlas_qr_tiles38": 2794386,
+  "atlas_qr_names38": 2804498,
   "CAMP": 4294903808
 }

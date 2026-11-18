@@ -1,3 +1,5 @@
+18 ноября 2026 — test24: самый крупный QR в заставке перед предысторией. См. [TEST24_QR.md](docs/reverse-engineering/TEST24_QR.md).
+
 18 ноября 2026 — test23: восстановление тайла Use из gs0 и единое визуальное нажатие Drop при выходе из экрана предмета. См. [TEST23_HUD.md](docs/reverse-engineering/TEST23_HUD.md).
 
 18 ноября 2026 — отдельный QR ROM на четыре масштаба готов; [проверка на ЭЛТ](docs/reverse-engineering/ATLAS_QR_CRT.md) ожидает пользователя.
