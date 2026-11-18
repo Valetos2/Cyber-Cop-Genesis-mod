@@ -27,7 +27,7 @@ c.label('lift_pad_call19');c.call(0x8c36)
 c.label('lift_pad_done19');c.emit('4cdf00074e75')
 
 # Seed the edge latch on opening, so an A press that opened the panel isn't
-# also a call. Put the mouse on the actual right button, once per entry.
+# also a call. Put the mouse on the actual left button, once per entry.
 p=0x8afe
 assert r[p:p+8]==bytes.fromhex('41facda04eba0420')
 c.label('lift_call_entry19')
@@ -35,7 +35,7 @@ c.abs('41f9',0x58a0);c.call(0x8f24)
 c.abs('3039',0xffff0004);c.emit('464002400050');c.abs('33c0',LIFT_PAD_HELD)
 c.abs('4a79',P);c.branch('6700','lift_call_entry_done19')
 wi(N,1)
-wi(N+4,169);wi(N+6,81)
+wi(N+4,153);wi(N+6,81)
 c.abs('42b9',N+28)  # X/Y subpixel remainders
 # Discard motion sampled before the panel opened. Guard the VBlank buffer.
 c.emit('40e7007c0700')

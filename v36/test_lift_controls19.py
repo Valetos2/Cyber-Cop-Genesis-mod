@@ -30,10 +30,10 @@ def press(u, value):
 
 for mask,index in [(0x40,0),(0x10,1)]:
     u=scene(opener=0xff^mask)  # entry while the shortcut is already held
-    assert rd(u,mode)==1 and (rd(u,xy),rd(u,xy+2))==(169,81)
+    assert rd(u,mode)==1 and (rd(u,xy),rd(u,xy+2))==(153,81)
     assert all(rd(u,p,4)==0 for p in (0xffff0184,0xffff0188,0xffff01bc))
     run(u,symbols35['hit_test'])
-    assert rd(u,0xffff01b0,4)==0x5968
+    assert rd(u,0xffff01b0,4)==0x5954
     press(u,0xff^mask)
     assert rd(u,call)==0
     press(u,0xff)
@@ -45,7 +45,7 @@ for mask,index in [(0x40,0),(0x10,1)]:
     press(u,0xff^mask)
     press(u,0xff^(mask^0x50))  # opposite key during an active route
     assert bytes(u.mem_read(0xffff0858,10))==route and rd(u,button_tile,4)==tiles
-    assert (rd(u,xy),rd(u,xy+2))==(169,81)
+    assert (rd(u,xy),rd(u,xy+2))==(153,81)
     assert rd(u,pad)==0xff^(mask^0x50)
 
 u=scene(False)
@@ -55,4 +55,4 @@ assert rd(u,0xffff0184,4)==0x123456
 u=scene()
 press(u,0x3f)  # A + Start leaves the idle panel on the native cancel path
 assert rd(u,call)==0
-print('PASS A/B direction, held-on-entry protection, no busy reversal, right-button cursor and Mouse Off')
+print('PASS A/B direction, held-on-entry protection, no busy reversal, left-button cursor and Mouse Off')
