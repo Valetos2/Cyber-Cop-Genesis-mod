@@ -67,7 +67,7 @@ print('PASS fourth mouse button enters and exits normal sleep')
 for item, refill, supply, panel, applied in [
     (0x12, 0x13, 0xffff272e, 0x8576, 0xffff26f1), # Drink / Refill
     (0x14, 0x15, 0xffff272c, 0x8476, 0xffff26f0), # Medi Kit / Chemicals
-    (0x07, 0x06, 0, 0x8358, 0xffff26ef),         # Computer / Program
+    (0x07, 0x06, 0, 0x8358, 0xffff26ef),         # Power Pack / Flying Lead
 ]:
     for mouse, inv in [(0, 0), (0, 255), (1, 0)]:
         u = setup(mouse, inv)
@@ -95,4 +95,4 @@ for item, refill, supply, panel, applied in [
         run(u, V['item_keys'])  # a second Y uses the preselected item
         assert rd(u, applied, 1) == 255
         assert rd(u, INV, 1) == (255 if mouse or inv else 0)
-print('PASS Drink, Medi Kit and Computer hotkeys outside/inside inventory and with mouse enabled')
+print('PASS Drink, Medi Kit and Power Pack hotkeys outside/inside inventory and with mouse enabled')
