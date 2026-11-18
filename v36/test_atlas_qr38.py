@@ -9,12 +9,15 @@ def pixel(x,y):
         return 0
     p=R[tile+(i-40)*32+(y%8)*4+(x%8)//2]
     return (p>>(0 if x%2 else 4))&15
-for y in range(19,204):
+for y in range(26,196):
     for x in range(320):
         expected=int(m[(y-39)//5][(x-87)//5]) if 39<=y<184 and 87<=x<232 else 0
         assert pixel(x,y)==expected
-assert any(pixel(x,y) for y in range(6,14) for x in range(320))
-assert any(pixel(x,y) for y in range(209,217) for x in range(320))
+for top,bottom,left,right in [(19,26,59,260),(196,203,7,312)]:
+    ink=[(x,y) for y in range(top,bottom) for x in range(320) if pixel(x,y)]
+    assert (min(x for x,y in ink),max(x for x,y in ink))==(left,right)
+for y,x in [(22,100),(199,238),(199,268)]:
+    assert [pixel(i,y) for i in range(x-1,x+4)]==[0,1,1,1,0]
 
 # Sample real 68000 wait code with controlled active-low button inputs.
 # Stubs remove I/O and count VBlanks; the register and branch logic is native.

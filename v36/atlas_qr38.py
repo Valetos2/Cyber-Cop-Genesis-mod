@@ -11,37 +11,41 @@ for y,row in enumerate(qr38):
         if black:
             for dy in range(5):
                 pixels38[39+y*5+dy][87+x*5:92+x*5]=b'\x01'*5
-# The original bitmap is all capitals. Editable 5-bit lowercase and
-# punctuation stencils keep the italic silhouette and the exact URL case.
-lower38={k:bytes.fromhex(v) for k,v in {
- 'a':'00000e011f111f', 'b':'10101e1111111e', 'c':'00000e1110110e',
- 'e':'00000e111f100f', 'g':'00000f11110f011e', 'h':'10101e11111111',
- 'i':'04000c0404040e', 'l':'0c04040404040e', 'o':'00000e1111110e',
- 'p':'00001e11111e1010', 'r':'00001619101010', 's':'00000f100e011e',
- 't':'04041f04040403', 'u':'0000111111110f', 'v':'00001111110a04',
- 'y':'00001111110f011e',
- '-':'0000001c000000', '.':'00000000000c0c', ':':'000c0c000c0c00',
- '/':'01010204081010',
-}.items()}
+# Render proportional capitals from the native font and custom punctuation.
+# The displayed URL is uppercase; the matrix still encodes the exact URL.
+punct38={'.':(0,0,0,0,0,3,3),':':(0,3,3,0,3,3,0),'/':(1,1,2,4,8,16,16)}
 def atlas_glyph38(letter):
-    if letter==' ':
-        return [[0]*8]*8
-    if letter in lower38:
-        return [[int(bool(row&(16>>x))) if 0<=x<5 else 0 for x in range(-int(i<3),8-int(i<3))]
-                for i,row in enumerate(lower38[letter])]
-    i=ord(letter)-64 if 'A'<=letter<='Z' else ord(letter)-0x15
-    glyph=src[0x30716+i*32:0x30716+(i+1)*32]
-    assert len(glyph)==32
-    return [[int(bool(bv)) for b in glyph[y*4:y*4+4] for bv in (b>>4,b&15)] for y in range(8)]
-def atlas_line38(line,y,step):
-    x=(320-(len(line)-1)*step-8)//2
-    for char in line:
-        for dy,row in enumerate(atlas_glyph38(char)):
-            for dx,ink in enumerate(row):
-                if ink:pixels38[y+dy][x+dx]=1
-        x+=step
-atlas_line38(qr_title38,6,8)
-atlas_line38(qr_url38,209,7)
+    if letter in punct38:
+        points=[(x,y) for y,row in enumerate(punct38[letter])
+                for x in range(5) if row&(16>>x)]
+    else:
+        i=ord(letter)-64 if 'A'<=letter<='Z' else ord(letter)-0x15
+        glyph=src[0x30716+i*32:0x30716+(i+1)*32]
+        assert len(glyph)==32
+        points=[(x,y) for y in range(8) for x in range(8)
+                if glyph[y*4+x//2]&(0xf0 if x%2==0 else 0x0f)]
+    left=min(x for x,y in points)
+    return [(x-left,y) for x,y in points],max(x for x,y in points)-left+1
+
+def atlas_line38(line,y,dash_width,dash_origins):
+    parts=[([],4 if char==' ' else dash_width) if char in ' -' else atlas_glyph38(char)
+           for char in line]
+    width=sum(w for _,w in parts)+len(parts)-1
+    assert width<=320
+    x=(320-width)//2
+    dashes=iter(dash_origins)
+    for char,(points,advance) in zip(line,parts):
+        if char=='-':
+            # Snap the approved 3× reference to the nearest native pixel.
+            dx=next(dashes)-x
+            points=[(dx+i,3) for i in range(3)]
+        for dx,dy in points:
+            pixels38[y+dy][x+dx]=1
+        x+=advance+1
+    assert next(dashes,None) is None
+
+atlas_line38(qr_title38,19,6,(100,))
+atlas_line38(qr_url38.upper(),196,5,(238,268,))
 
 # Reuse identical patterns; reserve the native font and blank tile 0.
 tiles38={}

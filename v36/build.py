@@ -136,6 +136,7 @@ hook_legacy_pickups36()
 exec((OUT/'laser_clip35.py').read_text())
 exec((OUT/'hud_drop37.py').read_text())
 exec((OUT/'atlas_qr38.py').read_text())
+exec((OUT/'intro_audio39.py').read_text())
 # Match both barrels: lower their world-space sprite centre by20units.
 assert src[0xb8b0:0xb8b2]==bytes.fromhex('0054')
 r[0xb8b0:0xb8b2]=bytes.fromhex('0040')

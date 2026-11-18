@@ -699,6 +699,10 @@
   "atlas_qr38": 2046580,
   "atlas_qr_wait38": 2046754,
   "atlas_qr_end38": 2046796,
+  "intro_logo_music39": 2046836,
+  "intro_story_blank39": 2046854,
+  "intro_story_show39": 2046892,
+  "intro_story_saved_blank39": 2046910,
   "mission_planar_maps": 2228224,
   "lut_0": 2260224,
   "lut_1": 2260232,
@@ -1384,6 +1388,6 @@
   "keypad_shaded_bank36e": 2728850,
   "airlock_shaded_bank36e": 2761618,
   "atlas_qr_tiles38": 2794386,
-  "atlas_qr_names38": 2804498,
+  "atlas_qr_names38": 2805714,
   "CAMP": 4294903808
 }
