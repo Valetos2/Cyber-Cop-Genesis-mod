@@ -1,3 +1,4 @@
+SCAN_VISUAL=0xffff0872
 # $79BA installs the whole panel palette, including the eight colors that
 # the earlier $88E6 call set for brightness 8. Apply brightness afterwards.
 p=0x875c
@@ -6,6 +7,7 @@ r[p:p+4]=bytes.fromhex('4e714e71')
 p=0x87a2
 assert r[p:p+8]==bytes.fromhex('41fad1da4eba077c')
 c.label('scanman_entry20')
+wi(SCAN_VISUAL,0)
 c.abs('3039',0xffff2180)
 c.call(0x88e6)
 c.abs('41f9',0x597e);c.call(0x8f24)

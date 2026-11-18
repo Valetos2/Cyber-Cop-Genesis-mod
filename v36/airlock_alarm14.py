@@ -48,6 +48,7 @@ patch(p,'airlock_pressed15',10)
 
 p=S['panel_border']
 c.label('airlock_border15')
+c.emit('0cb9000087c8ffff26b8');c.branch('6700','airlock_border_done15')
 c.emit('0cb9000077a8ffff26b8');c.branch('6600','airlock_border_native15')
 c.abs('4a79',P);c.branch('6700','airlock_border_native15')
 c.abs('4a39',AIR_MOUSE_OPEN);c.branch('6700','airlock_border_wait15')

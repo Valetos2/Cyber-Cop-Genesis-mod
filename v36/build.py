@@ -2,11 +2,8 @@
 from pathlib import Path
 import json,struct,hashlib,sys
 ROOT=Path(__file__).resolve().parent.parent;OUT=Path(__file__).resolve().parent
-sys.path.insert(0,str(ROOT/'mission_port36'))
-from pending_fixes import darken_scanman_inset
 src=(ROOT/'v35c/Cyber-Cop_v35c.bin').read_bytes();r=bytearray(src)+bytearray([255])*0x200000
 S=json.loads((ROOT/'v35c/symbols.json').read_text());V=json.loads((ROOT/'v34/symbols.json').read_text())
-darken_scanman_inset(r,S)
 CAMP=0xffff0800;BASE=0x1f0000;DATA=0x220000;Z80_BOOT=0x1f8000
 assert set(src[BASE:BASE+0x10000])=={255}
 class Code:
@@ -120,6 +117,7 @@ exec((OUT/'hud_capture15.py').read_text())
 exec((OUT/'disruptor17.py').read_text())
 exec((OUT/'lift_controls19.py').read_text())
 exec((OUT/'scanman20.py').read_text())
+exec((OUT/'scanman_native21.py').read_text())
 # Match both barrels: lower their world-space sprite centre by20units.
 assert src[0xb8b0:0xb8b2]==bytes.fromhex('0054')
 r[0xb8b0:0xb8b2]=bytes.fromhex('0040')

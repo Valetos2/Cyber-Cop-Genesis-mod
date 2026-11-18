@@ -29,14 +29,7 @@ for camp in [0,1]:
   assert rd(u,ptr)==0 and rd(u,ptr+2)==(height if camp else 0)
 print('PASS campaign-specific prop destruction and collision tables')
 
-def pixel(u,x,y):
- a=0xffff8934+(x//8)*512+y*4+(x%8)//2
- return rd(u,a,1)>>(0 if x&1 else 4)&15
-u=machine();u.reg_write(UC_M68K_REG_D3,3);run(u,v35['scan_contrast35'])
-for x,y in [(167,39),(167,40),(166,43),(166,44),(165,47)]:assert pixel(u,x,y)==2
-for x,y in [(167,41),(167,46),(166,45)]:assert pixel(u,x,y)==3
-assert pixel(u,162,35)==0
-print('PASS Scanman arrow retains intermediate tones and black inset')
+# Current Scanman pixels are covered by test_scanman_native21.py.
 
 # No held input is needed for a native latched activation texture.
 for mouse,callback,texture,changed in [(1,0x77a8,0xc0,True),(1,0x77a8,0,False),(0,0x77a8,0xc0,False),(1,0x2106,0xc0,False)]:

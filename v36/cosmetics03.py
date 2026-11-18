@@ -1,9 +1,3 @@
-# Preserve the intermediate arrow tones when the lower rocker is pressed.
-for x,y in [(167,39),(167,40),(166,43),(166,44),(165,47)]:
- needle=bytes.fromhex('303c'+f'{x:04x}'+'323c'+f'{y:04x}'+'4eb9')+struct.pack('>I',S['pixel_address'])+bytes.fromhex('7203')
- lo=S['scan_contrast35'];hi=S['scan_contrast35_done'];assert src[lo:hi].count(needle)==1
- p=src.index(needle,lo,hi)+len(needle)-1;r[p]=2
-
 # Mission destruction and projectile-height tables differ at the new props.
 # Its barrel is intentionally indestructible (FF); stools become5D/5E debris.
 for name,site,reg,original,data,replay in [
