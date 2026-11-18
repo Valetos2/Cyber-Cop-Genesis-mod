@@ -2,7 +2,7 @@
 
 ## Source milestones and published patch
 
-The **`main` source tree contains v36a** (the completed hotfix on top of the two-campaign, 4 MiB v36 ROM). The `wip` branch was merged via [PR #2](https://github.com/Valetos2/Cyber-Cop-Genesis-mod/pull/2). The latest **standalone IPS for the original base ROM** under `patches/` is v35c. An additional [incremental v36 → v36a IPS](patches/v36_to_v36a.ips) is included and is valid only for the exact v36 base (SHA-256 `8f585c6218d8f193a01478f8bbe6d7c40406d1c53ecf9a4bbe01da96d5faf43b`). Game sources, independently supplied release packages and binary patches are different publication artifacts; having the source code in GitHub does not imply the completed commercial-ROM output can be downloaded here. See [English project overview](README.md), [Russian cumulative overview](README_RU.md), [v36 release notes](RELEASE_NOTES_v36_RU.md) and [v36a hotfix notes](v36/RELEASE_V36A_RU.md).
+The **current game sources in `main` and `wip` are v37**. The v37 release archive contains a ROM and two verified IPS patches (original → v37 and exact v36a → v37). The public repository contains source and historical patches; the inputs and modified ROM are supplied privately by the user. See [v37 release notes](RELEASE_NOTES_v37_RU.md), the [English changelog](CHANGELOG.md) and [development state](DEVELOPMENT_STATE.md).
 
 ### Historical reproducible v35c builder
 
@@ -30,7 +30,7 @@ See [detailed build notes](sources/BUILD_RU.md), [release notes](RELEASE_NOTES_v
 A source-dependency review was done when v36a was merged into `main`:
 
 - `sources/build_v35.py` rebuilds v35c using **`sources/v13/` → `sources/v34/` → `sources/mouse_lab/` → `sources/v35/`** in that order. These are build dependencies, not redundant leftovers.
-- `v36/build.py` starts from a locally produced **`v35c/Cyber-Cop_v35c.bin`**, loads **`v35c/symbols.json`** and **`v34/symbols.json`**, and uses scripts/data from **`mission_port36/`**, **`amiga_research/`** and **`v36/`**. The prebuilt v35c BIN is intentionally not committed: build and runtime tests depending on it cannot be performed from a pristine source checkout alone.
+- The v37 builder remains at `v36/build.py`; it starts from a locally produced **`v35c/Cyber-Cop_v35c.bin`**, loads **`v35c/symbols.json`** and **`v34/symbols.json`**, and uses scripts/data from **`mission_port36/`**, **`amiga_research/`** and **`v36/`**. The prebuilt v35c BIN is intentionally not committed: build and runtime tests depending on it cannot be performed from a pristine source checkout alone.
 - `atlas39/` (the source for Atlas 40) also reads files produced by **`atlas37/`** and the v36 ROM research/build environment. A directory's older number therefore does **not** prove it is safe to remove.
 - Root `v13/`, `v33/`, earlier atlas revisions and historical tests preserve alternative build/test paths and reverse-engineering evidence. Some are not on the latest build path, but that is **not sufficient justification for deleting archival research**.
 

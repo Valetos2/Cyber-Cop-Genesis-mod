@@ -2,10 +2,10 @@ exec(open('v36/test_core.py').read().split('levels=json')[0])
 for start in range(0,28,2):
  for target in range(0,28,2):
   for button in [0,1]:
-   u=machine();w(u,0xffff260a,start);w(u,0xffff2182,target);w(u,0xffff2186,0);w(u,0xffff2798,65500);u.reg_write(UC_M68K_REG_D0,button);run(u,0x8c4c,0x8c54)
+   u=machine();w(u,0xffff260a,start);w(u,0xffff2606,target//2+(2 if target>=12 else 0));w(u,0xffff2182,(target+2)%28);w(u,0xffff2186,0);w(u,0xffff2798,65500);u.reg_write(UC_M68K_REG_D0,button);run(u,0x8c4c,0x8c54)
    wrong=start!=target and (target<start)!=(button==0)
    waypoint=(0 if button==0 else 26) if wrong else target
-   expected=80 if start==target else (abs(start-waypoint)+abs(waypoint-target))//2*80+(80 if wrong else 0)
+   expected=20 if start==target else (abs(start-waypoint)+abs(waypoint-target))//2*20+(20 if wrong else 0)
    route=list(range(start,waypoint,2 if waypoint>start else -2))+list(range(waypoint,target,2 if target>waypoint else -2))+[target]
    if wrong:route.insert(abs(start-waypoint)//2,waypoint)
    assert rd(u,0xffff085a)==expected,(start,target,button)
@@ -14,7 +14,7 @@ for start in range(0,28,2):
     try:run(u,0x8b18)
     except Exception:
      print(start,target,button,t,expected,rd(u,0xffff085a),rd(u,0xffff0858));raise
-    shown=rd(u,0xffff260a);assert shown==route[min(t//80,len(route)-1)],(start,target,button,t,shown,route)
+    shown=rd(u,0xffff260a);assert shown==route[min(t//20,len(route)-1)],(start,target,button,t,shown,route)
    assert rd(u,0xffff2186)==1 and rd(u,0xffff260a)==target
    run(u,0x8b18,0x8b2a)
    assert rd(u,0xffff2186)==0

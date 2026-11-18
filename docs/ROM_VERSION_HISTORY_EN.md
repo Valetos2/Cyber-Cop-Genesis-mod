@@ -64,3 +64,7 @@ Compiled from 66 README files and technical notes covering v01 through v36a. Thi
 The supplied archive mentions a **custom Atari ST character disk** as a separate research topic (e.g. v33_QUESTIONS_RU.md and v34_DEVELOPMENT.md). **No documentation or implementation of a completed disk-image generator was present in these 66 text files**, so it is not listed as a Genesis ROM feature. The bilingual 32-map Atlas 40 is a separate companion tool ([documentation](../atlas39/README_RU.md)), not game-ROM functionality. The Kega cursor-jump report, all extreme near-plane artifacts and real-console compatibility have **not** been established as fixed.
 
 The [English project README](../README.md) describes **current cumulative game features**; the [v36 release notes](../RELEASE_NOTES_v36_RU.md) and [v36a hotfix record](../v36/RELEASE_V36A_RU.md) provide additional technical detail.
+
+## v37
+
+The v36b test01–27 series became v37. Hardware probes A–K isolated the cold-boot problem; later builds covered input, panels, SRAM, gameplay and the intro. See the [v37 change log](../CHANGELOG.md) and [verification history](../DEVELOPMENT_STATE.md).

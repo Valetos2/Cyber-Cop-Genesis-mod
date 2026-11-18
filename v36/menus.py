@@ -1,5 +1,9 @@
 # Executed inside build.py so every symbol and asset has one owner.
 STATE=0xffff0100;P=0xffff0200;N=0xffff01a0
+# Both the normal and skipped intro route through this title setup call.
+# Reuse the menu's existing queued/current-theme check instead of restarting.
+assert r[0xf042a:0xf0432]==bytes.fromhex('70014eb9000150b4')
+r[0xf042e:0xf0432]=struct.pack('>I',V['music20_ensure'])
 def bi(a,v):c.emit('13fc'+f'{v:04x}');c.long(a)
 def draw(text,where):
  a=asset('text36_'+str(len(assets)),text.encode('ascii'))
@@ -18,7 +22,7 @@ for idx,title in enumerate(['start original game','start amiga mission disk','co
  c.abs('3039',COUNT);c.emit('3200d040');c.abs('41f9',VISIBLE);c.emit('31bc'+f'{idx:04x}'+'0000')
  a=asset('menu36_title_'+str(idx),title.ljust(24).encode());c.abs('4bf9',a);c.emit('3601e14b0643e2123e3c00173c3c2000');c.call(0xffbe);c.abs('5279',COUNT)
  c.label('main36_skip_'+str(idx))
-draw('v36a',0xe800+2*(40-len('v36a')))
+draw(VERSION.rjust(4),0xe800+2*(40-4))
 c.emit('4cdf7fff4e75');patch(V['main18_text'],'main36_text')
 
 c.label('main36_enter')

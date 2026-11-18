@@ -43,7 +43,11 @@ c.label('sleep_lamps_overlay36c');c.abs('43f9',0xffff8934);c.emit('3e3c'+f'{len(
 c.label('sleep_lamps_overlay_loop36c');c.emit('3018321813810000');c.branch('51cf','sleep_lamps_overlay_loop36c')
 c.label('sleep_lamps_draw_native36c');c.emit(src[S['sleep_arrow03']:S['sleep_arrow03']+8].hex());c.jump(S['sleep_arrow03']+8);patch(S['sleep_arrow03'],'sleep_lamps_draw36c',8)
 c.label('sleep_lamps_arrow36c');c.emit('0c39000b');c.long(P+44);c.branch('6600','sleep_lamps_arrow_old36c');c.emit('303c00c0');c.jump(0xf71ea)
-c.label('sleep_lamps_arrow_old36c');c.emit('0c390004');c.long(P+44);c.branch('6400','sleep_lamps_arrow_done36c');c.emit('04400040');c.label('sleep_lamps_arrow_done36c');c.jump(0xf71ea);patch(S['arrow05_draw'],'sleep_lamps_arrow36c')
+c.label('sleep_lamps_arrow_old36c')
+# Mouse On and sensitivity formerly shared offset $100. The sensitivity row
+# is 16 pixels lower (64 bytes in each framebuffer column).
+c.emit('0c39000a');c.long(P+44);c.branch('6600','sleep_lamps_arrow_regular36c');c.emit('303c0140');c.jump(0xf71ea)
+c.label('sleep_lamps_arrow_regular36c');c.emit('0c390004');c.long(P+44);c.branch('6400','sleep_lamps_arrow_done36c');c.emit('04400040');c.label('sleep_lamps_arrow_done36c');c.jump(0xf71ea);patch(S['arrow05_draw'],'sleep_lamps_arrow36c')
 # Joystick navigation uses an explicit visible order, preserving native actions.
 navptrs=[]
 for present,on in [(0,0),(1,0),(1,1)]:
@@ -53,7 +57,9 @@ c.label('sleep_lamps_nav36c');c.emit('7000');c.abs('1039',0xffff0119);c.emit('32
 c.abs('41f9',navptrs[0]);c.abs('4a79',P+38);c.branch('6700','sleep_lamps_nav_table36c');c.abs('41f9',navptrs[1]);c.abs('4a79',P);c.branch('6700','sleep_lamps_nav_table36c');c.abs('41f9',navptrs[2])
 c.label('sleep_lamps_nav_table36c');c.emit('740014187200')
 c.label('sleep_lamps_find36c');c.emit('b0301000');c.branch('6700','sleep_lamps_found36c');c.emit('5241b242');c.branch('6500','sleep_lamps_find36c');c.emit('7200')
-c.label('sleep_lamps_found36c');c.emit('08040000');c.branch('6700','sleep_lamps_down36c');c.emit('5341');c.branch('6a00','sleep_lamps_store36c');c.emit('32025341');c.branch('6000','sleep_lamps_store36c')
+# The table joins Options to Cheats, so Up from the first cheat moves back
+# one row. Up from the first option wraps within Options, past five cheats.
+c.label('sleep_lamps_found36c');c.emit('08040000');c.branch('6700','sleep_lamps_down36c');c.emit('5341');c.branch('6a00','sleep_lamps_store36c');c.emit('320204410006');c.branch('6000','sleep_lamps_store36c')
 c.label('sleep_lamps_down36c');c.emit('5241b242');c.branch('6500','sleep_lamps_store36c');c.emit('7200')
 c.label('sleep_lamps_store36c');c.emit('10301000');c.abs('13c0',0xffff0119);c.jump(V['sleep16_changed'])
 c.label('sleep_lamps_action36c');c.emit('0c40000b');c.branch('6600','sleep_lamps_action_native36c');c.emit('0244007c');c.branch('6700','sleep_lamps_still36c');c.emit('0a3900ff');c.long(LIGHTS_OFF);c.jump(V['sleep16_changed'])

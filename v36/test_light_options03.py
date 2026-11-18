@@ -9,7 +9,8 @@ for present,on in [(0,0),(1,0),(1,1)]:
  for i,sel in enumerate(order):
   for edge,offset in [(1,-1),(2,1)]:
    u=machine();w(u,P+38,present);w(u,P,on);w(u,0xffff0119,sel,1);u.reg_write(UC_M68K_REG_D4,edge)
-   run(u,v35['sleep_nav04'],V['sleep16_changed']);assert rd(u,0xffff0119,1)==order[(i+offset)%len(order)],(present,on,sel,edge,rd(u,0xffff0119,1))
+   expected=order[-6] if sel==0 and edge==1 else order[(i+offset)%len(order)]
+   run(u,v35['sleep_nav04'],V['sleep16_changed']);assert rd(u,0xffff0119,1)==expected,(present,on,sel,edge,rd(u,0xffff0119,1))
 for y,sel in [(24,0),(40,1),(56,2),(72,3),(88,11),(104,9)]:
  u=machine();w(u,P+38,1);w(u,N+4,100);w(u,N+6,y);u.reg_write(UC_M68K_REG_D4,1)
  run(u,v35['sleep_page0'],v35['sleep_click_changed']);assert rd(u,0xffff0119,1)==sel,(y,rd(u,0xffff0119,1))

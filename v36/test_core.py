@@ -20,8 +20,13 @@ for camp in [0,1]:
    v=machine(OLD);run(v,0x2360);run(v,0x2944);w(v,0xffff2606,f);run(v,0x4882);expected=bytearray(v.mem_read(0xffff305a,4000))
    for i in json.loads(Path('v36/original_lamps.json').read_text())[f]:
     assert expected[i]==0;expected[i]=0x82
+  expected=bytearray(expected)
+  for campaign,floor,x,y,kind in [tuple(map(int,line.split(','))) for line in Path('v36/pickups36.csv').read_text().splitlines()]:
+   if (campaign,floor)==(camp,f):
+    assert expected[y*80+x]==0
+    expected[y*80+x]=kind
   assert got==expected,(camp,f,[(i,a,b) for i,(a,b) in enumerate(zip(got,expected)) if a!=b][:8])
-print('PASS all32 maps: original changes only verified empty lamp cells; Mission matches Amiga byte-for-byte')
+print('PASS all32 maps: only documented pickup and lamp placements differ')
 # Independent passwords and SRAM. No menu bypass can mix the two banks.
 u=machine();u.mem_write(0x200000,b'\xff'*0x4000)
 for camp in [0,1]:

@@ -2,7 +2,7 @@
 
 **English** · [Русский README](README_RU.md)
 
-**Current source milestone: [`main` v36a](v36/RELEASE_V36A_RU.md)** — the v36 Amiga Mission Disk campaign plus the completed v36a palette/indicator and elevator-panel hotfix, merged from `wip` in [PR #2](https://github.com/Valetos2/Cyber-Cop-Genesis-mod/pull/2). The latest **standalone IPS from the original ROM** stored here is the [v35c patch](patches/Cyber-Cop_v35c.ips). A separate [v36 → v36a incremental IPS](patches/v36_to_v36a.ips) is also published; it requires the **exact v36 ROM** and is not suitable for the original ROM or v35c. Full game ROMs and private release packages are not hosted here.
+**Current version: [v37](CHANGELOG.md#v37---18-november-2026)**. Two campaigns, improved Mega Drive boot compatibility, mouse and pad refinements, expanded checkpoints, and an in-game atlas QR code.
 
 **Highlights:** second 16-floor campaign (32 maps total), native Sega Mouse with MouseLook, streamlined controller and inventory input, optimizations and lighting, SRAM checkpoints, new robot and objects, and a companion bilingual Atlas 40. This is an unofficial improvement project, not a remake.
 
@@ -135,7 +135,7 @@ For the first time in nearly thirty years, the Corporation I had always imagined
 
 ## Complete changes compared with the original Genesis game
 
-This is a **cumulative feature list through the v36a milestone**, checked against **66 archived README and technical-note files** from v01 onward. Bracketed tags identify the earliest documented build(s) and meaningful later refinements. **MouseLab was a separate test-ROM line**; `integrated v35` distinguishes experiments from released game features. `[v36a]` features are now part of **`main`**, following the merge of the completed hotfix. Atlas revision numbers refer to a separate tool. For a detailed chronology and superseded experiments, see [version history](docs/ROM_VERSION_HISTORY_EN.md).
+This is a **cumulative feature list through v37**, checked against **66 archived README and technical-note files** from v01 onward. Bracketed tags identify the earliest documented build(s) and meaningful later refinements. **MouseLab was a separate test-ROM line**; `integrated v35` distinguishes experiments from released game features. Atlas revision numbers refer to a separate tool. For a detailed chronology and superseded experiments, see [version history](docs/ROM_VERSION_HISTORY_EN.md).
 
 ### Controls, movement and Sega Mouse
 
@@ -159,6 +159,8 @@ This is a **cumulative feature list through the v36a milestone**, checked agains
 - The v35a startup black screen was traced to a conflict between mouse polling during VBlank and the Z80 audio bus and corrected. [v35a]
 - Mouse sensitivity-slider VRAM tile corruption and false jump/crouch gestures with a free cursor were fixed. [v35c]
 - Mouse-driven character and equipment selection, precise hit areas, a character portrait on the equipment screen, and fourth-button confirmation. [v36 test01–03; released v36]
+- Sega Mouse tolerates brief polling failures and restores the previous mouse setting when reconnected; a deliberate Mouse Off stays off. [v37]
+- B/C/X/Y/Z/Start/Mode fire once per press across intermittent pad polls; A and directions remain immediate. Mouse input preserves the game's airborne strafe where applicable, and a left click while moving forward triggers one jump. [v37]
 
 ### Inventory, object panels and interaction fixes
 
@@ -178,12 +180,17 @@ This is a **cumulative feature list through the v36a milestone**, checked agains
 - A timed bomb's Enter confirms the current value, and changes to the digits clear confirmation; closing an unarmed bomb does not activate it. [v26]
 - Opening another object panel now closes the previous one cleanly, avoiding overlapping panel resources. [MouseLab Test09; integrated v35]
 - Airlock Enter can move directly right to the yellow action button, and panel transitions use bounded cursor searches. [v24]
-- Bomb confirmation feedback, Scanman brightness controls and panel click zones are refined for mouse use. [MouseLab Test05–09; integrated v35–v35c]
+- Bomb confirmation feedback and panel click zones are refined for mouse use. [MouseLab Test05–09; integrated v35–v35c]
 - Screen items are labeled Holo. a / Holo. b / Holo. c; Scanman brightness and screen selection reset correctly when re-entering. [v36 test02–04; released v36]
 - Closing a terminal restores the affected inventory HUD rows, and Mission's distinct Scanman Screen images are supported. [v36 test02; released v36]
 - The original item-breakage flag survives dropping, picking up and floor persistence; an already broken item cannot become repaired by being picked up again. [v36]
 - Lock/elevator number palettes are restored, so the green digits remain correct alongside newly shaded red indicators. [v36a]
 - Inserted-ID-card indicators on the elevator and airlock receive shading without replacing the original number colors. [v36a]
+- X/Y/Z shortcuts can use an item panel and select its refill without taking over movement controls. Scanman exposes its own controls; opening Power Pack preserves active inventory control. [v37]
+- Scanman uses the original pressed tiles for mouse and pad, with the same mouse hit regions, held feedback and release on pointer exit. Initial brightness and Use focus after Screen selection are corrected. [v37]
+- Repair retains focus until B is released. Inventory counts show two digits, and the HUD no longer corrupts the Use icon or plays Drop feedback twice when discarding from an item panel. [v37]
+- Fuse Box ignores stale Start input; each switch controls its own floor. Opening the panel or changing a switch restarts the 256 world-update interval to the first restore attempt; sleep and open panels pause it. [v37]
+- Terminals require an accepted ID card before charging or accepting commands. An active alarm lights the airlock's red indicator and blocks opening; the yellow button's mouse outline reflects the actual button state. [v37]
 
 ### Rendering and performance
 
@@ -202,6 +209,8 @@ This is a **cumulative feature list through the v36a milestone**, checked agains
 - Ceiling lights and floor pools of light are restored; lamps can be toggled in Options and the sleep menu. [v36]
 - Lights are inserted into verified empty cells of the original campaign; optimized ellipse drawing reduces artifacts and some expensive rendering paths. [v36]
 - Mission floor/ceiling color bands and imported-sprite trailing strips are corrected; both barrel sprites are lowered consistently in world space. [v36]
+- Lowered the rounded biped in every view and death frame without changing collision. Removed a stray edge from one chair angle and fixed the step in the middle laser segment. [v37]
+- Mission L3/L4/L5 use the original converted ceiling colors, retaining contrast substitutions where a gray floor merges with walls. Lamps follow the current floor's power. [v37]
 
 ### Menus, presentation, sleep and audio
 
@@ -231,6 +240,10 @@ This is a **cumulative feature list through the v36a milestone**, checked agains
 - An in-memory-of-Kevin-Bulmer screen precedes the Sega logo, using the adapted Amiga portrait; repeat-entry palette/scroll glitches are fixed. [v36 test02–04; released v36]
 - Additional shading and held-button feedback are provided for keypad, airlock and bomb indicator lenses. [MouseLab Test06–09; integrated v35c; refined v36]
 - The keypad's red alarm lamp now remains lit while the alarm actually blocks access, rather than only flashing briefly. [v32]
+- With the mouse active, Start opens sleep options immediately and the next press wakes. Waking restores free look or the pointer. Mouse button 4 acts as Mode. Pad and mouse hand off the sleep-menu cursor, including at the sensitivity slider; accidental Mouse Off can be undone before leaving. Up from the first cheat returns to the last available normal option. [v37]
+- Sleep and wake use equal button feedback, and the energy meter no longer flashes a stale value on entry. Back is available in New Game, and the two test maps remain hidden. [v37]
+- The intro links to the interactive atlas with a QR code. Music starts at the game logo, survives a skip, and keeps updating through the story load. The SEGA logo no longer shows stray tiles after death. [v37]
+- Previous leaves the password alone until there is a prior password. Empty Enter returns to the title menu without an error. Only Backspace repeats among character-selection actions; direction repeat is unchanged. [v37]
 
 ### Gameplay, combat, equipment and elevators
 
@@ -248,6 +261,8 @@ This is a **cumulative feature list through the v36a milestone**, checked agains
 - A wrong-direction exterior call sends the lift to the opposite extreme floor before returning; further clicks do not reroute an active call. [v36 test05; released v36]
 - A wrong-direction lift call includes an additional full floor-time pause at the opposite extreme floor before returning. [v36 final]
 - The elevator call panel now shows the final destination floor for a full rendered frame before closing. [v36a]
+- Exterior elevator calls target the actual map while preserving arrival and turnaround timing. The mouse starts on the left button; A/B operate the corresponding calls with the mouse enabled. [v37]
+- Disruptor placement uses the player's actual coordinates and keeps the item when placement fails. Multiple copies keep the same item selected after use. Lockpicks enter all four digits, including trailing zeroes. [v37]
 
 ### Saving, campaigns and new content
 
@@ -266,6 +281,9 @@ This is a **cumulative feature list through the v36a milestone**, checked agains
 - Both hidden test maps are isolated from the campaign SRAM slots, so experiments do not overwrite main-game progress. [v36 test02; released v36]
 - The first separate test map was available with Sega Mouse integration; a second one was added for Mission actors and scenery. [v35; second map v36 test02]
 - The combined game ROM grows to 4 MiB to hold the second campaign and its additional assets. [v36]
+- Continue preserves access level and the destination floor's terminal history in both campaigns. Checkpoints store Music/Sound settings and Fuse Box switches, damage and timers. Older SRAM still loads; test maps do not write to it. [v37]
+- Added Mission Screen 1 on 5F; Medi Kits on Original L3 and Mission L8; Face Mask and Gas Mask in Mission Warehouse. New stock placements do not displace saved items. [v37]
+- The 4 MiB boot layout retains compatible SRAM settings and starts Z80 code from the lower half of ROM. Diagnostic build K was confirmed on the previously affected Mega Drive/EverDrive-MD clone, including Continue and starting either campaign. [v37]
 
 ### Companion atlas (separate from the game ROM)
 
@@ -278,7 +296,7 @@ This is a **cumulative feature list through the v36a milestone**, checked agains
 
 ## Version-by-version history and MouseLab
 
-The [archival release history](docs/ROM_VERSION_HISTORY_EN.md) traces v01–v36a, including the nine experimental MouseLab builds and all five v36 test builds. It distinguishes first prototypes, later corrections and the consolidated main-game versions. The separate [Russian chronology](docs/ROM_VERSION_HISTORY_RU.md) is also available.
+The [archival release history](docs/ROM_VERSION_HISTORY_EN.md) traces v01–v37, including the nine experimental MouseLab builds and all five v36 test builds. It distinguishes first prototypes, later corrections and the consolidated main-game versions. The separate [Russian chronology](docs/ROM_VERSION_HISTORY_RU.md) is also available.
 
 ## Future plans
 
@@ -303,9 +321,8 @@ Most importantly, I want the game to remain recognizably **Corporation**.
 
 **The repository does not distribute original or modified commercial game ROMs.**
 
-- **Ready-to-use public patch:** [Cyber-Cop v35c IPS](patches/Cyber-Cop_v35c.ips), for the exact unmodified 1 MiB **Cyber-Cop (W) [c][!]** image (no copier header). See [v35c release notes](RELEASE_NOTES_v35c.md).
-- **Current game sources in `main`:** v36a, based on the two-campaign 4 MiB v36 game. See [v36 release notes](RELEASE_NOTES_v36_RU.md), [source tree](v36/) and [development state](DEVELOPMENT_STATE.md).
-- **v36a hotfix (merged):** [Russian hotfix notes](v36/RELEASE_V36A_RU.md) · [incremental IPS from exact v36](patches/v36_to_v36a.ips) (1,690 bytes). Required base v36 SHA-256: `8f585c6218d8f193a01478f8bbe6d7c40406d1c53ecf9a4bbe01da96d5faf43b`; resulting v36a SHA-256: `0c60ac5b22650f704dcc90eeea59a32be39eb6d56f69a918dce7f7925237ec41`. A ready-made IPS applying v36a **directly to the original game** is not in `patches/`.
+- **v37 release package:** a local ROM, a full IPS for the original 1 MiB Cyber-Cop ROM, and an incremental IPS for the exact v36a ROM. See the [change log](CHANGELOG.md) and [development state](DEVELOPMENT_STATE.md).
+- **Historical GitHub patches:** [original → v35c](patches/Cyber-Cop_v35c.ips) and [v36 → v36a](patches/v36_to_v36a.ips). Apply each patch only to its named base. The final v37 title was verified in BlastEm; the earlier K build using the same boot layout was tested on the affected Mega Drive setup.
 
 Original Cyber-Cop SHA-256:
 

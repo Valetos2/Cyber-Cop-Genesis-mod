@@ -1,10 +1,66 @@
-# Changes from the original Genesis game — v35c
+# Changes from the original Genesis game
+
+## v37 — 18 November 2026
+
+Changes since v36a. See the [README](README.md#complete-changes-compared-with-the-original-genesis-game) for the cumulative list with version tags.
+
+### Controls, movement and Sega Mouse
+
+- Sega Mouse tolerates brief polling failures and restores the previous mouse setting when reconnected; a deliberate Mouse Off stays off.
+- B/C/X/Y/Z/Start/Mode fire once per press across intermittent pad polls; A and directions remain immediate. Mouse input preserves the game's airborne strafe where applicable, and a left click while moving forward triggers one jump.
+
+### Inventory, object panels and interaction fixes
+
+- X/Y/Z shortcuts can use an item panel and select its refill without taking over movement controls. Scanman exposes its own controls; opening Power Pack preserves active inventory control.
+- Scanman uses the original pressed tiles for mouse and pad, with the same mouse hit regions, held feedback and release on pointer exit. Initial brightness and Use focus after Screen selection are corrected.
+- Repair retains focus until B is released. Inventory counts show two digits, and the HUD no longer corrupts the Use icon or plays Drop feedback twice when discarding from an item panel.
+- Fuse Box ignores stale Start input; each switch controls its own floor. Opening the panel or changing a switch restarts the 256 world-update interval to the first restore attempt; sleep and open panels pause it.
+- Terminals require an accepted ID card before charging or accepting commands. An active alarm lights the airlock's red indicator and blocks opening; the yellow button's mouse outline reflects the actual button state.
+
+### Rendering and performance
+
+- Lowered the rounded biped in every view and death frame without changing collision. Removed a stray edge from one chair angle and fixed the step in the middle laser segment.
+- Mission L3/L4/L5 use the original converted ceiling colors, retaining contrast substitutions where a gray floor merges with walls. Lamps follow the current floor's power.
+
+### Menus, presentation, sleep and audio
+
+- With the mouse active, Start opens sleep options immediately and the next press wakes. Waking restores free look or the pointer. Mouse button 4 acts as Mode. Pad and mouse hand off the sleep-menu cursor, including at the sensitivity slider; accidental Mouse Off can be undone before leaving. Up from the first cheat returns to the last available normal option.
+- Sleep and wake use equal button feedback, and the energy meter no longer flashes a stale value on entry. Back is available in New Game, and the two test maps remain hidden.
+- The intro links to the interactive atlas with a QR code. Music starts at the game logo, survives a skip, and keeps updating through the story load. The SEGA logo no longer shows stray tiles after death.
+- Previous leaves the password alone until there is a prior password. Empty Enter returns to the title menu without an error. Only Backspace repeats among character-selection actions; direction repeat is unchanged.
+
+### Gameplay, combat, equipment and elevators
+
+- Exterior elevator calls target the actual map while preserving arrival and turnaround timing. The mouse starts on the left button; A/B operate the corresponding calls with the mouse enabled.
+- Disruptor placement uses the player's actual coordinates and keeps the item when placement fails. Multiple copies keep the same item selected after use. Lockpicks enter all four digits, including trailing zeroes.
+
+### Saving, campaigns and new content
+
+- Continue preserves access level and the destination floor's terminal history in both campaigns. Checkpoints store Music/Sound settings and Fuse Box switches, damage and timers. Older SRAM still loads; test maps do not write to it.
+- Added Mission Screen 1 on 5F; Medi Kits on Original L3 and Mission L8; Face Mask and Gas Mask in Mission Warehouse. New stock placements do not displace saved items.
+- The 4 MiB boot layout retains compatible SRAM settings and starts Z80 code from the lower half of ROM. Diagnostic build K was confirmed on the previously affected Mega Drive/EverDrive-MD clone, including Continue and starting either campaign.
+
+---
+
+## v36a
+
+- Restored the original lock and elevator digit colors alongside the shaded indicator lamps.
+- Added shading to the elevator and airlock ID-card indicators.
+- The exterior call panel shows the arrival floor before closing.
+- [v36a hotfix notes (Russian)](v36/RELEASE_V36A_RU.md).
+
+## v36
+
+- Added the 16-floor Amiga Mission Disk as a second campaign, with its own checkpoints, passwords, enemies, props, Scanman images and ending.
+- Added floor and ceiling lamps, the Kevin Bulmer memorial, mouse support in character and equipment selection, and a second isolated test map.
+- Fixed lift timing and stuck journeys, saved the destination when choosing a floor, improved auto-aim priorities, and preserved the broken state of dropped items.
+- [v36 release notes (Russian)](RELEASE_NOTES_v36_RU.md) and [cumulative list by version](README.md#complete-changes-compared-with-the-original-genesis-game).
 
 ## v35c additions
 
 - Integrated Sega Mouse support (port 2), aiming, free pointer and capture modes, vertical view offset and sensitivity control.
 - Improved mouse/button handling across panels, inventory, sleep and Options; fixed lift mouse input after selecting a valid destination.
-- Corrected VBlank/Z80 interaction responsible for a black-screen regression, and refined bomb/Scanman UI feedback.
+- Corrected VBlank/Z80 interaction responsible for a black-screen regression, and refined bomb UI feedback.
 - Added an isolated test map with safeguards against modifying main-game SRAM.
 - Full details: [v35c release notes](RELEASE_NOTES_v35c.md) and [Russian cumulative list](docs/Cyber-Cop_v35c_Fixes_RU.md).
 

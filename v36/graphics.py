@@ -13,16 +13,17 @@ for f in range(16):
  colors=[0,0xf00]+ap[2:8]+[ap[9],0]+ap[18:24]
  colors += [ap[i] for i in (24,26,28,29,30,32,34)]
  native=[mdcolor(x) for x in colors]
- # Use the corresponding Genesis background where Amiga's gray bands merge
- # with gray walls. If that original band is also gray, use original floor0.
+ # A gray ceiling alone is intentional. Apply the contrast fallback only
+ # when the floor ramp (entries 20..22) also blends into the gray walls.
  oldpal=struct.unpack_from('>23H',src,struct.unpack_from('>I',src,0x10b8c+f*4)[0])
  fallback=struct.unpack_from('>23H',src,struct.unpack_from('>I',src,0x10b8c)[0])
  def gray(v):return (v&15)==((v>>4)&15)==((v>>8)&15)
- for lo,hi in [(16,19),(20,23)]:
-  if all(gray(v) for v in native[lo:hi]):
-   replacement=oldpal[lo:hi]
-   if all(gray(v) for v in replacement):replacement=fallback[lo:hi]
-   native[lo:hi]=replacement
+ if all(gray(v) for v in native[20:23]):
+  for lo,hi in [(16,19),(20,23)]:
+   if all(gray(v) for v in native[lo:hi]):
+    replacement=oldpal[lo:hi]
+    if all(gray(v) for v in replacement):replacement=fallback[lo:hi]
+    native[lo:hi]=replacement
  palettes.append(native)
 ptrs=[asset('mission_palette_'+str(f),struct.pack('>23H',*p)) for f,p in enumerate(palettes)]
 table_hook(0x50fe,asset('mission_palettes',struct.pack('>16I',*ptrs)),'palettes36')

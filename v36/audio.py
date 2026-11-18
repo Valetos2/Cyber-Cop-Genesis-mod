@@ -9,7 +9,10 @@ stub=bytes.fromhex('3a301fb7280721001e01c000c9cf3eb6c31d11')
 driver[0x1f00-0xc00:0x1f00-0xc00+len(stub)]=stub
 driver[0x1f30-0xc00]=0
 driver[0x111a-0xc00:0x111d-0xc00]=bytes.fromhex('c3001f')
-c.label('sound_boot36');c.abs('41f9',asset('z80_driver36',driver));c.abs('43f9',0xa00c00);c.jump(0x15684);patch(0x1567a,'sound_boot36',10)
+# Retain the upper copy and all asset offsets from the hardware-confirmed K.
+asset('z80_driver36',driver)
+r[Z80_BOOT:Z80_BOOT+len(driver)]=driver
+c.label('sound_boot36');c.abs('41f9',Z80_BOOT);c.abs('43f9',0xa00c00);c.jump(0x15684);patch(0x1567a,'sound_boot36',10)
 c.label('pcm_loop36');c.emit('0c401e00');c.abs('57f9',0xa01f30);c.abs('57f9',0xffff0804);c.emit(src[0x155c4:0x155ca].hex());c.jump(0x155ca);patch(0x155c4,'pcm_loop36')
 for name,address,length,step in [('robot_step_sound36',0x1c00,494,153),('robot_attack_sound36',0x1e00,192,205)]:
  c.label(name);c.abs('4a39',0xffff2711);c.branch('6600',name+'_done');c.emit('48e7fffe40e7007c0700')
